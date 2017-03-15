@@ -1,9 +1,9 @@
-FROM alpine:3.3
+FROM alpine:3.5
 MAINTAINER ninthwalker <ninthwalker@gmail.com>
 
 ENV UPDATED_ON 15MAR2017
-ENV RUBY_PACKAGES ruby ruby-dev ruby-json ruby-io-console
-ENV BUNDLER_VERSION 1.12.3
+ENV RUBY_PACKAGES ruby ruby-dev ruby-json ruby-io-console ruby-bundler 
+# ENV BUNDLER_VERSION 1.12.3
 
 VOLUME /config
 EXPOSE 6878
@@ -20,7 +20,7 @@ gcc
 
 RUN \
 cd /opt/gem && \
-gem install bundler -v $BUNDLER_VERSION --no-ri --no-rdoc && \
+# gem install bundler -v $BUNDLER_VERSION --no-ri --no-rdoc && \
 bundle config --global silence_root_warning 1 && \
 bundle install
 
