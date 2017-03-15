@@ -1,7 +1,7 @@
 FROM alpine:3.3
 MAINTAINER ninthwalker <ninthwalker@gmail.com>
 
-ENV UPDATED_ON 14MAR2017
+ENV UPDATED_ON 15MAR2017
 ENV RUBY_PACKAGES ruby ruby-dev ruby-json ruby-io-console
 ENV BUNDLER_VERSION 1.12.3
 
