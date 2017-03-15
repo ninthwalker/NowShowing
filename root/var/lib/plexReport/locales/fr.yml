@@ -1,0 +1,76 @@
+fr:
+  air_date: "Date de diffusion"
+  cast: "Casting"
+  credits_sentence: "Les affiches, résumés et méta-données sont fournies par themoviedb.org et par thetvdb.com"
+  date:
+    abbr_day_names:
+      - dim
+      - lun
+      - mar
+      - mer
+      - jeu
+      - ven
+      - sam
+    abbr_month_names:
+      -
+      - jan.
+      - fév.
+      - mar.
+      - avr.
+      - mai
+      - juin
+      - juil.
+      - août
+      - sept.
+      - oct.
+      - nov.
+      - déc.
+    day_names:
+      - dimanche
+      - lundi
+      - mardi
+      - mercredi
+      - jeudi
+      - vendredi
+      - samedi
+    formats:
+      default: "%d/%m/%Y"
+      short: "%e %b"
+      long: "%e %B %Y"
+    month_names:
+      -
+      - janvier
+      - février
+      - mars
+      - avril
+      - mai
+      - juin
+      - juillet
+      - août
+      - septembre
+      - octobre
+      - novembre
+      - décembre
+    order:
+      - :day
+      - :month
+      - :year
+  director: "Réalisateur"
+  from: "pour"
+  genre: "Genre"
+  help_page_sentence: "Vous avez un problème ?  Vous aimez ?  Vous voulez aider ?  Venez visiter la page <a href=\"https://github.com/ninthwalker/plexReport\">github</a> du projet"
+  imdb_rating: "Note IMDB"
+  minutes: "minutes"
+  network: "Chaine"
+  new_episodes: "Nouveaux épisodes"
+  new_movies: "Nouveaux films"
+  new_seasons: "Nouvelles saisons"
+  rating: "Classification"
+  release_date: "Date de sortie"
+  runtime: "Durée"
+  seasons: {
+    one: "saison",
+    other: "saisons"
+  }
+  thanks_sentence: "C'est tout, pour le moment.  Merci pour votre attention."
+  users: "utilisateurs"

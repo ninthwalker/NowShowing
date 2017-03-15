@@ -1,0 +1,16 @@
+---
+email:
+   title: 'Default Email Header'
+   langauge: 'en'
+plex:
+   server: <SERVER_IP>
+   api_key: <API_KEY>
+mail:
+   address: <MAIL_SERVER_ADDRESS>
+   port: 25
+   username: <MAIL_USERNAME>
+   password: <MAIL_PASSWORD>
+   from: <FROM_DISPLAY_NAME>  
+   subject: <EMAIL_SUBJECT>
+   recipients_email: ['TEST1@EMAIL.COM', 'TEST2@EMAIL.COM']
+   recipients: ['PLEX_USER']
