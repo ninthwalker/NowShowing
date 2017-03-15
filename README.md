@@ -1,4 +1,4 @@
-plexReport
+nowShowing (was: plexReport)
 ================
 
 A dockerized version of bstascavage's original plexReport (https://github.com/bstascavage/plexReport)
