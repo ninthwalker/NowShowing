@@ -8,7 +8,7 @@ ENV RUBY_PACKAGES ruby ruby-dev ruby-json ruby-io-console ruby-bundler alpine-sd
 VOLUME /config
 EXPOSE 6878
 
-#copy app and s6-overlay files.
+#copy app and s6-overlay files..
 COPY root/ s6-overlay/ /
 WORKDIR /config
 
