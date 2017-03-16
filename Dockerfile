@@ -14,7 +14,7 @@ WORKDIR /config
 
 RUN apk add --no-cache \
 $RUBY_PACKAGES \
-curl-dev \
+curl-dev && \
 cd /opt/gem && \
 gem install bundler -v $BUNDLER_VERSION --no-ri --no-rdoc && \
 bundle config --global silence_root_warning 1 && \
