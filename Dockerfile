@@ -2,7 +2,7 @@ FROM alpine:3.5
 MAINTAINER ninthwalker <ninthwalker@gmail.com>
 
 ENV UPDATED_ON 15MAR2017
-ENV RUBY_PACKAGES ruby ruby-dev ruby-json ruby-io-console ruby-bundler alpine-sdk build-base
+ENV RUBY_PACKAGES ruby ruby-dev ruby-json ruby-io-console ruby-bundler
 # ENV BUNDLER_VERSION 1.12.3
 
 VOLUME /config
@@ -15,8 +15,8 @@ WORKDIR /config
 RUN apk add --no-cache \
 $RUBY_PACKAGES \
 curl-dev
-#make \
-#gcc 
+make \
+gcc 
 
 RUN \
 cd /opt/gem && \
