@@ -1,0 +1,76 @@
+en:
+  air_date: "Air date"
+  cast: "Cast"
+  credits_sentence: "All art, summaries, and metadata is provided by themoviedb.org and thetvdb.com"
+  date:
+    abbr_day_names:
+      - Sun
+      - Mon
+      - Tue
+      - Wed
+      - Thu
+      - Fri
+      - Sat
+    abbr_month_names:
+      -
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - May
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Oct
+      - Nov
+      - Dec
+    day_names:
+      - Sunday
+      - Monday
+      - Tuesday
+      - Wednesday
+      - Thursday
+      - Friday
+      - Saturday
+    formats:
+      default: "%m-%d-%Y"
+      long: "%B %d, %Y"
+      short: "%b %d"
+    month_names:
+      -
+      - January
+      - February
+      - March
+      - April
+      - May
+      - June
+      - July
+      - August
+      - September
+      - October
+      - November
+      - December
+    order:
+      - :month
+      - :day
+      - :year
+  director: "Director"
+  from: "from"
+  genre: "Genre"
+  help_page_sentence: "Have an issue?  Like what you see?  Want to help?  Then please check out my <a href=\"https://github.com/ninthwalker/plexReport\">github</a> page"
+  imdb_rating: "IMDB Rating"
+  minutes: "minutes"
+  network: "Network"
+  new_episodes: "New Episodes"
+  new_movies: "New Movies"
+  new_seasons: "New TV Seasons"
+  rating: "Rating"
+  release_date: "Release Date"
+  runtime: "Runtime"
+  seasons: {
+    one: "season",
+    other: "seasons"
+  }
+  thanks_sentence: "That's all, folks!  Thanks for reading!"
+  users: "users"
