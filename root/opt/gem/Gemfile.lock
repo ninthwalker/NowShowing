@@ -1,14 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    highline (1.7.1)
-    httparty (0.13.1)
+    highline (1.7.8)
+    httparty (0.14.0)
       json (1.8.2)
       multi_xml (>= 0.5.2)
-    i18n (0.7.0)
+    i18n (0.8.1)
     json (1.8.2)
     logger (1.2.8)
-    mail (2.6.3)
+    mail (2.6.4)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.3)
     multi_xml (0.5.5)
@@ -17,9 +17,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  highline (= 1.7.1)
-  httparty (= 0.13.1)
-  i18n (= 0.7.0)
+  highline (= 1.7.8)
+  httparty (= 0.14.0)
+  i18n (= 0.8.1)
   json (= 1.8.2)
   logger (= 1.2.8)
-mail (= 2.6.3)
+mail (= 2.6.4)
