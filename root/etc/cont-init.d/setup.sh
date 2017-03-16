@@ -17,7 +17,7 @@ else
  # begin initial setup
  cp /opt/config/* /config/
  chmod -R 666 /config/*
- /usr/local/sbin/plexreport-setup
+ /usr/local/sbin/config-setup
  echo "Setup complete! Please read directions for running this on a schedule."
 fi
 
