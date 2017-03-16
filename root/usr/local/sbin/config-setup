@@ -6,7 +6,7 @@ require 'highline/import'
 
 require_relative '/var/lib/plexReport/plexTv'
 
-# Class to setup PlexReport
+# Class to setup Report
 #
 # Author: Brian Stascavage
 # Email: brian@stascavage.com
