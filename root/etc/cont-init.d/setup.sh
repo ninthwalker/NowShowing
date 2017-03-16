@@ -1,13 +1,10 @@
 #!/usr/bin/with-contenv sh
 
-# Added to check if new web_email_body.erb file exists, if not, add.
-if [ -f /config/web_email_body.erb ]; then
-  echo    # new line, do nothing
-else
- # copy new file
- cp /opt/config/web_email_body.erb /config/
- chmod -R 666 /config/web_email_body.erb
-fi
+#read nowshowing_schedule.cron on container startup and add to crontab
+echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
+crontab /crontab.tmp
+rm -rf /crontab.tmp
+crond -f
 
 #creates config file from ENV variables
 if [ -f /config/config.yaml ]; then
@@ -18,6 +15,5 @@ else
  cp /opt/config/* /config/
  chmod -R 666 /config/*
  /usr/local/sbin/config-setup
- echo "Setup complete! Please read directions for running this on a schedule."
+ echo "Setup complete! Please read directions for advanced settings and running this on a schedule."
 fi
-
