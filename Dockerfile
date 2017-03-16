@@ -13,15 +13,16 @@ RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
 COPY root/ s6-overlay/ /
 WORKDIR /config
 
-RUN apk add --no-cache --virtual build-dependencies \
+RUN apk add --no-cache \
 ruby-dev \
 ruby-bundler \
 libc-dev \
 make \
 gcc && \
-cd /opt/gem ; bundle install && \
-apk del build-dependencies
+cd /opt/gem ; bundle install
+#apk del build-dependencies
 
+# --virtual build-dependencies
 #gem install bundler -v $BUNDLER_VERSION --no-ri --no-rdoc && \
 #bundle config --global silence_root_warning 1 && \
 
