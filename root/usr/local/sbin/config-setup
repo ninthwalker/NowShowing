@@ -4,7 +4,7 @@ require 'json'
 require 'httparty'
 require 'highline/import'
 
-require_relative '/var/lib/plexReport/plexTv'
+require_relative '/var/lib/nowshowing/plexTv'
 
 # Class to setup Report
 #
