@@ -10,11 +10,11 @@ require 'pp'
 require 'i18n'
 require 'i18n/backend/fallbacks'
 
-require_relative '/var/lib/plexReport/plex'
-require_relative '/var/lib/plexReport/themoviedb'
-require_relative '/var/lib/plexReport/thetvdb'
-require_relative '/var/lib/plexReport/omdb'
-require_relative '/var/lib/plexReport/mailReport'
+require_relative '/var/lib/nowshowing/plex'
+require_relative '/var/lib/nowshowing/themoviedb'
+require_relative '/var/lib/nowshowing/thetvdb'
+require_relative '/var/lib/nowshowing/omdb'
+require_relative '/var/lib/nowshowing/mailReport'
 
 # Class for parsing the Plex server for new movies and TV Shows
 #
