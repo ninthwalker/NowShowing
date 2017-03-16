@@ -1,20 +1,21 @@
 NowShowing (was: plexReport)
 ================
 
-A dockerized version of bstascavage's original plexReport (https://github.com/bstascavage/plexReport)
+A heavily modified dockerized version of bstascavage's original plexReport (https://github.com/bstascavage/plexReport)
 
 ## Introduction
-This docker generates an email summary of new additions to Plex to send to your users
+This docker generates an email summary of new additions to Plex to send to your users.
+It also creates a website that can be shared for users to visit.
 
 ## Supported Platforms
-* unRAID, Other Linux
+* unRAID, Other Linux w/ Docker support
 
 ## Supported Email Clients
-* Gmail
+* Gmail, Zoho, Other SMTP possible
 
 ## Supported Plex Agents
 * themoviedb
-* Freebase
+* Plex Movie
 * thetvdb.org
 
 ## Prerequisites
@@ -24,26 +25,21 @@ The following are needed to run this docker:
 1.  Plex.
 2.  themoviedb set as your Agent for your Movie section on your Plex server.
 3.  thetvdb.org set as your Agent for your TV section on your Plex server.
-4.  A Gmail account to forward the email (Gmail is the only supported provider, so if you use another, YMMV).
+4.  A Gmail/SMTP account to forward the email.
 
 ## Installation (unRAID)
 
-Preferred installation method: From the Community Applications 'APPS' section in unRAID.  
+Preferred installation method: From the Community Applications 'Apps' section in unRAID.  
 You can also install by adding the following template repository to unraid:  
 https://github.com/ninthwalker/docker-templates/
 
-After installing, run the following commands from the command line:
-(This initial_setup only has to be done once. Reinstalls of the docker do not require it)
 
-`docker exec -it plexReport ./initial_setup.sh`
 
-Follow Prompts.  
+NowShowing can be run with the following command from unraid:  
 
-plexReport can be run with the following command from unraid:  
+`docker exec NowShowing report [-options]`
 
-`docker exec plexReport plexreport [-options]`
-
-You can now edit the `config.yaml` (and optionally `email_body.erb`) with your own settings in your appdata dir.  
+You can now edit the `config.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
 See `/config/config.yaml.example` and below for details.
 
 To schedule the report to occur regulary please use the new cron system for unRAID 6:
@@ -65,6 +61,10 @@ By default, the config file is located in `/config/config.yaml`.  If you need to
 
 This file can be edited with CSS/HTML if you want to modify the look of the email.
 
+###### web_email_body.erb
+
+This file can be edited with CSS/HTML if you want to modify the look of the webpage.
+
 ###### email
 `title` - Banner title for the email body.  Required.
 
@@ -84,11 +84,11 @@ This file can be edited with CSS/HTML if you want to modify the look of the emai
 
 `username` - Email address to send the email from.  Required.
 
-`password` - Password for hte email set above.  Required.
+`password` - Password for the email set above.  Required.
 
 `from` - Display name of the sender.  Required.
 
-`subject` - Subject of the email.  Note that the script will automatically add a date to the end of the subject.  Required.
+`subject` - Subject of the email. Note that the script will automatically add a date to the end of the subject. Required.
 
 `recipients_email` - Email addresses of any additional recipients, outside of your Plex friends.  Optional.
 
@@ -96,9 +96,9 @@ This file can be edited with CSS/HTML if you want to modify the look of the emai
 
 ## Command-line Options
 
-Once installed, you can run the script by simply running `plexreport` from within the docker image container. 
+Once installed, you can run the script by simply running `report` from within the docker image container. 
 
-If you need to reconfigure the program configs, first delete the existing config files and rerun '. /initial_setup.sh`.  All commandline options can be seen by running `plexreport --help`
+If you need to reconfigure the program configs, first delete the existing config files, then change the variables in the unRAID template and restart the docker..  All commandline options can be seen by running `report --help`
 
 ##### Options:
 `-n, --no-plex-email` - Do not send emails to Plex friends.  Can be used with the `recipients_email` and `recipients` config file option to customize email recipients.
