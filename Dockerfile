@@ -1,8 +1,7 @@
 FROM alpine:3.5
 MAINTAINER ninthwalker <ninthwalker@gmail.com>
 
-ENV UPDATED_ON 15MAR2017
-ENV BUNDLER_VERSION 1.12.3
+ENV UPDATED_ON 16MAR2017
 
 VOLUME /config
 EXPOSE 6878 
@@ -14,9 +13,10 @@ WORKDIR /config
 RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
 RUN apk add --no-cache --virtual build-dependencies \
 ruby-dev \
+ruby-bundler \
+libc-dev \
 make \
 gcc && \
-gem install bundler -v $BUNDLER_VERSION --no-ri --no-rdoc && \
 bundle config --global silence_root_warning 1 && \
 cd /opt/gem ; bundle install && \
 apk del build-dependencies
