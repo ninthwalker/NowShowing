@@ -15,6 +15,7 @@ WORKDIR /config
 RUN apk add --no-cache \
 $RUBY_PACKAGES \
 curl-dev \
+libc-dev \
 make \
 gcc 
 
