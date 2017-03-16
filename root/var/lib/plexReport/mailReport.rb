@@ -3,12 +3,13 @@ require 'rubygems'
 require 'mail'
 require 'time'
 
-require_relative '/var/lib/plexReport/plexTv'
+require_relative '/var/lib/nowshowing/plexTv'
 
 # Class for sending out the email notification.
 #
 # Author: Brian Stascavage
 # Email: brian@stascavage.com
+# Modified by: ninthwalker
 #
 class MailReport
     def initialize(config, options)
