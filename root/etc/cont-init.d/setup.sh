@@ -17,3 +17,6 @@ echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
 rm -rf /crontab.tmp
 crond
+
+#Start webserver
+ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 6878, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
