@@ -58,7 +58,7 @@ fr:
   director: "Réalisateur"
   from: "pour"
   genre: "Genre"
-  help_page_sentence: "Vous avez un problème ?  Vous aimez ?  Vous voulez aider ?  Venez visiter la page <a href=\"https://github.com/ninthwalker/plexReport\">github</a> du projet"
+  help_page_sentence: "Vous avez un problème ?  Vous aimez ?  Vous voulez aider ?  Venez visiter la page <a href=\"https://github.com/ninthwalker/nowshowing\">github</a> du projet"
   imdb_rating: "Note IMDB"
   minutes: "minutes"
   network: "Chaine"
