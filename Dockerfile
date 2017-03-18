@@ -7,7 +7,7 @@ VOLUME /config
 EXPOSE 6878 
 
 #copy app and s6-overlay files
-COPY root/ /
+COPY root/ s6-overlay/ /
 WORKDIR /config/webroot
 
 RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
