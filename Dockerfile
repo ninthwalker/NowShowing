@@ -1,14 +1,14 @@
 FROM alpine:3.5
 MAINTAINER ninthwalker <ninthwalker@gmail.com>
 
-ENV UPDATED_ON 16MAR2017
+ENV UPDATED_ON 18MAR2017
 
 VOLUME /config
 EXPOSE 6878 
 
 #copy app and s6-overlay files
-COPY root/ s6-overlay/ /
-WORKDIR /config
+COPY root/ /
+WORKDIR /config/webroot
 
 RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
 RUN apk add --no-cache --virtual build-dependencies \
@@ -22,4 +22,4 @@ cd /opt/gem ; bundle install && \
 apk del build-dependencies
 
 ENTRYPOINT ["/init"]
-CMD ["ruby", "-run", "-e", "httpd", ".", "-p", "6878"]
+CMD ["/bin/sh"]
