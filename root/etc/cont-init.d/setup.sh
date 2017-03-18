@@ -6,7 +6,7 @@ if [ -f /config/config.yaml ]; then
   echo    # move to a new line
 else
  # begin initial setup
- cp /opt/config/* /config/
+ cp -R /opt/config/* /config/
  chmod -R 666 /config/*
  /usr/local/sbin/config-setup
  echo "Setup complete! Please read directions for advanced settings and running this on a schedule."
@@ -18,5 +18,5 @@ crontab /crontab.tmp
 rm -rf /crontab.tmp
 crond
 
-#Start webserver
-#ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 6878, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
+Start webserver
+ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 6878, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
