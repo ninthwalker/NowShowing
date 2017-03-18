@@ -15,5 +15,5 @@ fi
 #read nowshowing_schedule.cron on container startup and add to crontab
 echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
-rm -rf /crontab.tmp
-crond -f
+#rm -rf /crontab.tmp
+#crond -f
