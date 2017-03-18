@@ -8,7 +8,7 @@ EXPOSE 6878
 
 #copy app and s6-overlay files.
 COPY root/ s6-overlay/ /
-WORKDIR /config
+WORKDIR /config/webroot
 
 RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
 RUN apk add --no-cache --virtual build-dependencies \
@@ -22,4 +22,4 @@ cd /opt/gem ; bundle install && \
 apk del build-dependencies
 
 ENTRYPOINT ["/init"]
-CMD ["/bin/sh"]
+CMD ["crond"]
