@@ -19,4 +19,4 @@ rm -rf /crontab.tmp
 crond
 
 #Start webserver
-ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 6878, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
+#ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => 6878, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
