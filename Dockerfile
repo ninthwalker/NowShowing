@@ -19,6 +19,7 @@ gcc && \
 bundle config --global silence_root_warning 1 && \
 cd /opt/gem ; bundle install && \
 apk del build-dependencies
+WORKDIR /config/webroot
 
 ENTRYPOINT ["/init"]
 CMD ["ruby", "-run", "-e", "httpd", ".", "-p", "6878"]
