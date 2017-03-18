@@ -7,8 +7,7 @@ VOLUME /config
 EXPOSE 6878 
 
 #copy app and s6-overlay files.
-COPY root/ /
-#WORKDIR /config/webroot
+COPY root/ s6-overlay/ /
 
 RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
 RUN apk add --no-cache --virtual build-dependencies \
@@ -21,4 +20,5 @@ bundle config --global silence_root_warning 1 && \
 cd /opt/gem ; bundle install && \
 apk del build-dependencies
 
-CMD ["/bin/sh", "/etc/cont-init.d/setup.sh"]
+ENTRYPOINT ["/init"]
+CMD ["ruby", "-run", "-e", "httpd", ".", "-p", "6878"]
