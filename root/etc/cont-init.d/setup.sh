@@ -8,7 +8,7 @@ else
  # begin initial setup
  cp -R /opt/config/* /config/
  chmod -R 666 /config/*
- /usr/local/sbin/config-setup
+ ruby /usr/local/sbin/config-setup
  echo "Setup complete! Please read directions for advanced settings and running this on a schedule."
 fi
 
