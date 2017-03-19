@@ -9,7 +9,9 @@ EXPOSE 6878
 #copy app and s6-overlay files..
 COPY root/ s6-overlay/ /
 
-RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
+RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev && \
+addgroup -S xyz && adduser -S -g xyz xyz
+
 RUN apk add --no-cache --virtual build-dependencies \
 ruby-dev \
 ruby-bundler \
