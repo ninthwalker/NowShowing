@@ -1,9 +1,9 @@
 # NowShowing
 
-<img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" height="100px" width="100px"/>
+<img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" width="100px"/>
 
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "NowShowing")
-================
+===========================
 
 ## Description / Background
 NowShowing is the sucessor of Ninthwalker's dockerized version plexReport. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport).
