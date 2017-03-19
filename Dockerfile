@@ -21,4 +21,4 @@ cd /opt/gem ; bundle install && \
 apk del build-dependencies
 
 ENTRYPOINT ["/init"]
-CMD ["ruby", "-run", "-e", "httpd", "/config/webroot", "-p", "6878"]
+CMD ["ruby", "-run", "-e", "httpd", "/config/www", "-p", "6878"]
