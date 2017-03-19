@@ -6,9 +6,9 @@ if [ -f /config/config.yaml ]; then
   echo    # move to a new line
 else
  # begin initial setup
- cp -R /opt/config/* /config/
+ cp -Rp /opt/config/* /config/
  ruby /usr/local/sbin/config-setup
- echo "Setup complete! Please read directions for advanced settings and running this on a schedule."
+ echo "Setup complete! Please read directions for advanced settings and changing the schedule."
 fi
 
 #read nowshowing_schedule.cron on container startup and add to crontab.
@@ -16,3 +16,31 @@ echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
 rm -rf /crontab.tmp
 crond
+
+#Set correct permissions
+chown -R xyz:xyz /config
+
+echo "
+--------------------------------------------
+             NowShowing
+--------------------------------------------
+         Brought to you by:
+
+  _  _  _       _    _                      
+ | \| |(_) _ _ | |_ | |_                    
+ | .` || || ' \|  _|| ' \                   
+ |_|\_||_||_||_|\__||_||_|                  
+           __      __      _  _                       
+           \ \    / /__ _ | || |__ ___  _ _           
+            \ \/\/ // _` || || / // -_)| '_|          
+             \_/\_/ \__,_||_||_\_\\___||_|    
+                _                            
+              _| |_                          
+             |_   _|                         
+   ___         |_|           ___          _ 
+  / __| _ _  ___ __ __ _  _ | _ \ ___  __| |
+ | (_ || '_|/ _ \\ \ /| || ||  _// _ \/ _` |
+  \___||_|  \___//_\_\ \_, ||_|  \___/\__,_|
+                       |__/                 
+--------------------------------------------
+"
