@@ -8,7 +8,7 @@ usermod -o -u "$PUID" xyz
 chown -R xyz:xyz /opt/config
 echo "
 -----------------------------------------
-              NowSHowing
+              NowShowing
 -----------------------------------------
           Brought to you by:
           
