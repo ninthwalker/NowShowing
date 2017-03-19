@@ -1,6 +1,6 @@
 # NowShowing
 
-[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "NowShowing")
+(https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "NowShowing")
 ================
 
 ## Description / Background
