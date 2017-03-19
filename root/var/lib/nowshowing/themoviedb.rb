@@ -9,6 +9,7 @@ require 'httparty'
 #
 # Author: Brian Stascavage
 # Email: brian@stascavage.com
+# Modified by: ninthwalker
 #
 class TheMovieDB
     include HTTParty
@@ -17,7 +18,7 @@ class TheMovieDB
     format :json
 
     def initialize(config)
-    	$token = '974eddb0f95ce2b912b9b37a63358823'
+    	$token = '15cebd6668ef6e90315fe023723ea5a7'
         $retry_attempt = 0 
     end
 
