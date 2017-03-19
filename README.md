@@ -12,13 +12,18 @@ The NowShowing docker provides a summary of new media that has recently been add
 2) A webpage for use with reverse proxies, such as Nginx
 
 ## Supported Platforms
+* unRAID v6.3.2
+
+## Working, but Unsupported Platforms
 * Linux platforms with Docker support
-* unRAID with Docker support
+* unRAID v6.3.1 or lower
 
 ## Supported Email Clients
-* Any Email provider with SSL SMTP support
 * Gmail
 * Zoho
+
+## Working, but Unsupported Platforms
+* Any Email provider with SSL SMTP support (Not Gmail or Zoho)
 
 ## Supported Plex Agents
 * Plex Movie
@@ -43,8 +48,12 @@ The NowShowing docker provides a summary of new media that has recently been add
 Selecting Default will install the latest stable version of NowShowing.  
 Selecting dev will install the latest development version of NowShowing.
 >![alt text](http://i.imgur.com/Ci8oPUW.png "unRAID CA Install Step 04")
-
-
+#### Step 5: Fill out the template
+>![alt text](http://i.imgur.com/rtlePWD.png "unRAID CA Install Step 05a")
+>![alt text](http://i.imgur.com/s7B6YQn.png "unRAID CA Install Step 05b")
+>![alt text](http://i.imgur.com/QbGMU0l.png "unRAID CA Install Step 05c")
+#### Step 6: Installation is complete
+Your installation of NowShowing is complete. If you desire to change any of the config files they can be found at your /config install path.
 
 
 
