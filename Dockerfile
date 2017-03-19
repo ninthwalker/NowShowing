@@ -2,7 +2,6 @@ FROM alpine:3.5
 MAINTAINER ninthwalker <ninthwalker@gmail.com>
 
 ENV UPDATED_ON 18MAR2017
-
 VOLUME /config
 EXPOSE 6878 
 
