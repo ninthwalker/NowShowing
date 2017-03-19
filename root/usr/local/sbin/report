@@ -381,7 +381,7 @@ def main
 
     mail.sendMail(template.result(binding))
 
-    output = File.new("/config/index.html","w")
+    output = File.new("/config/www/index.html","w")
     output << webtemplate.result(binding)
     output.close
 	
