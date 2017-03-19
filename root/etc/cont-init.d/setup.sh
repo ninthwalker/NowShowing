@@ -9,7 +9,6 @@ else
  cp -R /opt/config/* /config/
  chmod -R 666 /config/*
  ruby /usr/local/sbin/config-setup
- cd /config/webroot
  echo "Setup complete! Please read directions for advanced settings and running this on a schedule."
 fi
 
