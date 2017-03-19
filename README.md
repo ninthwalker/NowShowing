@@ -39,7 +39,10 @@ The NowShowing docker provides a summary of new media that has recently been add
 >![alt text](http://i.imgur.com/b9d4S94.png "unRAID CA Install Step 02")
 #### Step 3: Click Add
 >![alt text](http://i.imgur.com/0N13iIn.png "unRAID CA Install Step 03")
-
+#### Step 4: Select your branch
+Selecting Default will install the latest stable version of NowShowing.  
+Selecting dev will install the latest experimental version of NowShowing.
+>![alt text](http://i.imgur.com/Ci8oPUW.png "unRAID CA Install Step 04")
 
 You can also install by adding the following template repository to unraid:  
 https://github.com/ninthwalker/docker-templates/
