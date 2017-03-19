@@ -1,4 +1,5 @@
-# NowShowing
+# NowShowing 
+[![](https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png)
 
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "NowShowing")
 ================
