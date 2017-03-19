@@ -1,6 +1,6 @@
 # NowShowing
 
-<img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" style="width: 200px;"/>
+<img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" style="width: 100px;"/>
 
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "NowShowing")
 ================
