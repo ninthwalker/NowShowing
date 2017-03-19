@@ -4,6 +4,7 @@ MAINTAINER ninthwalker <ninthwalker@gmail.com>
 ENV UPDATED_ON 18MAR2017
 
 VOLUME /config
+VOLUME /etc/localtime
 EXPOSE 6878 
 
 #copy app and s6-overlay files.
