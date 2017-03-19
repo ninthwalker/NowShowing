@@ -17,6 +17,7 @@ make \
 gcc && \
 groupmod -g 1000 users && \
 useradd -u 99 -U -d /config -s /bin/false xyz && \
+groupmod -o -g 100 xyz && \
 usermod -G users xyz && \
 bundle config --global silence_root_warning 1 && \
 cd /opt/gem ; bundle install && \
