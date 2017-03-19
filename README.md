@@ -1,4 +1,4 @@
-### NowShowing
+# NowShowing
 
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "Get your own image badge on microbadger.com")
 ================
