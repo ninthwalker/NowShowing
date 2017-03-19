@@ -1,1 +1,2 @@
 /opt/config true xyz,99:100 0664 0775
+/config true xyz,99:100 0664 0775
