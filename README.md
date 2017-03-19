@@ -1,35 +1,58 @@
-NowShowing (was: plexReport)
+NowShowing
 ================
 
-A heavily modified dockerized version of bstascavage's original plexReport (https://github.com/bstascavage/plexReport)
+## Description / Background
+NowShowing is the sucessor of Ninthwalker's dockerized version plexReport. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport).
+While working on the plexReport docker, a user by the name of GroxyPod made some modifications to the docker and showed them to Ninthwalker. From there, they decided 
+to create a sucessor to plexReport: NowShowing. This new docker aims to take the great work already done by bstascavage and Ninthwalker and improve upon it.
 
 ## Introduction
-This docker generates an email summary of new additions to Plex to send to your users.
-It also creates a website that can be shared for users to visit.
+The NowShowing docker provides a summary of new media that has recently been added to Plex, giving the server operator the option of delivering the information in two ways:
+1) An email summary sent to all or selected users of the Plex Server
+2) A webpage for use with reverse proxies, such as Nginx
 
 ## Supported Platforms
-* unRAID, Other Linux w/ Docker support
+* Linux platforms with Docker support
+* unRAID with Docker support
 
 ## Supported Email Clients
-* Gmail, Zoho, Other SMTP possible
+* Any Email provider with SSL SMTP support
+* Gmail
+* Zoho
 
 ## Supported Plex Agents
-* themoviedb
 * Plex Movie
-* thetvdb.org
+* TheMovieDB
+* TheTVDB
 
 ## Prerequisites
+1.  Plex
+2.  TheMovieDB set as your Agent for Movie sections on the Plex server
+3.  TheTVDB set as your Agent for TV sections on the Plex server
+4.  A Email account that supports SSL SMTP
 
-The following are needed to run this docker:
+## Installation on unRAID
+### Preferred Method: Community Applications
+#### Step 1: Click on Apps
+>![alt text](http://i.imgur.com/Bo36OG1.png "unRAID CA Install Step 01")
+#### Step 2: Type in NowShowing and then press enter
+>![alt text](http://i.imgur.com/kULWSDj.png "unRAID CA Install Step 02")
+#### Step 3: Click Add
+>![alt text](http://i.imgur.com/0N13iIn.png "unRAID CA Install Step 03")
+#### Step 4: Select your branch
+Selecting Default will install the latest stable version of NowShowing.  
+Selecting dev will install the latest development version of NowShowing.
+>![alt text](http://i.imgur.com/Ci8oPUW.png "unRAID CA Install Step 04")
 
-1.  Plex.
-2.  themoviedb set as your Agent for your Movie section on your Plex server.
-3.  thetvdb.org set as your Agent for your TV section on your Plex server.
-4.  A Gmail/SMTP account to forward the email.
 
-## Installation (unRAID)
 
-Preferred installation method: From the Community Applications 'Apps' section in unRAID.  
+
+
+
+
+
+
+
 You can also install by adding the following template repository to unraid:  
 https://github.com/ninthwalker/docker-templates/
 
