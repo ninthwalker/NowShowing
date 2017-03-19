@@ -18,6 +18,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 ## Supported Email Clients
 * Any Email provider with SSL SMTP support
 * Gmail
+* Zoho
 
 ## Supported Plex Agents
 * Plex Movie
@@ -26,13 +27,20 @@ The NowShowing docker provides a summary of new media that has recently been add
 
 ## Prerequisites
 1.  Plex
-2.  TheMovieDB set as your Agent for your Movie section on your Plex server
-3.  TheTVDB set as your Agent for your TV section on your Plex server
+2.  TheMovieDB set as your Agent for Movie sections on the Plex server
+3.  TheTVDB set as your Agent for TV sections on the Plex server
 4.  A Email account that supports SSL SMTP
 
-## Installation (unRAID)
+## Installation on unRAID
+### Preferred Method: Community Applications
+#### Step 1: Click on Apps
+>![alt text](http://i.imgur.com/Bo36OG1.png "unRAID CA Install Step 01")
+#### Step 2: Enter NowShowing and then hit enter
+>![alt text](http://i.imgur.com/b9d4S94.png "unRAID CA Install Step 02")
+#### Step 3: Click Add
+>![alt text](http://i.imgur.com/0N13iIn.png "unRAID CA Install Step 03")
 
-Preferred installation method: From the Community Applications 'Apps' section in unRAID.  
+
 You can also install by adding the following template repository to unraid:  
 https://github.com/ninthwalker/docker-templates/
 
