@@ -96,7 +96,7 @@ class Setup
 
         $config['email']['title'] = ENV['EMAIL_BODY_DISPLAY_TITLE']
         if $config['email']['title'].empty?
-            $config['email']['title'] = 'Plex Server Summary'
+            $config['email']['title'] = ''
         end
     end
 
