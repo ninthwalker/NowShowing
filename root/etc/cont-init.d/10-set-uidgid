@@ -1,11 +1,11 @@
 #!/usr/bin/with-contenv sh
 
 PUID=${PUID:-99}
-PGID=${PGID:-99}
+PGID=${PGID:-100}
 
 groupmod -o -g "$PGID" xyz
 usermod -o -u "$PUID" xyz
-
+chown -R xyz:xyz /opt/config
 echo "
 -----------------------------------------
               NowSHowing
