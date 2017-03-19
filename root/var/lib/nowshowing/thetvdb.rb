@@ -7,11 +7,12 @@ require 'httparty'
 #
 # Author: Brian Stascavage
 # Email: brian@stascavage.com
-#
+# Modified by: ninthwalker
+
 class TheTVDB
     include HTTParty
 
-    token = '71362BFFDCA2C8CD'
+    token = 'FCBE9A97726CD688'
     base_uri "http://thetvdb.com/api/#{token}//"
 
     def initialize
