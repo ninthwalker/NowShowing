@@ -13,7 +13,7 @@ else
  echo "Setup complete! Please read directions for advanced settings and running this on a schedule."
 fi
 
-#read nowshowing_schedule.cron on container startup and add to crontab
+#read nowshowing_schedule.cron on container startup and add to crontab.
 echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
 rm -rf /crontab.tmp
