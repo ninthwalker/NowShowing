@@ -1,9 +1,9 @@
+
 # NowShowing
 
 <img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" width="100px"/>
 
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "NowShowing")
-===========================
 
 ## Description / Background
 NowShowing is the sucessor of Ninthwalker's dockerized version plexReport. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport).
@@ -16,13 +16,14 @@ The NowShowing docker provides a summary of new media that has recently been add
 2) A webpage for use with reverse proxies, such as Nginx
 
 ## Supported Platforms
+
+* unRAID v6.2.x with Docker Support
 * Linux platforms with Docker support
-* unRAID with Docker support
 
 ## Supported Email Clients
-* Any Email provider with SSL SMTP support
 * Gmail
 * Zoho
+* Most Email providers with SSL SMTP support
 
 ## Supported Plex Agents
 * Plex Movie
@@ -31,26 +32,35 @@ The NowShowing docker provides a summary of new media that has recently been add
 
 ## Prerequisites
 1.  Plex
-2.  TheMovieDB set as your Agent for Movie sections on the Plex server
-3.  TheTVDB set as your Agent for TV sections on the Plex server
-4.  A Email account that supports SSL SMTP
+2.  Docker
+3.  TheMovieDB set as your Agent for Movie sections on the Plex server
+4.  TheTVDB set as your Agent for TV sections on the Plex server
+5.  An Email account that supports SSL SMTP
 
 ## Installation on unRAID
 ### Preferred Method: Community Applications
 #### Step 1: Click on Apps
 >![alt text](http://i.imgur.com/Bo36OG1.png "unRAID CA Install Step 01")
+
 #### Step 2: Enter NowShowing and then hit enter
 >![alt text](http://i.imgur.com/b9d4S94.png "unRAID CA Install Step 02")
+
 #### Step 3: Click Add
 >![alt text](http://i.imgur.com/0N13iIn.png "unRAID CA Install Step 03")
 #### Step 4: Select your branch
 Selecting Default will install the latest stable version of NowShowing.  
-Selecting dev will install the latest experimental version of NowShowing.
+
+Selecting dev will install the latest development version of NowShowing.
 >![alt text](http://i.imgur.com/Ci8oPUW.png "unRAID CA Install Step 04")
+#### Step 5: Fill out the template
+>![alt text](http://i.imgur.com/rtlePWD.png "unRAID CA Install Step 05a")
+>![alt text](http://i.imgur.com/s7B6YQn.png "unRAID CA Install Step 05b")
+>![alt text](http://i.imgur.com/QbGMU0l.png "unRAID CA Install Step 05c")
+#### Step 6: Installation is complete
+Your installation of NowShowing is complete. If you desire to change any of the config files they can be found at your /config install path.
 
 You can also install by adding the following template repository to unraid:  
 https://github.com/ninthwalker/docker-templates/
-
 
 
 NowShowing can be run with the following command from unraid:  
@@ -60,17 +70,15 @@ NowShowing can be run with the following command from unraid:
 You can now edit the `config.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
 See `/config/config.yaml.example` and below for details.
 
-To schedule the report to occur regulary please use the new cron system for unRAID 6:
-
-Edit the "plexreport_schedule.cron" file found in the plexreport appdata folder with your own time/date.
-Copy that file to the following location. Each time unraid is started it will load your plexreport_schedule.
-
-`/boot/config/plugins/dynamix/`
-
-To have it added immediately without restarting unRAID, at the command prompt type `update_cron`.
-
+The report will be generated and sent out by default every Friday at 10:30am local time.
+To change the schedule, edit the "nowshowing_schedule.cron" file found in the NowShowing config folder with your own time/date.
+Restart the docker to have the changes take effect.
 See this page for help creating a time/date in cron: http://abunchofutils.com/u/computing/cron-format-helper/
-    
+
+# Advanced Settings
+
+Modify the below settings for advanced features and options
+
 ## Config
 
 By default, the config file is located in `/config/config.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format:
@@ -112,9 +120,14 @@ This file can be edited with CSS/HTML if you want to modify the look of the webp
 
 `recipients` - Plex usernames of any Plex friends to be notified.  To be used with the -n option.  Optional
 
+`report_type` - Choose the type of reports to run. Format is ['report type'].  Optional.
+Valid report types are: ['email'] or ['web'] or ['both']
+
 ## Command-line Options
 
-Once installed, you can run the script by simply running `report` from within the docker image container. 
+Once installed, you can run the script by simply running `report` from within the docker image container.
+You can also run from outside the docker with the following command:
+docker exec NowShowing report [-options]
 
 If you need to reconfigure the program configs, first delete the existing config files, then change the variables in the unRAID template and restart the docker..  All commandline options can be seen by running `report --help`
 
