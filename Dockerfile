@@ -1,25 +1,37 @@
 FROM alpine:3.5
-MAINTAINER ninthwalker <ninthwalker@gmail.com>
+MAINTAINER ninthwalker
 
-ENV UPDATED_ON 16MAR2017
-
+ENV UPDATED_ON 19MAR2017
 VOLUME /config
 EXPOSE 6878 
 
 #copy app and s6-overlay files
 COPY root/ s6-overlay/ /
 
-RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev
-RUN apk add --no-cache --virtual build-dependencies \
+# Install permanent packages
+RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev tzdata shadow && \
+
+# Install temporary build dependencies
+apk add --no-cache --virtual build-dependencies \
 ruby-dev \
 ruby-bundler \
 libc-dev \
 make \
 gcc && \
+
+# Create default user
+groupmod -g 1000 users && \
+useradd -u 99 -U -d /config -s /bin/false xyz && \
+groupmod -o -g 100 xyz && \
+usermod -G users xyz && \
+
+# Insall NowShowing app dependencies
 bundle config --global silence_root_warning 1 && \
 cd /opt/gem ; bundle install && \
-apk del build-dependencies && \
-cd /config/webroot
 
+# Remove temp files
+apk del --purge build-dependencies
+
+# Start s6 init & webserver
 ENTRYPOINT ["/init"]
-CMD ["ruby", "-run", "-e", "httpd", ".", "-p", "6878"]
+CMD ["ruby", "-run", "-e", "httpd", "/config/www", "-p", "6878"]

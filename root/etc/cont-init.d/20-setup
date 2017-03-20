@@ -6,14 +6,13 @@ if [ -f /config/config.yaml ]; then
   echo    # move to a new line
 else
  # begin initial setup
- cp /opt/config/* /config/
- chmod -R 666 /config/*
- /usr/local/sbin/config-setup
- echo "Setup complete! Please read directions for advanced settings and running this on a schedule."
+ cp -Rp /opt/config/* /config/
+ ruby /usr/local/sbin/config-setup
+ echo "Setup complete! Please read directions for advanced settings and changing the schedule."
 fi
 
-#read nowshowing_schedule.cron on container startup and add to crontab
+#read nowshowing_schedule.cron on container startup and add to crontab.
 echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
 rm -rf /crontab.tmp
-crond -f
+crond
