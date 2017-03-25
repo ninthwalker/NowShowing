@@ -10,7 +10,7 @@ require_relative '/var/lib/nowshowing/plexTv'
 #
 # Author: Brian Stascavage
 # Email: brian@stascavage.com
-# Modified by: ninthwalker@gmail.com
+# Modified by: ninthwalker@gmail.com & groxypod@gmail.com
 #
 class Setup
     include HTTParty
@@ -35,6 +35,8 @@ class Setup
                           'password' => '',
                           'from'     => '',
                           'subject'  => '' }
+                    'polling'  =>
+                        { 'interval'  => '' }
                   }
         $plex = PlexTv.new($config)
     end
@@ -99,11 +101,19 @@ class Setup
             $config['email']['title'] = 'Plex Server Summary'
         end
     end
+    
+    def setPolling
+        $config['polling']['interval'] = ENV['POLLING_INTERVAL']
+        if $config['polliog']['interval'].empty?
+			$config['polling']['interval'] = '604800'
+        end
+    end
 
     def start
         self.setServer
         self.setPlexApiKey
         self.setEmail
+	self.setPolling
 
         File.open('/config/config.yaml', 'w') {|f| f.write $config.to_yaml }
     end
