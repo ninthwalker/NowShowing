@@ -34,7 +34,7 @@ class Setup
                           'username' => '',
                           'password' => '',
                           'from'     => '',
-                          'subject'  => '' }
+                          'subject'  => '' },
                     'polling'  =>
                         { 'interval'  => '' }
                   }
