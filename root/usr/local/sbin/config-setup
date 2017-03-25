@@ -104,7 +104,7 @@ class Setup
     
     def setPolling
         $config['polling']['interval'] = ENV['POLLING_INTERVAL']
-        if $config['polliog']['interval'].empty?
+        if $config['polling']['interval'].empty?
 			$config['polling']['interval'] = '604800'
         end
     end
