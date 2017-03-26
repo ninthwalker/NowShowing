@@ -313,7 +313,7 @@ class Report
                                 if season.is_a?(Array)
                                     season = seasons
                                 end
-                                if (Time.now.to_i - season['addedAt'].to_i < $config['polling']['interval_tv_episodes'])
+                                if (Time.now.to_i - season['addedAt'].to_i < $config['polling']['interval_tv_series'])
                                     if (season_mapping[season['index']].to_i == season['leafCount'].to_i ||
                                         dvd_season_mapping[season['index']].to_i == season['leafCount'].to_i )
                                         if tv_episodes[:seasons].detect { |f| f[:id].to_i == show_id.to_i }
