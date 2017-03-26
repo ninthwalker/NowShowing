@@ -36,9 +36,7 @@ class Setup
                           'from'     => '',
                           'subject'  => '' },
                     'polling'  =>
-                        { 'interval_movies'  => '', 
-			  'interval_tv_series' => '',
-			  'interval_tv_episodes' => '' }
+                        { 'interval'  => '' }
                   }
         $plex = PlexTv.new($config)
     end
@@ -105,27 +103,14 @@ class Setup
     end
     
     def setPolling
-    	envint_movies = ENV['POLLING_INTERVAL']
-	envint_tv_series = ENV['POLLING_INTERVAL']
-	envint_tv_episodes = ENV['POLLING_INTERVAL']
+    	envint_interval = ENV['POLLING_INTERVAL']
 	
-	envint_movies = envint_movies.to_i * 86400
-	envint_tv_series = envint_tv_series.to_i * 86400
+	envint_interval = envint_interval.to_i * 86400
 	
-        $config['polling']['interval_movies'] = envint_movies.to_i
-        #if $config['polling']['interval_movies'].empty?
-	#		$config['polling']['interval_movies'] = '604800'
-        #end
-	
-	 $config['polling']['interval_tv_series'] = envint_tv_series.to_i
-        #if $config['polling']['interval_tv_series'].empty?
-	#		$config['polling']['interval_tv_series'] = '604800'
-        #end
-	
-	 $config['polling']['interval_tv_episodes'] = envint_tv_episodes.to_i
-        #if $config['polling']['interval_tv_episodes'].empty?
-	#		$config['polling']['interval_tv_episodes'] = '7'
-        #end
+        $config['polling']['interval'] = envint_interval.to_i
+        if $config['polling']['interval'].empty?
+			$config['polling']['interval'] = '604800'
+        end
     end
 
     def start
