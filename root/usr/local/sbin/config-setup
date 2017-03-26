@@ -106,12 +106,12 @@ class Setup
     
     def setPolling
     	envint_movies = ENV['POLLING_INTERVAL']
-	envint_tv_shows = ENV['POLLING_INTERVAL'] + 1
-	envint_tv_episodes = ENV['POLLING_INTERVAL']
+	envint_tv_shows = ENV['POLLING_INTERVAL']
+	envint_tv_episodes = ENV['POLLING_INTERVAL'] + 1
 	
 	envint_movies = envint_movies.to_i * 86400
 	envint_tv_shows = envint_tv_shows.to_i * 86400
-	envint_tv_episodes = envint_tv_episodes.to_i * 86400
+	envint_tv_episodes = envint_tv_episodes.to_i + 1
 	
         $config['polling']['interval_movies'] = envint_movies
         if $config['polling']['interval_movies'].empty?
@@ -120,12 +120,12 @@ class Setup
 	
 	 $config['polling']['interval_tv_shows'] = envint_tv_shows
         if $config['polling']['interval_tv_shows'].empty?
-			$config['polling']['interval_tv_shows'] = '691200'
+			$config['polling']['interval_tv_shows'] = '604800'
         end
 	
 	 $config['polling']['interval_tv_episodes'] = envint_tv_episodes
         if $config['polling']['interval_tv_episodes'].empty?
-			$config['polling']['interval_tv_episodes'] = '604800'
+			$config['polling']['interval_tv_episodes'] = '8'
         end
     end
 
