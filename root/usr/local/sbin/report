@@ -271,7 +271,7 @@ class Report
                 end
 
                 if !airdate_date.nil?
-                    if ((Date.parse(Time.now.to_s) - airdate_date).round < ($config['polling']['interval_tv_episodes'].to_i + 1) &&
+                    if ((Date.parse(Time.now.to_s) - airdate_date).round < 8 &&
                         (Date.parse(Time.now.to_s) - airdate_date).round > 0)
                         #if !tv_episodes[:new].any? {|h| h[:id] == show_id}
                             series = plex.get("/library/metadata/#{tv_show['ratingKey']}/allLeaves")['MediaContainer']['Video']
@@ -292,7 +292,7 @@ class Report
                                 end
                             end
                         #end
-                    elsif ((Date.parse(Time.now.to_s) - Date.parse(Time.at(last_updated).to_s)).round < $config['polling']['interval_tv_episodes'].to_i)
+                    elsif ((Date.parse(Time.now.to_s) - Date.parse(Time.at(last_updated).to_s)).round < 7)
                         season_mapping = Hash.new
                         dvd_season_mapping = Hash.new
                         show['Episode'].each do | episode_count |
