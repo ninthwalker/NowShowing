@@ -243,7 +243,7 @@ class Report
         begin
         $logger.debug(plex.get("/library/metadata/#{tv_show['ratingKey']}"))
         last_updated = plex.get("/library/metadata/#{tv_show['ratingKey']}")['MediaContainer']['Directory']['updatedAt'].to_i
-        if (Time.now.to_i - last_updated < $config['polling']['interval_tv_episodes']) 
+        if (Time.now.to_i - last_updated < $config['polling']['interval_tv_series']) 
         
             # This is some contrivulted logic to strip off the moviedb.org id
             # from the Plex mediadata.  I wish Plex made this information
