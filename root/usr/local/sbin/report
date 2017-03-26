@@ -243,7 +243,7 @@ class Report
         begin
         $logger.debug(plex.get("/library/metadata/#{tv_show['ratingKey']}"))
         last_updated = plex.get("/library/metadata/#{tv_show['ratingKey']}")['MediaContainer']['Directory']['updatedAt'].to_i
-        if (Time.now.to_i - last_updated < $config['polling']['interval']) 
+        if (Time.now.to_i - last_updated < $config['polling']['interval_tv_episodes']) 
         
             # This is some contrivulted logic to strip off the moviedb.org id
             # from the Plex mediadata.  I wish Plex made this information
@@ -313,7 +313,7 @@ class Report
                                 if season.is_a?(Array)
                                     season = seasons
                                 end
-                                if (Time.now.to_i - season['addedAt'].to_i < $config['polling']['interval_tv_shows'])
+                                if (Time.now.to_i - season['addedAt'].to_i < $config['polling']['interval_tv_episodes'])
                                     if (season_mapping[season['index']].to_i == season['leafCount'].to_i ||
                                         dvd_season_mapping[season['index']].to_i == season['leafCount'].to_i )
                                         if tv_episodes[:seasons].detect { |f| f[:id].to_i == show_id.to_i }
