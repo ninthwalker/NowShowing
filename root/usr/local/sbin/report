@@ -271,7 +271,7 @@ class Report
                 end
 
                 if !airdate_date.nil?
-                    if ((Date.parse(Time.now.to_s) - airdate_date).round < $config['polling']['interval_tv_episodes'] &&
+                    if ((Date.parse(Time.now.to_s) - airdate_date).round < $config['polling']['interval_tv_episodes'].to_i &&
                         (Date.parse(Time.now.to_s) - airdate_date).round > 0)
                         #if !tv_episodes[:new].any? {|h| h[:id] == show_id}
                             series = plex.get("/library/metadata/#{tv_show['ratingKey']}/allLeaves")['MediaContainer']['Video']
