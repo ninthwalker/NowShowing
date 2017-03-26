@@ -105,9 +105,9 @@ class Setup
     end
     
     def setPolling
-    	envint_movies = ENV[POLLING_INTERVAL]
-	envint_tv_shows = ENV[POLLING_INTERVAL]
-	envint_tv_episodes = ENV[POLLING_INTERVAL] + 1
+    	envint_movies = ENV['POLLING_INTERVAL']
+	envint_tv_shows = ENV['POLLING_INTERVAL']
+	envint_tv_episodes = ENV['POLLING_INTERVAL']
 	
 	envint_movies = envint_movies.to_i * 86400
 	envint_tv_shows = envint_tv_shows.to_i * 86400
