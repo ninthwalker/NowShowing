@@ -111,7 +111,7 @@ class Setup
 	
 	envint_movies = envint_movies.to_i * 86400
 	envint_tv_shows = envint_tv_shows.to_i * 86400
-	envint_tv_episodes = envint_tv_episodes.to_i + 1
+	envint_tv_episodes = envint_tv_episodes.to_i * 86400
 	
         $config['polling']['interval_movies'] = envint_movies.to_i
         #if $config['polling']['interval_movies'].empty?
@@ -125,7 +125,7 @@ class Setup
 	
 	 $config['polling']['interval_tv_episodes'] = envint_tv_episodes.to_i
         #if $config['polling']['interval_tv_episodes'].empty?
-	#		$config['polling']['interval_tv_episodes'] = '8'
+	#		$config['polling']['interval_tv_episodes'] = '604800'
         #end
     end
 
