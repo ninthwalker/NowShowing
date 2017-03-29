@@ -22,20 +22,14 @@ class Setup
             abort('Configuration file not found.  Exiting...')
         end
 
-        $config = { 'email' => 
-                        { 'title'    => '' }, 
-                    'plex'  =>
+        $config = { 'plex'  =>
                         { 'server'   => '',
                           'api_key'  => '' },
                     'mail'  =>
                         { 'address'  => '',
                           'port'     => '',
                           'username' => '',
-                          'password' => '',
-                          'from'     => '',
-                          'subject'  => '' },
-                    'polling'  =>
-                        { 'interval'  => '' }
+                          'password' => ''}
                   }
         $plex = PlexTv.new($config)
     end
