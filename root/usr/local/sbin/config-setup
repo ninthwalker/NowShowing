@@ -79,10 +79,6 @@ class Setup
         $config['mail']['username'] = ENV['EMAIL_USERNAME']
         $config['mail']['password'] = ENV['EMAIL_PASSWORD']
 
-        $config['mail']['from'] = ENV['SENDER_DISPLAY_NAME']
-        if $config['mail']['from'].empty?
-            $config['mail']['from'] = 'Plex Server'
-        end
     end
 
     def start
