@@ -19,7 +19,7 @@ GroxyPod
 Limen
 
 -----------------------------------------
-User xyz uid set to:  $(id -u xyz)
-User xyz gid set to:  $(id -g xyz)
+User xyz set to:  $(id -u xyz)
+Group xyz set to:  $(id -g xyz)
 -----------------------------------------
 "     
