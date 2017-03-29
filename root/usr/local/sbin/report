@@ -65,6 +65,7 @@ class Report
         begin
             $config = YAML.load_file('/config/config.yaml')
 	    $advanced = YAML.load_file('/config/advanced.yaml')
+	    daystoreport = $advanced['polling']['interval'].to_i * 86400
         rescue Errno::ENOENT => e
             abort('Configuration file not found.  Exiting...')
         end
@@ -140,7 +141,7 @@ class Report
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
         if plex_movie.is_a?(Hash)
-        if (Time.now.to_i - plex_movie['addedAt'].to_i < $advanced['polling']['interval'])
+        if (Time.now.to_i - plex_movie['addedAt'].to_i < $daystoreport)
             plex_movie = plex.get("/library/metadata/#{plex_movie['ratingKey']}")['MediaContainer']['Video']
 
             # This is some contrivulted logic to strip off the moviedb.org id
@@ -245,7 +246,7 @@ class Report
         begin
         $logger.debug(plex.get("/library/metadata/#{tv_show['ratingKey']}"))
         last_updated = plex.get("/library/metadata/#{tv_show['ratingKey']}")['MediaContainer']['Directory']['updatedAt'].to_i
-        if (Time.now.to_i - last_updated < $advanced['polling']['interval']) 
+        if (Time.now.to_i - last_updated < $daystoreport) 
         
             # This is some contrivulted logic to strip off the moviedb.org id
             # from the Plex mediadata.  I wish Plex made this information
@@ -315,7 +316,7 @@ class Report
                                 if season.is_a?(Array)
                                     season = seasons
                                 end
-                                if (Time.now.to_i - season['addedAt'].to_i < $advanced['polling']['interval'])
+                                if (Time.now.to_i - season['addedAt'].to_i < $daystoreport)
                                     if (season_mapping[season['index']].to_i == season['leafCount'].to_i ||
                                         dvd_season_mapping[season['index']].to_i == season['leafCount'].to_i )
                                         if tv_episodes[:seasons].detect { |f| f[:id].to_i == show_id.to_i }
