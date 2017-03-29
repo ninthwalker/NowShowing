@@ -1,0 +1,21 @@
+---
+email:
+  title: 'New This Week'
+  image: 'https://i.imgur.com/lw1B3el.png'
+  footer: 'Thanks for watching'
+  language: 'en'
+plex:
+# do not edit this section
+  leaveblank:
+mail:
+  from: Plex Server
+  subject: Now Showing
+# Enter additional emails to send to below, besides your Plex friends emails. Optional
+# format is ['bob@example.com', 'sally@example.com']
+  recipients_email:
+# Plex usernames of any Plex friends to be notified. Used with the -n option. Optional. ['PLEX_USER'] is yourself
+# format is ['myfriend1', 'myfriend2']
+  recipients: ['PLEX_USER']
+polling:
+# Enter in the number of days to search back on for reporting
+  interval: 7
