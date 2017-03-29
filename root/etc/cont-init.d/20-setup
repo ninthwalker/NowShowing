@@ -1,13 +1,16 @@
 #!/usr/bin/with-contenv sh
 
-#creates config file from ENV variables
-if [ -f /config/config.yaml ]; then
-  echo "Config files detected. Using existing config"
+# Writes latest template variables to config
+ruby /usr/local/sbin/config-setup
+
+#creates advanced config file if not present
+if [ -f /config/advanced.yaml ]; then
+  echo "Advanced config file detected. Using existing config"
   echo    # move to a new line
 else
- # begin initial setup
+# copy files
  cp -Rp /opt/config/* /config/
- ruby /usr/local/sbin/config-setup
+ cp -p /opt/advanced.yaml /config/
  echo "Setup complete! Please read directions for advanced settings and changing the schedule."
 fi
 
