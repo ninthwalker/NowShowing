@@ -1,21 +1,29 @@
 #!/usr/bin/with-contenv sh
 
-# Writes latest template variables to config
-ruby /usr/local/sbin/config-setup
-
-#creates advanced config file if not present
+#Copies config files and creates advanced config file if not present
 if [ -f /config/advanced.yaml ]; then
-  echo "Advanced config file detected. Using existing config"
-  echo    # move to a new line
+  echo "Advanced config file detected. Keeping advanced settings"
+  cp -Rp /opt/config/* /config/
+else
+# copy files incl advanced.yaml
+  cp -Rp /opt/config/* /opt/advanced.yaml /config/
+fi
+
+# checks for existing cron file and if not present copies new one
+if [ -f /config/nowshowing_schedule.cron ]; then
+  echo "Cron file detected. Keeping cron settings"
 else
 # copy files
- cp -Rp /opt/config/* /config/
- cp -p /opt/advanced.yaml /config/
- echo "Setup complete! Please read directions for advanced settings and changing the schedule."
+  cp -Rp /opt/nowshowing_schedule.cron /config/
 fi
+
+# Always writes latest template variables on container startup to config.yaml
+ruby /usr/local/sbin/config-setup
 
 #read nowshowing_schedule.cron on container startup and add to crontab.
 echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
 rm -rf /crontab.tmp
 crond
+
+echo "Setup complete! Please read directions for advanced settings and changing the schedule."
