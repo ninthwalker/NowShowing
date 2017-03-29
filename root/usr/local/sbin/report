@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+
 require 'rubygems'
 require 'time'
 require 'date'
@@ -63,6 +64,7 @@ class Report
     def initialize
         begin
             $config = YAML.load_file('/config/config.yaml')
+	    $advanced = YAML.load_file('/config/advanced.yaml')
         rescue Errno::ENOENT => e
             abort('Configuration file not found.  Exiting...')
         end
@@ -96,8 +98,8 @@ class Report
             if element['type'] == 'movie'
                 # Checks to see if a section filter was applied
                 # If so, checks to see if this section should be reported
-                if !$config['plex']['sections'].nil?
-                    if !$config['plex']['sections'].include?(element['title'])
+                if !$advanced['plex']['sections'].nil?
+                    if !$advanced['plex']['sections'].include?(element['title'])
                         break
                     end
                 end
@@ -135,10 +137,10 @@ class Report
         omdb = OMDB.new
         plex = Plex.new($config)
         movies = Array.new
-        language = $config['email']['language'].nil? ? "en" : $config['email']['language']
+        language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
         if plex_movie.is_a?(Hash)
-        if (Time.now.to_i - plex_movie['addedAt'].to_i < $config['polling']['interval'])
+        if (Time.now.to_i - plex_movie['addedAt'].to_i < $advanced['polling']['interval'])
             plex_movie = plex.get("/library/metadata/#{plex_movie['ratingKey']}")['MediaContainer']['Video']
 
             # This is some contrivulted logic to strip off the moviedb.org id
@@ -202,8 +204,8 @@ class Report
             if element['type'] == 'show'
                 # Checks to see if a section filter was applied
                 # If so, checks to see if this section should be reported
-                if !$config['plex']['sections'].nil?
-                    if !$config['plex']['sections'].include?(element['title'])
+                if !$advanced['plex']['sections'].nil?
+                    if !$advanced['plex']['sections'].include?(element['title'])
                         break
                     end
                 end
@@ -238,12 +240,12 @@ class Report
     def getTVInfo(tv_show, tv_episodes)
         thetvdb = TheTVDB.new
         plex = Plex.new($config)
-        language = $config['email']['language'].nil? ? "en" : $config['email']['language']
+        language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
         begin
         $logger.debug(plex.get("/library/metadata/#{tv_show['ratingKey']}"))
         last_updated = plex.get("/library/metadata/#{tv_show['ratingKey']}")['MediaContainer']['Directory']['updatedAt'].to_i
-        if (Time.now.to_i - last_updated < $config['polling']['interval']) 
+        if (Time.now.to_i - last_updated < $advanced['polling']['interval']) 
         
             # This is some contrivulted logic to strip off the moviedb.org id
             # from the Plex mediadata.  I wish Plex made this information
@@ -313,7 +315,7 @@ class Report
                                 if season.is_a?(Array)
                                     season = seasons
                                 end
-                                if (Time.now.to_i - season['addedAt'].to_i < $config['polling']['interval'])
+                                if (Time.now.to_i - season['addedAt'].to_i < $advanced['polling']['interval'])
                                     if (season_mapping[season['index']].to_i == season['leafCount'].to_i ||
                                         dvd_season_mapping[season['index']].to_i == season['leafCount'].to_i )
                                         if tv_episodes[:seasons].detect { |f| f[:id].to_i == show_id.to_i }
@@ -361,7 +363,7 @@ def main
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     I18n.load_path = Dir['/var/lib/nowshowing/locales/*.yml']
     I18n.backend.load_translations
-    I18n.locale = $config['email']['language'].nil? ? 'en' : $config['email']['language']
+    I18n.locale = $advanced['email']['language'].nil? ? 'en' : $advanced['email']['language']
 
     movies = report.getMovies
     new_episodes = report.getTVEpisodes
@@ -370,9 +372,10 @@ def main
     new_episodes = new_episodes[:new]
 
     YAML.load_file('/config/config.yaml')
+    YAML.load_file('/config/advanced.yaml')
     template = ERB.new File.new("/config/email_body.erb").read, nil, "%"
     webtemplate = ERB.new File.new("/config/web_email_body.erb").read, nil, "%"
-    mail = MailReport.new($config, $options)
+    mail = MailReport.new($config, $advanced, $options)
 
     if (movies.empty? && new_seasons.empty? && new_episodes.empty?)
 	    $logger.info('No new media to report!')
