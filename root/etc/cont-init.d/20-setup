@@ -2,8 +2,7 @@
 
 #Copies config files and creates advanced config file if not present
 if [ -f /config/advanced.yaml ]; then
-  echo "Advanced config file detected. Keeping advanced settings"
-  cp -Rp /opt/config/* /config/
+  echo "Advanced config file detected. Keeping existing files"
 else
 # copy files incl advanced.yaml
   cp -Rp /opt/config/* /opt/advanced.yaml /config/
