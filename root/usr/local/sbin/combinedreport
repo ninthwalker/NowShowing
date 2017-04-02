@@ -21,7 +21,7 @@ require_relative '/var/lib/nowshowing/mailReport'
 #
 # Author: Brian Stascavage
 # Email: brian@stascavage.com
-# Modified by: ninthwalker
+# Modified by: ninthwalker & GroxyPod
 #
 class Report
     $options = {

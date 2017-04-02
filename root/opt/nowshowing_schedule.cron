@@ -1,3 +1,25 @@
-# Sends a weekly NowShowing email of Plex additions on Friday's at 10:30hrs. See http://www.adminschoice.com/crontab-quick-reference for cron help.
-30 10 * * 5 report &> /dev/null
-
+# NowShowing schedules for email and web. See http://www.adminschoice.com/crontab-quick-reference for cron help.
+# Comment/uncomment the sections below to customize which reports are created and when they get sent.
+# ie: Comment 'both report' and uncomment 'email' and 'webpage' sections to update webpage everyday but send an email only once a week. 
+#
+# Add the [-options] to the end of the report command for additional functionality.
+# Options are -t [for test only], -d [for additional report details], and -n [to be used with 'recipients' fields in advanced.yaml file]
+# ie: To send a test only email the line would look like this: 30 10 * * 5 combinedreport -t &> /dev/null	
+#
+# Restart the docker container for changes to take effect
+#
+#####################################################
+#
+#=======CREATE BOTH REPORTS AT SAME TIME=============
+#
+30 10 * * 5 combinedreport &> /dev/null						
+#
+#=======CREATE EMAIL REPORT AT SET TIME==============
+#
+#30 10 * * 5 emailreport &> /dev/null
+#
+#=======CREATE WEBPAGE REPORT AT SET TIME============
+#
+#30 23 * * * webreport &> /dev/null
+#
+#====================================================

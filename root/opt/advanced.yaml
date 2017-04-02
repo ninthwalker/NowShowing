@@ -1,8 +1,15 @@
 ---
 email:
   title: 'New This Week'
-  image: 'https://i.imgur.com/lw1B3el.png'
+  image: 'http://i.imgur.com/lw1B3el.png'
   footer: 'Thanks for watching'
+  language: 'en'
+web:
+# Enter in your own local image, or URL to image. Note: You may need to play with the dimensions to make it look right.
+  title_image: 'img/nowshowing.png'
+  logo: 'img/logo.png'
+  headliners: 'Laughs, Screams, Thrills, Entertainment'
+  footer: Thanks for watching!
   language: 'en'
 plex:
 # do not edit this section
