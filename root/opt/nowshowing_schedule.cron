@@ -6,6 +6,10 @@
 # Options are -t [for test only], -d [for additional report details], and -n [to be used with 'recipients' fields in advanced.yaml file]
 # ie: To send a test only email the line would look like this: 30 10 * * 5 combinedreport -t &> /dev/null	
 #
+# Restart the docker container for changes to take effect
+#
+#####################################################
+#
 #=======CREATE BOTH REPORTS AT SAME TIME=============
 #
 30 10 * * 5 combinedreport &> /dev/null						
