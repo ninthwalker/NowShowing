@@ -1,3 +1,5 @@
-# Sends a weekly NowShowing email of Plex additions on Friday's at 10:30hrs. See http://www.adminschoice.com/crontab-quick-reference for cron help.
-30 10 * * 5 report &> /dev/null
-
+# NowShowing schedules for email and web. See http://www.adminschoice.com/crontab-quick-reference for cron help.
+# Email report schedule for Friday's at 10:30am
+30 10 * * 5 emailreport &> /dev/null
+# Webpage report schedule every day at 11:30pm
+30 23 * * * webreport &> /dev/null

@@ -375,7 +375,6 @@ def main
     YAML.load_file('/config/config.yaml')
     YAML.load_file('/config/advanced.yaml')
     template = ERB.new File.new("/config/email_body.erb").read, nil, "%"
-    webtemplate = ERB.new File.new("/config/web_email_body.erb").read, nil, "%"
     mail = MailReport.new($config, $advanced, $options)
 
     if (movies.empty? && new_seasons.empty? && new_episodes.empty?)
@@ -384,10 +383,6 @@ def main
     end
 
     mail.sendMail(template.result(binding))
-
-    output = File.new("/config/www/index.html","w")
-    output << webtemplate.result(binding)
-    output.close
 	
     $logger.info("Script complete.  Ran in #{Time.now - startTime} seconds")
 end
