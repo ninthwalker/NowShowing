@@ -10,6 +10,7 @@ web:
   logo: 'img/logo.png'
   headliners: 'Laughs, Screams, Thrills, Entertainment'
   footer: Thanks for watching!
+  language: 'en'
 plex:
 # do not edit this section
   leaveblank:
