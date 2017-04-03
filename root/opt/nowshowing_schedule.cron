@@ -1,4 +1,4 @@
-# NowShowing schedules for email and web. See http://www.adminschoice.com/crontab-quick-reference for cron help.
+# NowShowing schedules for email and web. See https://crontab.guru/ for cron help.
 # Comment/uncomment the sections below to customize which reports are created and when they get sent.
 # ie: Comment 'both report' and uncomment 'email' and 'webpage' sections to update webpage everyday but send an email only once a week. 
 #
