@@ -65,7 +65,7 @@ class Report
         begin
             $config = YAML.load_file('/config/config.yaml')
 	    $advanced = YAML.load_file('/config/advanced.yaml')
-	    $daystoreport = $advanced['polling']['interval'].to_i * 86400
+	    $daystoreport = $advanced['report']['interval'].to_i * 86400
         rescue Errno::ENOENT => e
             abort('Configuration file not found.  Exiting...')
         end
