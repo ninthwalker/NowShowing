@@ -23,6 +23,6 @@ mail:
 # Plex usernames of any Plex friends to be notified. Used with the -n option. Optional. ['PLEX_USER'] is yourself
 # format is ['myfriend1', 'myfriend2']
   recipients: ['PLEX_USER']
-polling:
+report:
 # Enter in the number of days to search back on for reporting
   interval: 7
