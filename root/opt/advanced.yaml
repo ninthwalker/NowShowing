@@ -33,3 +33,5 @@ report:
   email_report_time: '30 10 * * 5'
   web_report_time: '30 23 * * *'
   extra_details: 'yes'
+ # Creates website and sends email only to self. For testing. Options are 'disable' or 'enable'. Uses email_report_time.
+  test: 'disable'
