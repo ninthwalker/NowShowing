@@ -13,7 +13,7 @@ fi
 ruby /usr/local/sbin/config-setup
 
 #read nowshowing_schedule.cron on container startup and add to crontab.
-echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
+echo "$(cat /opt/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
 rm -rf /crontab.tmp
 crond
