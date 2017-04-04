@@ -63,7 +63,7 @@ class Report
 
     def initialize
         begin
-            $config = YAML.load_file('/config/config.yaml')
+            $config = YAML.load_file('/opt/config.yaml')
 	    $advanced = YAML.load_file('/config/advanced.yaml')
 	    $daystoreport = $advanced['report']['interval'].to_i * 86400
         rescue Errno::ENOENT => e
@@ -372,7 +372,7 @@ def main
     new_seasons = new_episodes[:seasons]
     new_episodes = new_episodes[:new]
 
-    YAML.load_file('/config/config.yaml')
+    YAML.load_file('/opt/config.yaml')
     YAML.load_file('/config/advanced.yaml')
     template = ERB.new File.new("/config/email_body.erb").read, nil, "%"
     webtemplate = ERB.new File.new("/config/web_email_body.erb").read, nil, "%"
