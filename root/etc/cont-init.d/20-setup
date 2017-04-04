@@ -8,14 +8,6 @@ else
   cp -Rp /opt/config/* /opt/advanced.yaml /config/
 fi
 
-# checks for existing cron file and if not present copies new one
-if [ -f /config/nowshowing_schedule.cron ]; then
-  echo "Cron file detected. Keeping cron settings"
-else
-# copy files
-  cp -Rp /opt/nowshowing_schedule.cron /config/
-fi
-
 # Always writes latest template variables on container startup to config.yaml
 # Always write latest advanced.yaml cron settings
 ruby /usr/local/sbin/config-setup
