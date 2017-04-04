@@ -32,6 +32,6 @@ cd /opt/gem ; bundle install && \
 # Remove temp files
 apk del --purge build-dependencies
 
-# Start s6 init & webserver
+# Start s6 init & webserver.
 ENTRYPOINT ["/init"]
 CMD ["ruby", "-run", "-e", "httpd", "/config/www", "-p", "6878"]
