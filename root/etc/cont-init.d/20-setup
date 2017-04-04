@@ -8,8 +8,9 @@ else
   cp -Rp /opt/config/* /opt/advanced.yaml /config/
 fi
 
+# Always load latest cron settings
+ruby /usr/local/sbin/create-cron
 # Always writes latest template variables on container startup to config.yaml
-# Always write latest advanced.yaml cron settings
 ruby /usr/local/sbin/config-setup
 
 #read nowshowing_schedule.cron on container startup and add to crontab.
