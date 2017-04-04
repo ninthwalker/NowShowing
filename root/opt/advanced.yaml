@@ -30,6 +30,7 @@ report:
 # The report to generate. Options are 'emailonly', 'webonly' 'both'.
   report_type: 'both'
 # Enter in cron times for the report types. See https://crontab.guru for help
+# NOTE: Must restart the docker for Cron settings to take effect
   email_report_time: '30 10 * * 5'
   web_report_time: '30 23 * * *'
   extra_details: 'yes'
