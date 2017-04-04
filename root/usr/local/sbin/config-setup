@@ -86,9 +86,10 @@ class Setup
         self.setPlexApiKey
         self.setEmail
 
-        File.open('/config/config.yaml', 'w') {|f| f.write $config.to_yaml }
+        File.open('/opt/config.yaml', 'w') {|f| f.write $config.to_yaml }
     end
 end
 
 setup_agent = Setup.new
 setup_agent.start
+con
