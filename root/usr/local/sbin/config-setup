@@ -92,4 +92,3 @@ end
 
 setup_agent = Setup.new
 setup_agent.start
-con
