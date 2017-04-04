@@ -8,6 +8,7 @@ webtime = advanced['report']['web_report_time']
 emailtime = advanced['report']['email_report_time']
 details = advanced['report']['extra_details']
 plexusers = advanced['plex']['plex_user_emails']
+test = advanced['report']['test']
 			
 case
 when reporttype == 'both' && plexusers == 'yes' && details == 'yes'
@@ -45,4 +46,7 @@ when reporttype == 'webonly' && plexusers == 'no' && details == 'yes'
 
 when reporttype == 'webonly' && plexusers == 'no' && details == 'no'
 	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport -n &> /dev/null")
+	
+when test == 'enable'
+	File.write("/opt/nowshowing_schedule.cron", "#{emailtime} combinedreport -t &> /dev/null")
 end
