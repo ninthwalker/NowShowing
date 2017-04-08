@@ -1,0 +1,52 @@
+#!/usr/bin/ruby
+require 'yaml'
+
+#variables
+advanced = YAML.load_file('/config/advanced.yaml')
+reporttype = advanced['report']['report_type']
+webtime = advanced['report']['web_report_time']
+emailtime = advanced['report']['email_report_time']
+details = advanced['report']['extra_details']
+plexusers = advanced['plex']['plex_user_emails']
+test = advanced['report']['test']
+			
+case
+when test == 'enable'
+	File.write("/opt/nowshowing_schedule.cron", "#{emailtime} combinedreport -t &> /dev/null")
+	
+when reporttype == 'both' && plexusers == 'yes' && details == 'yes'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport -d &> /dev/null\n#{emailtime} emailreport -d &> /dev/null")
+
+when reporttype == 'both' && plexusers == 'yes' && details == 'no'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport &> /dev/null\n#{emailtime} emailreport &> /dev/null")
+
+when reporttype == 'both' && plexusers == 'no' && details == 'yes'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport -n -d &> /dev/null\n#{emailtime} emailreport -n -d &> /dev/null")
+	
+when reporttype == 'both' && plexusers == 'no' && details == 'no'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport -n &> /dev/null\n#{emailtime} emailreport -n &> /dev/null")
+
+when reporttype == 'emailonly' && plexusers == 'yes' && details == 'yes'
+	File.write("/opt/nowshowing_schedule.cron", "#{emailtime} emailreport -d &> /dev/null")
+	
+when reporttype == 'emailonly' && plexusers == 'yes' && details == 'no'
+	File.write("/opt/nowshowing_schedule.cron", "#{emailtime} emailreport &> /dev/null")
+	
+when reporttype == 'emailonly' && plexusers == 'no' && details == 'yes'
+	File.write("/opt/nowshowing_schedule.cron", "#{emailtime} emailreport -n -d &> /dev/null")
+	
+when reporttype == 'emailonly' && plexusers == 'no' && details == 'no'
+	File.write("/opt/nowshowing_schedule.cron", "#{emailtime} emailreport -n &> /dev/null")
+	
+when reporttype == 'webonly' && plexusers == 'yes' && details == 'yes'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport -d &> /dev/null")
+	
+when reporttype == 'webonly' && plexusers == 'yes' && details == 'no'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport &> /dev/null")
+	
+when reporttype == 'webonly' && plexusers == 'no' && details == 'yes'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport -n -d &> /dev/null")
+
+when reporttype == 'webonly' && plexusers == 'no' && details == 'no'
+	File.write("/opt/nowshowing_schedule.cron", "#{webtime} webreport -n &> /dev/null")
+end

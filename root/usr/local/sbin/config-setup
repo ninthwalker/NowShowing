@@ -18,25 +18,18 @@ class Setup
     def initialize
         begin
             $config = Hash.new
-#            $config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), '/config/config.yaml') )
         rescue Errno::ENOENT => e
             abort('Configuration file not found.  Exiting...')
         end
 
-        $config = { 'email' => 
-                        { 'title'    => '' }, 
-                    'plex'  =>
+        $config = { 'plex'  =>
                         { 'server'   => '',
                           'api_key'  => '' },
                     'mail'  =>
                         { 'address'  => '',
                           'port'     => '',
                           'username' => '',
-                          'password' => '',
-                          'from'     => '',
-                          'subject'  => '' },
-                    'polling'  =>
-                        { 'interval'  => '' }
+                          'password' => ''}
                   }
         $plex = PlexTv.new($config)
     end
@@ -86,40 +79,14 @@ class Setup
         $config['mail']['username'] = ENV['EMAIL_USERNAME']
         $config['mail']['password'] = ENV['EMAIL_PASSWORD']
 
-        $config['mail']['from'] = ENV['SENDER_DISPLAY_NAME']
-        if $config['mail']['from'].empty?
-            $config['mail']['from'] = 'Plex Server'
-        end
-
-        $config['mail']['subject'] = ENV['EMAIL_SUBJECT']
-        if $config['mail']['subject'].empty?
-            $config['mail']['subject'] = 'Plex Server Summary'
-        end
-
-        $config['email']['title'] = ENV['EMAIL_BODY_DISPLAY_TITLE']
-        if $config['email']['title'].empty?
-            $config['email']['title'] = 'Plex Server Summary'
-        end
-    end
-    
-    def setPolling
-    	envint_interval = ENV['POLLING_INTERVAL']
-	
-	envint_interval = envint_interval.to_i * 86400
-	
-        $config['polling']['interval'] = envint_interval.to_i
-        if $config['polling']['interval'].empty?
-			$config['polling']['interval'] = '604800'
-        end
     end
 
     def start
         self.setServer
         self.setPlexApiKey
         self.setEmail
-	self.setPolling
 
-        File.open('/config/config.yaml', 'w') {|f| f.write $config.to_yaml }
+        File.open('/opt/config.yaml', 'w') {|f| f.write $config.to_yaml }
     end
 end
 
