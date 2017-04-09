@@ -2,7 +2,7 @@
 # Enter in your own local image, or URL to image, customize the titles, headers and footers.
 email:
   title: 'New This Week'
-  image: 'http://i.imgur.com/KYUAnqG.png'
+  image: 'http://i.imgur.com/LNTSbFl.png'
   footer: 'Thanks for watching!'
   language: 'en'
 web:
