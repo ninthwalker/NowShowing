@@ -55,9 +55,9 @@
         <h1>Updated <%= I18n.l Time.now.to_date, format: :long  %> </h1>
         <h2>What did we add: <span class="rotating"><%= $advanced['web']['headliners'] %></span></h2>
         <div class="actions">
-          <a href="#newmovies" class="btn-services">New Movies</a>
-          <a href="#tvshows" class="btn-services">New TV Shows</a>
-          <a href="#tvseasons" class="btn-services">New TV Seasons</a>
+          <a href="#movies" class="btn-services">New Movies</a>
+          <a href="#episodes" class="btn-services">New Episodes</a>
+          <a href="#seasons" class="btn-services">New Seasons</a>
 
         </div>
       </div>
@@ -80,9 +80,9 @@
       <nav id="nav-menu-container">
         <ul class="nav-menu">
           <li class="menu-active"><a href="#hero">Home</a></li>
-          <li><a href="#newmovies">New Movies</a></li>
-          <li><a href="#tvshows">New TV Shows</a></li>
-          <li><a href="#tvseasons">New TV Seasons</a></li>
+          <li><a href="#movies">New Movies</a></li>
+          <li><a href="#episodes">New Episodes</a></li>
+          <li><a href="#seasons">New Seasons</a></li>
 
    
         </ul>
@@ -93,7 +93,7 @@
 <!--==========================
   Movie Section
 ============================-->
- <section id="newmovies" class="movies">
+ <section id="movies" class="movies">
 <!-- start of new movies -->
 <% if movies != [] %>
 
@@ -155,7 +155,7 @@
 <!--==========================
   New TV Shows Section
 ============================-->
- <section id="tvshows" class="movies">
+ <section id="episodes" class="movies">
 <!-- start new episodes here -->						
 <% if new_episodes != [] %>
 
@@ -226,7 +226,7 @@
 <!--==========================
   New TV Seasons Section
 ============================-->
- <section id="tvseasons" class="movies">
+ <section id="seasons" class="movies">
 <!-- start New seasons -->
 
 <% if new_seasons != [] %>
