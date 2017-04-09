@@ -7,6 +7,12 @@ body {
   font-family: "Open Sans", sans-serif;
 }
 
+@media (min-width: 992px) {
+  .col-md-3 {
+    width: 33%;
+  }
+}
+
 a {
   color: #087caa;
   transition: 0.8s;
