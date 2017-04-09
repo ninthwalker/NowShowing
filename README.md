@@ -3,7 +3,7 @@
 
 <img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" width="100px"/>
 
-[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:edge "NowShowing")
+[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
 
 ## Description / Background
 NowShowing is the sucessor of the popular plexReport docker. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
@@ -14,9 +14,8 @@ The NowShowing docker provides a summary of new media that has recently been add
 2) A webpage for users to visit
 
 ## Supported Platforms
-
-* unRAID v6.3.x (Full Supported)
-* unRAID v6.x (Template Options may appear different)
+* unRAID v6.3.x (Fully Supported)
+* unRAID v6.x (Supported, but docker template may appear different)
 * Linux platforms with Docker support (with a few manual changes like ENV Variables & Time)
 
 ## Supported Email Clients
@@ -32,7 +31,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 ## Prerequisites
 1.  Plex
 2.  Docker
-3.  TheMovieDB set as your Agent for Movie sections on the Plex server
+3.  Plex Movie or TheMovieDB set as your Agent for Movie sections on the Plex server
 4.  TheTVDB set as your Agent for TV sections on the Plex server
 5.  An Email account that supports SSL SMTP
 
