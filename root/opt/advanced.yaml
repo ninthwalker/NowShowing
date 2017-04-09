@@ -34,7 +34,7 @@ report:
 # Default times below are email every friday at 10:30am & web page created once a day at 11:30pm.
   email_report_time: '30 10 * * 5'
   web_report_time: '30 23 * * *'
-# Adds extra info when available like Actors & Directors. 'yes' or 'no'
-  extra_details: 'yes'
+# Adds extra info when available like Ratings, Cast, Release Date, etc. 'yes' or 'no'
+  extra_details: 'no'
  # Creates website and sends email only to self. For testing. Options are 'disable' or 'enable'. Uses email_report_time.
   test: 'disable'
