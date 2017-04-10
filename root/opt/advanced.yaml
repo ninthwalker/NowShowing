@@ -1,5 +1,4 @@
 ---
-# Enter in your own local image, or URL to image, customize the titles, headers and footers.
 email:
   title: 'New This Week'
   image: 'http://i.imgur.com/LNTSbFl.png'
@@ -12,29 +11,16 @@ web:
   footer: 'Thanks for watching!'
   language: 'en'
 plex:
-# To be used in conjuntion with the recipients and recipients_email options below to customize who the emails go to.
-# 'yes' will send to plex users emails. 'no' will NOT send to plex user emails and only send to emails and users in the recipients fields below.
   plex_user_emails: 'yes'
 mail:
   from: 'Plex Server'
   subject: 'Now Showing'
-# Enter additional emails to send to below, besides your Plex friends emails. Optional
-# format is ['bob@example.com', 'sally@example.com']
-  recipients_email:
-# Plex usernames of any Plex friends to be notified. Used if the 'plex_user_emails' is set to 'no'. Optional. ['PLEX_USER'] is yourself
-# format is ['myFriend1', 'myFriend2']
+  recipients_email: ['']
   recipients: ['PLEX_USER']
 report:
-# Enter in the number of days to search back on for reporting. Valid numbers are 1 to 7.
   interval: 7
-# The report to generate. Options are 'emailonly', 'webonly' 'both'.
   report_type: 'both'
-# Enter in cron times for the report types. See https://crontab.guru for help
-# NOTE: Must restart the docker for Cron settings to take effect
-# Default times below are email every friday at 10:30am & web page created once a day at 11:30pm.
   email_report_time: '30 10 * * 5'
   web_report_time: '30 23 * * *'
-# Adds extra info when available like Ratings, Cast, Release Date, etc. 'yes' or 'no'
   extra_details: 'no'
-# Creates website and sends email only to self. For testing. Options are 'disable' or 'enable'. Uses email_report_time.
   test: 'disable'
