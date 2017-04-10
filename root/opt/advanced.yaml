@@ -7,6 +7,7 @@ email:
 web:
   title_image: 'img/nowshowing.png'
   logo: 'img/logo.png'
+  headline_title: 'Just added:'
   headliners: 'Laughs, Screams, Thrills, Entertainment'
   footer: 'Thanks for watching!'
   language: 'en'
