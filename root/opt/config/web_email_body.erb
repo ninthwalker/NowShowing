@@ -132,7 +132,7 @@
     <div class="details">
               <h4><%= movie[:title] %> (<%= movie[:date] %>) </h4>
 		<h5 class="bold"><%= movie[:tagline] %></h5>
-              <span><%= movie[:synopsis] %></span>
+              <span class="limittext"><%= movie[:synopsis] %></span>
              
     </div>
     
@@ -205,7 +205,7 @@
 <%= episode[:episode_number] %> - <%= episode[:title] %>
 </h5>
               
-<span><%= episode[:synopsis] %></span>
+<span class="limittext"><%= episode[:synopsis] %></span>
              
     </div>
     
@@ -278,7 +278,7 @@
 <%= I18n.t :seasons, count: season[:season].length %><%= season[:season].min %>-<%= season[:season].max %>
 </h5>
               
-<span><%= season[:synopsis] %></span>
+<span class="limittext"><%= season[:synopsis] %></span>
              
     </div>
     
