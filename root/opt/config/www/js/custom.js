@@ -6,7 +6,7 @@ jQuery(document).ready(function( $ ) {
   });
 
   //Limittext synopsis to 260 char
-  $(".limittext").each(function(i){
+  $(".limittext").each(function(){
     len=$(this).text().length;
     if(len>260)
     {
