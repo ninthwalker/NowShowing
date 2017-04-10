@@ -20,7 +20,7 @@ mail:
   subject: 'Now Showing'
 # Enter additional emails to send to below, besides your Plex friends emails. Optional
 # format is ['bob@example.com', 'sally@example.com']
-  recipients_email:
+  recipients_email: ['']
 # Plex usernames of any Plex friends to be notified. Used if the 'plex_user_emails' is set to 'no'. Optional. ['PLEX_USER'] is yourself
 # format is ['myFriend1', 'myFriend2']
   recipients: ['PLEX_USER']
