@@ -5,6 +5,15 @@ jQuery(document).ready(function( $ ) {
     $('#preloader').delay(100).fadeOut('slow',function(){$(this).remove();});
   });
 
+  //Limittext synopsis to 260 char
+  $(".limittext").each(function(i){
+    len=$(this).text().length;
+    if(len>260)
+    {
+      $(this).text($(this).text().substr(0,260)+'...');
+    }
+  });
+  
   // Hero rotating texts
   $("#hero .rotating").Morphext({
     animation: "flipInX",
