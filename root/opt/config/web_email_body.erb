@@ -47,7 +47,7 @@
         </div>
         
         <h1>Updated <%= I18n.l Time.now.to_date, format: :long  %> </h1>
-        <h2>What did we add: <span class="rotating"><%= $advanced['web']['headliners'] %></span></h2>
+        <h2><%= $advanced['web']['headline_title'] %> <span class="rotating"><%= $advanced['web']['headliners'] %></span></h2>
         <div class="actions">
           <a href="#movies" class="btn-services">New Movies</a>
           <a href="#episodes" class="btn-services">New Episodes</a>
