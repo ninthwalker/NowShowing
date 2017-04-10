@@ -1,4 +1,6 @@
 ---
+# EXAMPLE FILE WITH DESCRIPTIONS OF EACH SETTING. SET THESE IN THE ADVANCED.YAML FILE. #
+########################################################################################
 # Enter in your own local image, or URL to image, customize the titles, headers and footers.
 email:
   title: 'New This Week'
