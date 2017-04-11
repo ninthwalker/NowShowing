@@ -35,35 +35,28 @@ The NowShowing docker provides a summary of new media that has recently been add
 4.  TheTVDB set as your Agent for TV sections on the Plex server
 5.  An Email account that supports SSL SMTP
 
-## Images
-
-#### Webpage:  
-![alt tag](http://i.imgur.com/PvUO2aM.jpg)
-
-
-#### Email:  
-![alt tag](http://i.imgur.com/35IddDh.png)  
-
 ## Installation on unRAID
 ### Preferred Method: Community Applications
 #### Step 1: Click on Apps & type in "NowShowing"
->![alt text](http://i.imgur.com/Bo36OG1.png "unRAID CA Install Step 01")
+![alt text](http://i.imgur.com/g6SOvdC.png "unRAID CA Install Step 01")
 
-#### Step 2: Enter NowShowing and then hit enter
->![alt text](http://i.imgur.com/b9d4S94.png "unRAID CA Install Step 02")
+#### Step 2: Click Add
+![alt text](http://i.imgur.com/0TWEMpw.png "unRAID CA Install Step 02")
 
-#### Step 3: Click Add
->![alt text](http://i.imgur.com/0N13iIn.png "unRAID CA Install Step 03")
-#### Step 4: Select your branch
+#### Step 3: Select your branch
 Selecting Default will install the latest stable version of NowShowing.  
-
 Selecting dev will install the latest development version of NowShowing.
->![alt text](http://i.imgur.com/Ci8oPUW.png "unRAID CA Install Step 04")
-#### Step 5: Fill out the template
->![alt text](http://i.imgur.com/rtlePWD.png "unRAID CA Install Step 05a")
->![alt text](http://i.imgur.com/s7B6YQn.png "unRAID CA Install Step 05b")
->![alt text](http://i.imgur.com/QbGMU0l.png "unRAID CA Install Step 05c")
-#### Step 6: Installation is complete
+![alt text](http://i.imgur.com/SL7UXWX.png "unRAID CA Install Step 03")
+
+#### Step 4: Fill out the template
+![alt text](http://i.imgur.com/fNOKcMP.png "unRAID CA Install Step 04")
+
+#### Step 4a: Advanced Section - Optional
+Optional - Enter in Plex Token instead of using sername/password
+Optional - Modify the UID/GID
+![alt text](http://i.imgur.com/Q4cP3WC.png "unRAID CA Install Step 04a")
+
+#### Step 5: Installation is complete
 Your installation of NowShowing is complete. If you desire to change any of the config files they can be found at your /config install path.
 
 You can also install by adding the following template repository to unraid:  
@@ -80,7 +73,7 @@ Modify the below settings for advanced features and options
 
 ## Advanced Config
 
-By default, the advanced config file is located in `/config/advanced.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format.
+By default, the advanced config file is located in `/config/advanced.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the format:
 
 ###### email_body.erb
 This file can be edited with CSS/HTML if you want to modify the look of the email.
@@ -155,3 +148,12 @@ command line syntax: `nowshowing [report type] [options]`
 `-t, --test-email` - Send email only to the Plex owner (ie yourself).  For testing purposes
 
 `-d, --detailed-email` - Send more details in the email, such as movie ratings, actors, etc
+
+## Images
+
+#### Webpage:  
+![alt tag](http://i.imgur.com/PvUO2aM.jpg)
+
+
+#### Email:  
+![alt tag](http://i.imgur.com/35IddDh.png)  
