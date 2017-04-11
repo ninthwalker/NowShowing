@@ -19,7 +19,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 ## Supported Platforms
 * unRAID v6.3.x (Fully Supported)
 * unRAID v6.x (Supported, but docker template may appear different)
-* Linux platforms with Docker support (Supported, with a few manual settings like ENV Variables & Time)
+* Other Docker platforms (Supported, but extra docker commandline options needed. ![See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
 
 ## Supported Email Clients
 * Gmail
