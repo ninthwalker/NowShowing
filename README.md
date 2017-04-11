@@ -38,12 +38,10 @@ The NowShowing docker provides a summary of new media that has recently been add
 5.  An Email account that supports SSL SMTP
 
 ## Installation on unRAID  
-[Click here for the unRAID GitHub Wiki](https://github.com/ninthwalker/NowShowing/wiki/unRAID-Instructions)
+[unRAID Wiki](https://github.com/ninthwalker/NowShowing/wiki/unRAID-Instructions)
 
 ## Installation on other Docker platforms  
-[Click here for the Docker GitHub Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)  
+[Other Docker platforms Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)  
 
 ## FAQ  
-[Click here for the FAQ GitHub Wiki](https://github.com/ninthwalker/NowShowing/wiki/FAQ)  
-
-##  
+[FAQ Wiki](https://github.com/ninthwalker/NowShowing/wiki/FAQ)  
