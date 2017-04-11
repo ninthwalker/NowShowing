@@ -52,7 +52,7 @@ Selecting dev will install the latest development version of NowShowing.
 ![alt text](http://i.imgur.com/fNOKcMP.png "unRAID CA Install Step 04")
 
 #### Step 4a: Advanced Section - Optional
-Optional - Enter in Plex Token instead of using sername/password
+Optional - Enter in Plex Token instead of using sername/password  
 Optional - Modify the UID/GID
 ![alt text](http://i.imgur.com/Q4cP3WC.png "unRAID CA Install Step 04a")
 
@@ -62,8 +62,7 @@ Your installation of NowShowing is complete. If you desire to change any of the 
 You can also install by adding the following template repository to unraid:  
 https://github.com/ninthwalker/docker-templates/
 
-You can now edit the `advanced.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
-See `/config/advanced.yaml.example` and below for details.
+You can now edit the `advanced.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir. See `/config/advanced.yaml.example` and below for details.
 
 By default, the email will be sent out every Friday at 10:30am, and the web report will be generated once a day at 11:30pm local time. To change the schedules, enter in your own cron time in the advanced.yaml file. Restart the docker to have the changes take effect. See this page for help creating a time/date in cron: https://crontab.guru/
 
