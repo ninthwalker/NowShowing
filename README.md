@@ -46,7 +46,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 
 ## Installation on unRAID
 ### Preferred Method: Community Applications
-#### Step 1: Click on Apps
+#### Step 1: Click on Apps & type in "NowShowing"
 >![alt text](http://i.imgur.com/Bo36OG1.png "unRAID CA Install Step 01")
 
 #### Step 2: Enter NowShowing and then hit enter
