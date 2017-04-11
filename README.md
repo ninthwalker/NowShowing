@@ -6,10 +6,10 @@
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
 
 ## Description / Background
-NowShowing is the sucessor of the popular plexReport docker. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
+NowShowing is the successor of the popular plexReport docker. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
 
 ## Introduction
-The NowShowing docker provides a summary of new media that has recently been added to Plex, giving the server operator the option of delivering the information in two ways:
+The NowShowing docker provides a summary of new media that has recently been added to Plex, giving the Plex owner the option of delivering the information in two ways:
 1) An email summary sent to all or selected users of the Plex Server
 2) A webpage for users to visit
 
@@ -60,16 +60,10 @@ Your installation of NowShowing is complete. If you desire to change any of the 
 You can also install by adding the following template repository to unraid:  
 https://github.com/ninthwalker/docker-templates/
 
-
-NowShowing can be run manually with the following command from unraid:  
-
-`docker exec NowShowing [report type] [-options]`
-
 You can now edit the `advanced.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
 See `/config/advanced.yaml.example` and below for details.
 
-By default, the email will be sent out every Friday at 10:30am,and the web report will be generated once a day at 11:30pm local time. To change the schedules, enter in your own cron time in the advanced.yaml file.
-Restart the docker to have the changes take effect.
+By default, the email will be sent out every Friday at 10:30am, and the web report will be generated once a day at 11:30pm local time. To change the schedules, enter in your own cron time in the advanced.yaml file. Restart the docker to have the changes take effect.
 See this page for help creating a time/date in cron: https://crontab.guru/
 
 # Advanced Settings
@@ -78,66 +72,77 @@ Modify the below settings for advanced features and options
 
 ## Advanced Config
 
-By default, the advacned config file is located in `/config/advanced.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format:
+By default, the advanced config file is located in `/config/advanced.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format.
 
 ###### email_body.erb
-
 This file can be edited with CSS/HTML if you want to modify the look of the email.
 
 ###### web_email_body.erb
-
 This file can be edited with CSS/HTML if you want to modify the look of the webpage.
 Alternatively, edit the CSS or Javascript found in the 'www' folder.
 
 ###### email
-`title` - Banner title for the email body.  Required.
+`title` - Banner title for the email body.
+
+`image` - 'Enter a URL or local path to image here'.
+
+`footer` - 'Email footer tagline'. Optional.
 
 `language` - The language of the email body. You need to use ISO 639-1 code ('fr', 'en', 'de'). If a content is not available in the specified language, the script will fall back to english. Defaults to 'en'. Optional.
 
+###### web
+`title_image` - 'Enter a URL or local path to image here'. This is the main image across the curtain background.
+
+`logo` - 'Enter a URL or local path to image here'. This is the small logo in the left of the banner as you scroll.
+
+`headline_title` - Top subtitle under main title image. This comes before the scrolling headliners below. Required.
+
+`headliners` - Words you would like to rotate through after the headline_title. 'Screams, Thrills, Laughs'. Optional.
+
+`footer` - 'Web footer tagline'. Optional.
+
+`language` - Same as in the email section above. Optional
+
 ###### plex
-`server` - IP address of your Plex server.  Defaults to 'localhost'.  Optional.
-
-`api_key` - Your Plex API key.  Required.
-
-`sections` - Array of sections to report on.  If field is not set, will report on all TV and movie sections.  Format is ['section1', 'section2'].  Optional.
+`plex_user_emails` - To be used in conjuntion with the recipients and recipients_email options below to customize who the emails go to. 'yes' will send to plex users emails. 'no' will **NOT** send to plex user emails and only send to emails and users in the recipients fields below.
 
 ###### mail
-`address` - Address of your smtp relay server.  (ie smtp.gmail.com).  Required.
+`from` - Display name of the sender. Required.
 
-`port` - Mail port to use.  Default is 25.  (Use 587 for gmail.com).  Required
+`subject` - Subject of the email. Note that the script will automatically add a date to the end of the subject.  Required.
 
-`username` - Email address to send the email from.  Required.
+`recipients_email` - Enter additional emails to send to, besides your Plex friends. Format is ['bob@example.com', 'sally@example.com']   Optional.
 
-`password` - Password for the email set above.  Required.
+`recipients` - Plex usernames of any Plex friends to be notified. Used if the 'plex_user_emails' is set to 'no'. Optional    
+['PLEX_USER'] is yourself. Format is ['PLEX_USER', 'myFriend1', 'myFriend2']
 
-`from` - Display name of the sender.  Required.
+##### report
+`interval` - Number of days to search back on for reporting. Valid numbers are 1 to 7.
 
-`subject` - Subject of the email. Note that the script will automatically add a date to the end of the subject. Required.
+`report_type` - The report to generate. Options are 'emailonly', 'webonly' 'both'.
 
-`recipients_email` - Email addresses of any additional recipients, outside of your Plex friends.  Optional.
+`email_report_time` - Time to send email report. In Cron format. See https://crontab.guru for help.
 
-`recipients` - Plex usernames of any Plex friends to be notified.  To be used with the -n option.  Optional
+`web_report_time` - Time to create webpage report. In Cron format. See https://crontab.guru for help.
+ 
+`extra_details` - Adds extra info when available like Ratings, Cast, Release Date, etc. 'yes' or 'no'
+ 
+`test` - Creates website and sends email only to self. For testing. Options are 'disable' or 'enable'. Uses email_report_time.
 
-`report_type` - Choose the type of reports to run. Format is ['report type'].  Optional.
-Valid report types are: ['email'] or ['web'] or ['both']
 
 ## Command-line Options
 
-If you need to reconfigure the program configs, first delete the existing config files, then change the variables in the unRAID template and restart the docker..  All command line options can be seen by running `combinedreport --help`
+If you need to reconfigure the program configs, first delete the existing config files, then change the variables in the unRAID template and restart the docker. These command line options below are not normally needed and are only for further testing or troubleshooting. You will either need to docker exec into the docker or run docker exec non interactively at the command line.
 
-##### Report Type:
-`combinedreport` - Creates both the Email and Wbe reports
+command line syntax: `nowshowing [report type] [options]`
 
-`emailreport` - Creates only the email report. No webpage.
-
-`webreport` - Creates only the web report. No email.
-
-Set the report type in the nowshowing_schedule.cron to customize what reports get created and when.
+##### Report Types
+`combinedreport` For Both email and web  
+`emailreport` For only email  
+`webreport` For only web  
 
 ##### Options:
 `-n, --no-plex-email` - Do not send emails to Plex friends.  Can be used with the `recipients_email` and `recipients` config file option to customize email recipients.
-
-`-l, --add-library-names` - Adding the Library name in front of the movie/tv show.  To be used with custom Libraries
 
 `-t, --test-email` - Send email only to the Plex owner (ie yourself).  For testing purposes
 
