@@ -1,7 +1,7 @@
 
 # NowShowing
 
-<img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" width="100px"/>
+<img src="../master/images/nowshowing-icon.png" alt="NowShowing" width="100px"/>
 
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
 
@@ -13,8 +13,8 @@ The NowShowing docker provides a summary of new media that has recently been add
 1) An email summary sent to all or selected users of the Plex Server
 2) A webpage for users to visit
 
-[Web Page Example](../README.md#webpage)  
-[Email Example](../README.md#email-1)  
+[Web Page Example](../master/README.md#webpage)  
+[Email Example](../master/README.md#email-1)  
 
 ## Supported Platforms
 * unRAID v6.3.x (Fully Supported)
