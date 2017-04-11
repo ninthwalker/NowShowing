@@ -1,7 +1,7 @@
 
 # NowShowing
 
-<img src="https://raw.githubusercontent.com/ninthwalker/NowShowing/master/images/nowshowing-icon.png" alt="NowShowing" width="100px">
+![](https://raw.githubusercontent.com/ninthwalker/NowShowing/master/images/nowshowing-iconx100.png)
 
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
 
