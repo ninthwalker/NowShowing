@@ -35,6 +35,15 @@ The NowShowing docker provides a summary of new media that has recently been add
 4.  TheTVDB set as your Agent for TV sections on the Plex server
 5.  An Email account that supports SSL SMTP
 
+## Images
+
+#### Webpage:  
+![alt tag](http://i.imgur.com/PvUO2aM.jpg)
+
+
+#### Email:  
+![alt tag](http://i.imgur.com/35IddDh.png)  
+
 ## Installation on unRAID
 ### Preferred Method: Community Applications
 #### Step 1: Click on Apps
@@ -146,12 +155,3 @@ command line syntax: `nowshowing [report type] [options]`
 `-t, --test-email` - Send email only to the Plex owner (ie yourself).  For testing purposes
 
 `-d, --detailed-email` - Send more details in the email, such as movie ratings, actors, etc
-
-## Images
-
-Webpage:
-![alt tag](http://i.imgur.com/PvUO2aM.jpg)
-
-
-Email:
-![alt tag](http://i.imgur.com/35IddDh.png)
