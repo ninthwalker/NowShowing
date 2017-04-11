@@ -13,7 +13,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 1) An email summary sent to all or selected users of the Plex Server
 2) A webpage for users to visit  
 
-[Screenshots](https://github.com/ninthwalker/NowShowing/wiki/Screenshots)
+### [Screenshots](https://github.com/ninthwalker/NowShowing/wiki/Screenshots)
 
 ## Supported Platforms
 * unRAID v6.3.x (Fully Supported)
@@ -38,10 +38,10 @@ The NowShowing docker provides a summary of new media that has recently been add
 5.  An Email account that supports SSL SMTP
 
 ## Installation on unRAID  
-[unRAID Wiki](https://github.com/ninthwalker/NowShowing/wiki/unRAID-Instructions)
+[See unRAID Wiki](https://github.com/ninthwalker/NowShowing/wiki/unRAID-Instructions)
 
 ## Installation on other Docker platforms  
-[Other Docker platforms Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)  
+[See Other Docker platforms Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)  
 
-## FAQ  
-[FAQ Wiki](https://github.com/ninthwalker/NowShowing/wiki/FAQ)  
+## FAQ, Command Line Options & other questions:  
+[See Github Wiki](https://github.com/ninthwalker/NowShowing/wiki)  
