@@ -4,7 +4,7 @@
 ![](https://raw.githubusercontent.com/ninthwalker/NowShowing/master/images/nowshowing-iconx100.png)
 
 [![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)
-[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
+[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")[![Build Passing](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)  
 
 ## Description / Background
 NowShowing is the successor of the popular plexReport docker. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
