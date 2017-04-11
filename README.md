@@ -1,9 +1,9 @@
 
 # NowShowing
 
-<img src="../master/images/nowshowing-icon.png" alt="NowShowing" width="100px"/>
+<img src="https://raw.githubusercontent.com/ninthwalker/NowShowing/master/images/nowshowing-icon.png" alt="NowShowing" width="100px">
 
-[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
+[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
 
 ## Description / Background
 NowShowing is the successor of the popular plexReport docker. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
@@ -13,8 +13,8 @@ The NowShowing docker provides a summary of new media that has recently been add
 1) An email summary sent to all or selected users of the Plex Server
 2) A webpage for users to visit
 
-[Web Page Example](../master/README.md#webpage)  
-[Email Example](../master/README.md#email-1)  
+[Web Page Example](https://github.com/ninthwalker/NowShowing/master/README.md#webpage)  
+[Email Example](https://github.com/ninthwalker/NowShowing/master/README.md#email-1)  
 
 ## Supported Platforms
 * unRAID v6.3.x (Fully Supported)
