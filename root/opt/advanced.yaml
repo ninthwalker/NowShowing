@@ -3,6 +3,7 @@ email:
   title: 'New This Week'
   image: 'http://i.imgur.com/LNTSbFl.png'
   footer: 'Thanks for watching!'
+  language: 'en'
 web:
   title_image: 'img/nowshowing.png'
   logo: 'img/logo.png'
