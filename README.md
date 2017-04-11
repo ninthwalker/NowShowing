@@ -63,8 +63,7 @@ https://github.com/ninthwalker/docker-templates/
 You can now edit the `advanced.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
 See `/config/advanced.yaml.example` and below for details.
 
-By default, the email will be sent out every Friday at 10:30am, and the web report will be generated once a day at 11:30pm local time. To change the schedules, enter in your own cron time in the advanced.yaml file. Restart the docker to have the changes take effect.
-See this page for help creating a time/date in cron: https://crontab.guru/
+By default, the email will be sent out every Friday at 10:30am, and the web report will be generated once a day at 11:30pm local time. To change the schedules, enter in your own cron time in the advanced.yaml file. Restart the docker to have the changes take effect. See this page for help creating a time/date in cron: https://crontab.guru/
 
 # Advanced Settings
 
@@ -150,14 +149,9 @@ command line syntax: `nowshowing [report type] [options]`
 
 ## Images
 
-New Episodes:
-![alt tag](http://i.imgur.com/hWzHl2x.png)
+Webpage:
+![alt tag](http://i.imgur.com/PvUO2aM.jpg)
 
-New Seasons:
-![alt tag](http://i.imgur.com/sBy62Ty.png)
 
-New Movies:
-![alt tag](http://i.imgur.com/E3Q85uU.png)
-
-New Movies (detailed view):
-![alt tag](http://i.imgur.com/9BHiQHW.png)
+Email:
+![alt tag](http://i.imgur.com/35IddDh.png)
