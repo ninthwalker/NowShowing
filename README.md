@@ -3,6 +3,7 @@
 
 ![](https://raw.githubusercontent.com/ninthwalker/NowShowing/master/images/nowshowing-iconx100.png)
 
+[![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)
 [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
 
 ## Description / Background
