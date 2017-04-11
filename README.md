@@ -43,5 +43,5 @@ The NowShowing docker provides a summary of new media that has recently been add
 ## Installation on other Docker platforms  
 [See Other Docker platforms Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)  
 
-## FAQ, Command Line Options & other questions:  
+## Advanced settings, FAQ, Command-line options & other questions:  
 [See Github Wiki](https://github.com/ninthwalker/NowShowing/wiki)  
