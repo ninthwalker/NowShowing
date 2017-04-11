@@ -11,7 +11,7 @@ NowShowing is the successor of the popular plexReport docker. The original brain
 ## Introduction
 The NowShowing docker provides a summary of new media that has recently been added to Plex, giving the Plex owner the option of delivering the information in two ways:
 1) An email summary sent to all or selected users of the Plex Server
-2) A webpage for users to visit  
+2) A web page for users to visit  
 
 ### [Screenshots](https://github.com/ninthwalker/NowShowing/wiki/Screenshots)
 
