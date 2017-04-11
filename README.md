@@ -16,7 +16,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 ## Supported Platforms
 * unRAID v6.3.x (Fully Supported)
 * unRAID v6.x (Supported, but docker template may appear different)
-* Linux platforms with Docker support (with a few manual changes like ENV Variables & Time)
+* Linux platforms with Docker support (Supported, with a few manual settings like ENV Variables & Time)
 
 ## Supported Email Clients
 * Gmail
@@ -66,10 +66,9 @@ NowShowing can be run manually with the following command from unraid:
 `docker exec NowShowing [report type] [-options]`
 
 You can now edit the `advanced.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
-See `/config/config.yaml.example` and below for details.
+See `/config/advanced.yaml.example` and below for details.
 
-The email and web report will be generated and sent out by default every Friday at 10:30am local time.
-To change the schedule, edit the "nowshowing_schedule.cron" file found in the NowShowing config folder with your own time/date.
+By default, the email will be sent out every Friday at 10:30am,and the web report will be generated once a day at 11:30pm local time. To change the schedules, enter in your own cron time in the advanced.yaml file.
 Restart the docker to have the changes take effect.
 See this page for help creating a time/date in cron: https://crontab.guru/
 
@@ -79,7 +78,7 @@ Modify the below settings for advanced features and options
 
 ## Advanced Config
 
-By default, the config file is located in `/config/advanced.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format:
+By default, the advacned config file is located in `/config/advanced.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format:
 
 ###### email_body.erb
 
@@ -88,6 +87,7 @@ This file can be edited with CSS/HTML if you want to modify the look of the emai
 ###### web_email_body.erb
 
 This file can be edited with CSS/HTML if you want to modify the look of the webpage.
+Alternatively, edit the CSS or Javascript found in the 'www' folder.
 
 ###### email
 `title` - Banner title for the email body.  Required.
