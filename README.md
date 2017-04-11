@@ -13,6 +13,9 @@ The NowShowing docker provides a summary of new media that has recently been add
 1) An email summary sent to all or selected users of the Plex Server
 2) A webpage for users to visit
 
+[Web Page screenshot:] (../blob/master/README.md#webpage)  
+[Email Screenshot:] (../blob/master/README.md#email-1)  
+
 ## Supported Platforms
 * unRAID v6.3.x (Fully Supported)
 * unRAID v6.x (Supported, but docker template may appear different)
