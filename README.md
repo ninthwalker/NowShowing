@@ -11,15 +11,12 @@ NowShowing is the successor of the popular plexReport docker. The original brain
 ## Introduction
 The NowShowing docker provides a summary of new media that has recently been added to Plex, giving the Plex owner the option of delivering the information in two ways:
 1) An email summary sent to all or selected users of the Plex Server
-2) A webpage for users to visit
-
-[Web Page Example](https://github.com/ninthwalker/NowShowing/master/README.md#webpage)  
-[Email Example](https://github.com/ninthwalker/NowShowing/master/README.md#email-1)  
+2) A webpage for users to visit  
 
 ## Supported Platforms
 * unRAID v6.3.x (Fully Supported)
 * unRAID v6.x (Supported, but docker template may appear different)
-* Other Docker platforms (Supported, but extra docker commandline options needed. ![See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
+* Other Docker platforms (Supported, but extra docker commandline options needed. [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
 
 ## Supported Email Clients
 * Gmail
@@ -39,11 +36,12 @@ The NowShowing docker provides a summary of new media that has recently been add
 5.  An Email account that supports SSL SMTP
 
 ## Installation on unRAID  
-Click here for the unRAID Github Wiki  
+[Click here for the unRAID GitHub Wiki](https://github.com/ninthwalker/NowShowing/wiki/unRAID-Instructions)
 
-## Installation on other Docker Platforms  
-Click here for the Docker Github Wiki  
+## Installation on other Docker platforms  
+[Click here for the Docker GitHub Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)  
 
 ## FAQ  
+[Click here for the FAQ GitHub Wiki](https://github.com/ninthwalker/NowShowing/wiki/FAQ)  
 
 ##  
