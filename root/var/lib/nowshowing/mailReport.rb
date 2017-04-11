@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+
 require 'rubygems'
 require 'mail'
 require 'time'
@@ -12,8 +13,9 @@ require_relative '/var/lib/nowshowing/plexTv'
 # Modified by: ninthwalker
 #
 class MailReport
-    def initialize(config, options)
+    def initialize(config, advanced, options)
         $config = config
+	$advanced = advanced
 	$plexEmails = options[:emails]
 	$testEmail = options[:test_email]
         if !$config['mail']['port'].nil?
@@ -22,8 +24,8 @@ class MailReport
             $port = 25
         end
 
-        if !$config['mail']['subject'].nil?
-            $subject = $config['mail']['subject']
+        if !$advanced['mail']['subject'].nil?
+            $subject = $advanced['mail']['subject']
         else
             $subject = "Plex Summary "
         end
@@ -62,14 +64,14 @@ class MailReport
                     end
                 end
 	    end
-	    if !$config['mail']['recipients'].nil? || !$config['mail']['recipients_email'].nil?
-	        if !$config['mail']['recipients_email'].nil?
-	            $config['mail']['recipients_email'].each do | recipient |
+	    if !$advanced['mail']['recipients'].nil? || !$advanced['mail']['recipients_email'].nil?
+	        if !$advanced['mail']['recipients_email'].nil?
+	            $advanced['mail']['recipients_email'].each do | recipient |
 		        users.push(recipient)
 	            end
 	        end
-	        if !$config['mail']['recipients'].nil?
-		    $config['mail']['recipients'].each do | recipient |
+	        if !$advanced['mail']['recipients'].nil?
+		    $advanced['mail']['recipients'].each do | recipient |
 		        plex_users = plexTv.get('/pms/friends/all')
                         plex_users['MediaContainer']['User'].each do | user |
 		            if user['username'] == recipient
@@ -86,9 +88,9 @@ class MailReport
 
         users.each do | user |
             mail = Mail.new do
-                from "#{$config['mail']['from']} <#{$config['mail']['username']}>"
+                from "#{$advanced['mail']['from']} <#{$config['mail']['username']}>"
                 to user
-                subject $config['mail']['subject'] + " " + (I18n.l Time.now.to_date)
+                subject $advanced['mail']['subject'] + " " + (I18n.l Time.now.to_date)
                 content_type 'text/html; charset=UTF-8'
                 body body
             end

@@ -1,3 +1,0 @@
-# Sends a weekly NowShowing email of Plex additions on Friday's at 10:30hrs. See http://www.adminschoice.com/crontab-quick-reference for cron help.
-30 10 * * 5 report &> /dev/null
-

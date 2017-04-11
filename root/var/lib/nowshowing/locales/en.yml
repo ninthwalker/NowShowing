@@ -64,7 +64,7 @@ en:
   network: "Network"
   new_episodes: "New Episodes"
   new_movies: "New Movies"
-  new_seasons: "New TV Seasons"
+  new_seasons: "New Seasons"
   rating: "Rating"
   release_date: "Release Date"
   runtime: "Runtime"
@@ -72,5 +72,5 @@ en:
     one: "season",
     other: "seasons"
   }
-  thanks_sentence: "That's all, folks!  Thanks for reading!"
+  thanks_sentence: "Thanks for watching!"
   users: "users"

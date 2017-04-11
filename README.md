@@ -3,27 +3,25 @@
 
 <img src="https://github.com/ninthwalker/NowShowing/blob/master/images/nowshowing-icon.png" alt="NowShowing" width="100px"/>
 
-[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing:dev "NowShowing")
+[![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:dev.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing")
 
 ## Description / Background
-NowShowing is the sucessor of Ninthwalker's dockerized version plexReport. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport).
-While working on the plexReport docker, a user by the name of GroxyPod made some modifications to the docker and showed them to Ninthwalker. From there, they decided 
-to create a sucessor to plexReport: NowShowing. This new docker aims to take the great work already done by bstascavage and Ninthwalker and improve upon it.
+NowShowing is the sucessor of the popular plexReport docker. The original brainchild of bstascavage (https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
 
 ## Introduction
 The NowShowing docker provides a summary of new media that has recently been added to Plex, giving the server operator the option of delivering the information in two ways:
 1) An email summary sent to all or selected users of the Plex Server
-2) A webpage for use with reverse proxies, such as Nginx
+2) A webpage for users to visit
 
 ## Supported Platforms
-
-* unRAID v6.2.x with Docker Support
-* Linux platforms with Docker support
+* unRAID v6.3.x (Fully Supported)
+* unRAID v6.x (Supported, but docker template may appear different)
+* Linux platforms with Docker support (with a few manual changes like ENV Variables & Time)
 
 ## Supported Email Clients
 * Gmail
 * Zoho
-* Most Email providers with SSL SMTP support
+* Most Email providers with SSL SMTP support (Not all tested)
 
 ## Supported Plex Agents
 * Plex Movie
@@ -33,7 +31,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 ## Prerequisites
 1.  Plex
 2.  Docker
-3.  TheMovieDB set as your Agent for Movie sections on the Plex server
+3.  Plex Movie or TheMovieDB set as your Agent for Movie sections on the Plex server
 4.  TheTVDB set as your Agent for TV sections on the Plex server
 5.  An Email account that supports SSL SMTP
 
@@ -63,25 +61,25 @@ You can also install by adding the following template repository to unraid:
 https://github.com/ninthwalker/docker-templates/
 
 
-NowShowing can be run with the following command from unraid:  
+NowShowing can be run manually with the following command from unraid:  
 
-`docker exec NowShowing report [-options]`
+`docker exec NowShowing [report type] [-options]`
 
-You can now edit the `config.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
+You can now edit the `advanced.yaml` (and optionally `email_body.erb` & `web_email_body.erb`) with your own settings in your appdata dir.  
 See `/config/config.yaml.example` and below for details.
 
-The report will be generated and sent out by default every Friday at 10:30am local time.
+The email and web report will be generated and sent out by default every Friday at 10:30am local time.
 To change the schedule, edit the "nowshowing_schedule.cron" file found in the NowShowing config folder with your own time/date.
 Restart the docker to have the changes take effect.
-See this page for help creating a time/date in cron: http://abunchofutils.com/u/computing/cron-format-helper/
+See this page for help creating a time/date in cron: https://crontab.guru/
 
 # Advanced Settings
 
 Modify the below settings for advanced features and options
 
-## Config
+## Advanced Config
 
-By default, the config file is located in `/config/config.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format:
+By default, the config file is located in `/config/advanced.yaml`.  If you need to change any information for the program, or to add more optional config parameters, see below for the config file format:
 
 ###### email_body.erb
 
@@ -125,11 +123,16 @@ Valid report types are: ['email'] or ['web'] or ['both']
 
 ## Command-line Options
 
-Once installed, you can run the script by simply running `report` from within the docker image container.
-You can also run from outside the docker with the following command:
-docker exec NowShowing report [-options]
+If you need to reconfigure the program configs, first delete the existing config files, then change the variables in the unRAID template and restart the docker..  All command line options can be seen by running `combinedreport --help`
 
-If you need to reconfigure the program configs, first delete the existing config files, then change the variables in the unRAID template and restart the docker..  All commandline options can be seen by running `report --help`
+##### Report Type:
+`combinedreport` - Creates both the Email and Wbe reports
+
+`emailreport` - Creates only the email report. No webpage.
+
+`webreport` - Creates only the web report. No email.
+
+Set the report type in the nowshowing_schedule.cron to customize what reports get created and when.
 
 ##### Options:
 `-n, --no-plex-email` - Do not send emails to Plex friends.  Can be used with the `recipients_email` and `recipients` config file option to customize email recipients.

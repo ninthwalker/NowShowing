@@ -1,0 +1,16 @@
+#!/usr/bin/ruby
+
+#start simple webserver
+# oneliner: ruby -run -e http /config/www -p 6878 
+
+require 'webrick'
+include WEBrick
+
+s = WEBrick::HTTPServer.new(
+  DocumentRoot: '/config/www',
+  Port: 6878,
+  Logger: WEBrick::Log.new("/dev/null"),
+  AccessLog: [],
+)
+trap("INT"){s.shutdown}
+s.start

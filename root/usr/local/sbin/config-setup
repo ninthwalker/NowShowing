@@ -10,7 +10,7 @@ require_relative '/var/lib/nowshowing/plexTv'
 #
 # Author: Brian Stascavage
 # Email: brian@stascavage.com
-# Modified by: ninthwalker@gmail.com
+# Modified by: ninthwalker@gmail.com & groxypod@gmail.com
 #
 class Setup
     include HTTParty
@@ -18,23 +18,18 @@ class Setup
     def initialize
         begin
             $config = Hash.new
-#            $config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), '/config/config.yaml') )
         rescue Errno::ENOENT => e
             abort('Configuration file not found.  Exiting...')
         end
 
-        $config = { 'email' => 
-                        { 'title'    => '' }, 
-                    'plex'  =>
+        $config = { 'plex'  =>
                         { 'server'   => '',
                           'api_key'  => '' },
                     'mail'  =>
                         { 'address'  => '',
                           'port'     => '',
                           'username' => '',
-                          'password' => '',
-                          'from'     => '',
-                          'subject'  => '' }
+                          'password' => ''}
                   }
         $plex = PlexTv.new($config)
     end
@@ -84,20 +79,6 @@ class Setup
         $config['mail']['username'] = ENV['EMAIL_USERNAME']
         $config['mail']['password'] = ENV['EMAIL_PASSWORD']
 
-        $config['mail']['from'] = ENV['SENDER_DISPLAY_NAME']
-        if $config['mail']['from'].empty?
-            $config['mail']['from'] = 'Plex Server'
-        end
-
-        $config['mail']['subject'] = ENV['EMAIL_SUBJECT']
-        if $config['mail']['subject'].empty?
-            $config['mail']['subject'] = 'Plex Server Summary'
-        end
-
-        $config['email']['title'] = ENV['EMAIL_BODY_DISPLAY_TITLE']
-        if $config['email']['title'].empty?
-            $config['email']['title'] = 'Plex Server Summary'
-        end
     end
 
     def start
@@ -105,7 +86,7 @@ class Setup
         self.setPlexApiKey
         self.setEmail
 
-        File.open('/config/config.yaml', 'w') {|f| f.write $config.to_yaml }
+        File.open('/opt/config.yaml', 'w') {|f| f.write $config.to_yaml }
     end
 end
 

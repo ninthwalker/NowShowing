@@ -1,7 +1,7 @@
 FROM alpine:3.5
 MAINTAINER ninthwalker
 
-ENV UPDATED_ON 19MAR2017
+ENV UPDATED_ON 04APR2017
 VOLUME /config
 EXPOSE 6878 
 
@@ -34,4 +34,4 @@ apk del --purge build-dependencies
 
 # Start s6 init & webserver
 ENTRYPOINT ["/init"]
-CMD ["ruby", "-run", "-e", "httpd", "/config/www", "-p", "6878"]
+CMD ["webserver"]

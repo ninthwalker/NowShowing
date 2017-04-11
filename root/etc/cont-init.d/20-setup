@@ -1,18 +1,22 @@
 #!/usr/bin/with-contenv sh
 
-#creates config file from ENV variables
-if [ -f /config/config.yaml ]; then
-  echo "Config files detected. Using existing config"
-  echo    # move to a new line
+#Copies config files and creates advanced config file if not present
+if [ -f /config/advanced.yaml ]; then
+  echo "Advanced config file detected. Keeping existing files"
 else
- # begin initial setup
- cp -Rp /opt/config/* /config/
- ruby /usr/local/sbin/config-setup
- echo "Setup complete! Please read directions for advanced settings and changing the schedule."
+# copy files incl advanced.yaml
+  cp -Rp /opt/config/* /opt/advanced.yaml /config/
 fi
 
+# Always load latest cron settings
+ruby /usr/local/sbin/create-cron
+# Always writes latest template variables on container startup to config.yaml
+ruby /usr/local/sbin/config-setup
+
 #read nowshowing_schedule.cron on container startup and add to crontab.
-echo "$(cat /config/nowshowing_schedule.cron)" > /crontab.tmp
+echo "$(cat /opt/nowshowing_schedule.cron)" > /crontab.tmp
 crontab /crontab.tmp
 rm -rf /crontab.tmp
 crond
+
+echo "Setup complete! Please read directions for advanced settings and changing the schedule."

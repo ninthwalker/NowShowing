@@ -1,0 +1,27 @@
+---
+email:
+  title: 'New This Week'
+  image: 'http://i.imgur.com/LNTSbFl.png'
+  footer: 'Thanks for watching!'
+  language: 'en'
+web:
+  title_image: 'img/nowshowing.png'
+  logo: 'img/logo.png'
+  headline_title: 'Just added:'
+  headliners: 'Laughs, Screams, Thrills, Entertainment'
+  footer: 'Thanks for watching!'
+  language: 'en'
+plex:
+  plex_user_emails: 'yes'
+mail:
+  from: 'Plex Server'
+  subject: 'Now Showing'
+  recipients_email: ['']
+  recipients: ['PLEX_USER']
+report:
+  interval: 7
+  report_type: 'both'
+  email_report_time: '30 10 * * 5'
+  web_report_time: '30 23 * * *'
+  extra_details: 'no'
+  test: 'disable'
