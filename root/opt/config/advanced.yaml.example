@@ -18,14 +18,16 @@ web:
 plex:
 # To be used in conjuntion with the recipients and recipients_email options below to customize who the emails go to.
 # 'yes' will send to plex users emails. 'no' will NOT send to plex user emails and only send to emails and users in the recipients fields below.
+# NOTE: If plex_user_emails is set to 'no', at least one email address is required in the recipients_email field below.
   plex_user_emails: 'yes'
 mail:
   from: 'Plex Server'
   subject: 'Now Showing'
-# Enter additional emails to send to below, besides your Plex friends emails. Optional
+# Enter additional emails to send to below, besides your Plex friends emails.
+# Optional, except if plex_user_emails is set to 'no'. Then at least one email address is required here.
 # format is ['bob@example.com', 'sally@example.com']
   recipients_email: ['']
-# Plex usernames of any Plex friends to be notified. Used if the 'plex_user_emails' is set to 'no'. Optional. ['PLEX_USER'] is yourself
+# Plex usernames of any Plex friends to be notified. Used if the 'plex_user_emails' is set to 'no'. Optional.
 # format is ['myFriend1', 'myFriend2']
   recipients: ['PLEX_USER']
 report:
