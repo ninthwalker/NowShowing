@@ -21,8 +21,8 @@ The NowShowing docker provides a summary of new media that has recently been add
 * Other Docker platforms (Supported, but extra docker commandline options needed. [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
 
 ## Supported Email Clients
-* Gmail
-* Zoho
+* Gmail (port 587)
+* Zoho (port 587)
 * Most Email providers with SSL SMTP support (Not all tested)
 
 ## Supported Plex Agents
