@@ -19,7 +19,7 @@ class OMDB
     end
 
     def get(query, args=nil)
-        new_query = '?i=' + query + '&plot=short&r=json'
+        new_query = '&i=' + query + '&plot=short&r=json'
 
         response = self.class.get(new_query, :verify => false)
 
