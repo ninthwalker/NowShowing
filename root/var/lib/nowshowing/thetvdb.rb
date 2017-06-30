@@ -13,7 +13,7 @@ class TheTVDB
     include HTTParty
 
     token = 'FCBE9A97726CD688'
-    base_uri "http://thetvdb.com/api/#{token}//"
+    base_uri "https://thetvdb.com/api/#{token}//"
 
     def initialize
         $retry_attempts = 0

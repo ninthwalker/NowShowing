@@ -10,15 +10,16 @@ require 'httparty'
 #
 class OMDB
     include HTTParty
-
-    base_uri 'http://www.omdbapi.com//'
+    # temporarily add api key since OMBI closed their API and started charging.
+    # Old: base_uri 'http://www.omdbapi.com//'
+    base_uri 'https://www.omdbapi.com/?apikey=bab71153'
     format :json
 
     def initialize
     end
 
     def get(query, args=nil)
-        new_query = '?i=' + query + '&plot=short&r=json'
+        new_query = '&i=' + query + '&plot=short&r=json'
 
         response = self.class.get(new_query, :verify => false)
 

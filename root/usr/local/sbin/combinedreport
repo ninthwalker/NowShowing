@@ -176,7 +176,7 @@ class Report
                             :tagline     => (localized_movie['tagline'].nil? ? movie['tagline'] : localized_movie['tagline']),
                             :synopsis    => (localized_movie['overview'].nil? ? movie['overview'] : localized_movie['overview']),
                             :runtime     => (localized_movie['runtime'].nil? ? movie['runtime'] : localized_movie['runtime']),
-                            :imdb        => "http://www.imdb.com/title/#{movie['imdb_id']}",
+                            :imdb        => "https://www.imdb.com/title/#{movie['imdb_id']}",
                             :imdb_rating => omdb_result['imdbRating'],
                             :imdb_votes  => omdb_result['imdbVotes'],
                             :director    => omdb_result['Director'],
@@ -284,9 +284,9 @@ class Report
                                     tv_episodes[:new].push({
                                         :id             => show_id,
                                         :series_name    => show['Series']['SeriesName'],
-                                        :image          => "http://thetvdb.com/banners/#{show['Series']['poster']}",
+                                        :image          => "https://thetvdb.com/banners/#{show['Series']['poster']}",
                                         :network        => show['Series']['Network'],
-                                        :imdb           => "http://www.imdb.com/title/#{show['Series']['IMDB_ID']}",
+                                        :imdb           => "https://www.imdb.com/title/#{show['Series']['IMDB_ID']}",
                                         :title          => episode['EpisodeName'],
                                         :episode_number => "S#{episode['SeasonNumber']} E#{episode['EpisodeNumber']}",
                                         :synopsis       => episode['Overview'],
@@ -333,10 +333,10 @@ class Report
                                         tv_episodes[:seasons].push({
                                             :id             => show_id,
                                             :series_name    => show['Series']['SeriesName'],
-                                            :image          => "http://thetvdb.com/banners/#{show['Series']['poster']}",
+                                            :image          => "https://thetvdb.com/banners/#{show['Series']['poster']}",
                                             :season         => [season['index']],
                                             :network        => show['Series']['Network'],
-                                            :imdb           => "http://www.imdb.com/title/#{show['Series']['IMDB_ID']}",
+                                            :imdb           => "https://www.imdb.com/title/#{show['Series']['IMDB_ID']}",
                                             :synopsis       => show['Series']['Overview']
                                         })
                                     end
