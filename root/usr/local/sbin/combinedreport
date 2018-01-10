@@ -66,6 +66,14 @@ class Report
             $config = YAML.load_file('/opt/config.yaml')
 	    $advanced = YAML.load_file('/config/advanced.yaml')
 	    $daystoreport = $advanced['report']['interval'].to_i * 86400
+		
+ 	# Log-rotate if greater than 50MB
+            logsize = File.size('/config/nowshowing.log')
+            if logsize > 50000000
+                File.delete('/config/nowshowing.log')
+                File.write("/config/nowshowing.log", "")
+            end
+
         rescue Errno::ENOENT => e
             abort('Configuration file not found.  Exiting...')
         end
