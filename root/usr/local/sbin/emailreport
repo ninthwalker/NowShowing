@@ -71,6 +71,11 @@ class Report
         end
 
         begin
+    # Log-rotate if greater than 50MB
+	    $logsize = File.size('/config/nowshowing.log')
+	    if $logsize > '50000000'
+	        File.delete('/config/nowshowing.log')
+	    end	 
             $logger = Logger.new('/config/nowshowing.log')
             
             if $options[:verbose]
