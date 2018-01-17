@@ -33,7 +33,7 @@ class TheTVDB
                     break
                 end
             end
-            if $retry_attempts >= 5
+            if $retry_attempts >= 3
                 $logger.error("Could not connect to thetvdb.  Exiting script.  If you are constantly seeing this, please turn on debugging and open an issue.")
                 $logger.debug("Failed to connect to thetvdb for query: #{query}")
                 exit
@@ -57,7 +57,7 @@ class TheTVDB
                     break
                 end
             end
-            if $retry_attempts >= 5
+            if $retry_attempts >= 3
                 $logger.error("Could not connect to thetvdb.  Exiting script.  If you are constantly seeing this, please turn on debugging and open an issue.")
                 $logger.debug("Failed to connect to thetvdb for query: #{query}")
                 exit
