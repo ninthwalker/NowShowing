@@ -1,0 +1,85 @@
+#!/usr/bin/ruby
+
+require 'rubygems'
+require 'time'
+require 'date'
+require 'yaml'
+require 'erb'
+require 'logger'
+require 'optparse'
+require 'pp'
+
+require_relative '/var/lib/nowshowing/plex'
+require_relative '/var/lib/nowshowing/mailAnnouncement'
+
+# Class for parsing the Plex server for new movies and TV Shows
+#
+# Author: Brian Stascavage
+# Email: brian@stascavage.com
+# Modified by: ninthwalker & GroxyPod
+#
+class Report
+    $options = {
+        :emails        => true,
+        :test_email    => false,
+        :debug         => false
+    }
+
+    OptionParser.new do |opts|
+
+        opts.on("-n", "--no-plex-email", "Do not send emails to Plex friends") do |opt|
+            $options[:emails] = false
+        end
+
+    	opts.on("-t", "--test-email", "Send email only to the Plex owner (ie yourself).  For testing purposes") do |opt|
+	        $options[:test_email] = true
+	    end
+
+        opts.on("-v", "--verbose", "Enable verbose debug logging") do |opt|
+            $options[:verbose] = true
+        end
+    end.parse!
+
+    def initialize
+        begin
+	    $advanced = YAML.load_file('/config/cfg/advanced.yaml')
+		$announcement = File.read('/config/announcement_body.html')
+		
+	    # Log-rotate if greater than 50MB
+        logsize = File.size('/config/logs/nowshowing.log')
+            if logsize > 50000000
+                File.delete('/config/logs/nowshowing.log')
+                File.write('/config/logs/nowshowing.log', "")
+            end
+
+        rescue Errno::ENOENT => e
+            abort('Configuration file not found.  Exiting...')
+        end
+
+        begin 
+            $logger = Logger.new('/config/logs/nowshowing.log')
+            
+            if $options[:verbose]
+                $logger.level = Logger::DEBUG
+            else
+                $logger.level = Logger::INFO
+            end
+        rescue
+            abort('Log file not found.  Exiting...')
+        end
+    end
+end
+
+# Main method that starts the report
+def main
+    report = Report.new
+
+    YAML.load_file('/config/cfg/advanced.yaml')
+    template = ERB.new File.new("/opt/announcement_email_body.erb").read, nil, "%"
+    mail = MailReport.new($advanced, $options)
+
+    mail.sendMail(template.result(binding))
+	
+    $logger.info("Announcement Email Sent.")
+end
+main()

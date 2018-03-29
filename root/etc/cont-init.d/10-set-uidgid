@@ -5,14 +5,14 @@ PGID=${PGID:-100}
 
 groupmod -o -g "$PGID" xyz
 usermod -o -u "$PUID" xyz
-chown -R xyz:xyz /opt
+chown -R xyz:xyz /opt /run/lighttpd
 echo "
 -----------------------------------------
               NowShowing
 -----------------------------------------
           Brought to you by:
           
-Ninthwalker/GroxyPod/Limen75
+    Ninthwalker/GroxyPod/Limen75
 
 -----------------------------------------
 User xyz set to:  $(id -u xyz)

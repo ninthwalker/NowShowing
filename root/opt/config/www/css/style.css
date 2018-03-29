@@ -19,6 +19,10 @@ a:hover, a:active, a:focus {
   text-decoration: none;
 }
 
+a.admin:hover {
+    color: #e5a00d;
+}
+
 p {
   padding: 0;
   margin: 0 0 30px 0;

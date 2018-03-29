@@ -63,15 +63,14 @@ class Report
 
     def initialize
         begin
-            $config = YAML.load_file('/opt/config.yaml')
-	    $advanced = YAML.load_file('/config/advanced.yaml')
+	    $advanced = YAML.load_file('/config/cfg/advanced.yaml')
 	    $daystoreport = $advanced['report']['interval'].to_i * 86400
 		
 	 # Log-rotate if greater than 50MB
-            logsize = File.size('/config/nowshowing.log')
+            logsize = File.size('/config/logs/nowshowing.log')
             if logsize > 50000000
-                File.delete('/config/nowshowing.log')
-                File.write("/config/nowshowing.log", "")
+                File.delete('/config/logs/nowshowing.log')
+                File.write('/config/logs/nowshowing.log', "")
             end
 
         rescue Errno::ENOENT => e
@@ -79,7 +78,7 @@ class Report
         end
 
         begin 
-            $logger = Logger.new('/config/nowshowing.log')
+            $logger = Logger.new('/config/logs/nowshowing.log')
             
             if $options[:verbose]
                 $logger.level = Logger::DEBUG
@@ -96,9 +95,9 @@ class Report
 
     # Method for parsing the Plex library for every movie
     def getMovies
-    	moviedb = TheMovieDB.new($config)
+    	moviedb = TheMovieDB.new($advanced)
     	omdb = OMDB.new
-	    plex = Plex.new($config)
+	    plex = Plex.new($advanced)
 	    movies = Array.new
 
 	    library = plex.get('/library/sections')
@@ -107,9 +106,10 @@ class Report
             if element['type'] == 'movie'
                 # Checks to see if a section filter was applied
                 # If so, checks to see if this section should be reported
-                if !$advanced['plex']['sections'].nil?
-                    if !$advanced['plex']['sections'].include?(element['title'])
-                        break
+                if !$advanced['plex']['libraries_to_skip'].nil?
+                    if $advanced['plex']['libraries_to_skip'].include?(element['title'])
+                        $logger.info("Skipping Movie Library: #{element['title']}")
+			next
                     end
                 end
 
@@ -142,9 +142,9 @@ class Report
     # Parameters: 
     #   movie: Plex movie object, from '/library/sections/<movie_library_id/all' 
     def getMovieInfo(plex_movie)
-        moviedb = TheMovieDB.new($config)
+        moviedb = TheMovieDB.new($advanced)
         omdb = OMDB.new
-        plex = Plex.new($config)
+        plex = Plex.new($advanced)
         movies = Array.new
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
@@ -203,7 +203,7 @@ class Report
 
     # Method for getting new TV shows from the Plx server  
     def getTVEpisodes
-        plex = Plex.new($config)
+        plex = Plex.new($advanced)
         tv_episodes = Hash.new
         tv_episodes[:new] = []
         tv_episodes[:seasons] = []
@@ -213,9 +213,10 @@ class Report
             if element['type'] == 'show'
                 # Checks to see if a section filter was applied
                 # If so, checks to see if this section should be reported
-                if !$advanced['plex']['sections'].nil?
-                    if !$advanced['plex']['sections'].include?(element['title'])
-                        break
+                if !$advanced['plex']['libraries_to_skip'].nil?
+                    if $advanced['plex']['libraries_to_skip'].include?(element['title'])
+                        $logger.info("Skipping TV Library: #{element['title']}")
+			next
                     end
                 end
 
@@ -248,7 +249,7 @@ class Report
     #   tv_episodes: Array of Hashes of all episodes and seasons
     def getTVInfo(tv_show, tv_episodes)
         thetvdb = TheTVDB.new
-        plex = Plex.new($config)
+        plex = Plex.new($advanced)
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
         begin
@@ -380,10 +381,9 @@ def main
     new_seasons = new_episodes[:seasons]
     new_episodes = new_episodes[:new]
 
-    YAML.load_file('/opt/config.yaml')
-    YAML.load_file('/config/advanced.yaml')
+    YAML.load_file('/config/cfg/advanced.yaml')
     template = ERB.new File.new("/config/email_body.erb").read, nil, "%"
-    mail = MailReport.new($config, $advanced, $options)
+    mail = MailReport.new($advanced, $options)
 
     if (movies.empty? && new_seasons.empty? && new_episodes.empty?)
 	    $logger.info('No new media to report!')

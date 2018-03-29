@@ -63,15 +63,30 @@ class Report
 
     def initialize
         begin
-            $config = YAML.load_file('/opt/config.yaml')
-	    $advanced = YAML.load_file('/config/advanced.yaml')
+	    $advanced = YAML.load_file('/config/cfg/advanced.yaml')
 	    $daystoreport = $advanced['report']['interval'].to_i * 86400
 		
  	# Log-rotate if greater than 50MB
-            logsize = File.size('/config/nowshowing.log')
-            if logsize > 50000000
-                File.delete('/config/nowshowing.log')
-                File.write("/config/nowshowing.log", "")
+            logsize_ns = File.size('/config/logs/nowshowing.log')
+			logsize_f2b = File.size('/config/logs/fail2ban.log')
+			logsize_ltpd = File.size('/config/logs/lighttpd_access.log')
+			logsize_plx = File.size('/config/logs/plex_token_errors.log')
+			
+            if logsize_ns > 50000000
+                File.delete('/config/logs/nowshowing.log')
+                File.write('/config/logs/nowshowing.log', "")
+            end
+			if logsize_f2b > 50000000
+                File.delete('/config/logs/fail2ban.log')
+                File.write('/config/logs/fail2ban.log', "")
+            end
+			if logsize_ltpd > 50000000
+                File.delete('/config/logs/lighttpd_access.log')
+                File.write('/config/logs/lighttpd_access.log', "")
+            end
+			if logsize_plx > 50000000
+                File.delete('/config/logs/plex_token_errors.log')
+                File.write('/config/logs/plex_token_errors.log', "")
             end
 
         rescue Errno::ENOENT => e
@@ -79,7 +94,7 @@ class Report
         end
 
         begin
-            $logger = Logger.new('/config/nowshowing.log')
+            $logger = Logger.new('/config/logs/nowshowing.log')
             
             if $options[:verbose]
                 $logger.level = Logger::DEBUG
@@ -96,9 +111,9 @@ class Report
 
     # Method for parsing the Plex library for every movie
     def getMovies
-    	moviedb = TheMovieDB.new($config)
+    	moviedb = TheMovieDB.new($advanced)
     	omdb = OMDB.new
-	    plex = Plex.new($config)
+	    plex = Plex.new($advanced)
 	    movies = Array.new
 
 	    library = plex.get('/library/sections')
@@ -107,9 +122,10 @@ class Report
             if element['type'] == 'movie'
                 # Checks to see if a section filter was applied
                 # If so, checks to see if this section should be reported
-                if !$advanced['plex']['sections'].nil?
-                    if !$advanced['plex']['sections'].include?(element['title'])
-                        break
+                if !$advanced['plex']['libraries_to_skip'].nil?
+                    if $advanced['plex']['libraries_to_skip'].include?(element['title'])
+                        $logger.info("Skipping Movie Library: #{element['title']}")
+			next
                     end
                 end
 
@@ -142,9 +158,9 @@ class Report
     # Parameters: 
     #   movie: Plex movie object, from '/library/sections/<movie_library_id/all' 
     def getMovieInfo(plex_movie)
-        moviedb = TheMovieDB.new($config)
+        moviedb = TheMovieDB.new($advanced)
         omdb = OMDB.new
-        plex = Plex.new($config)
+        plex = Plex.new($advanced)
         movies = Array.new
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
@@ -203,7 +219,7 @@ class Report
 
     # Method for getting new TV shows from the Plx server  
     def getTVEpisodes
-        plex = Plex.new($config)
+        plex = Plex.new($advanced)
         tv_episodes = Hash.new
         tv_episodes[:new] = []
         tv_episodes[:seasons] = []
@@ -213,9 +229,10 @@ class Report
             if element['type'] == 'show'
                 # Checks to see if a section filter was applied
                 # If so, checks to see if this section should be reported
-                if !$advanced['plex']['sections'].nil?
-                    if !$advanced['plex']['sections'].include?(element['title'])
-                        break
+                if !$advanced['plex']['libraries_to_skip'].nil?
+                    if $advanced['plex']['libraries_to_skip'].include?(element['title'])
+                        $logger.info("Skipping TV Library: #{element['title']}")
+			next
                     end
                 end
 
@@ -248,7 +265,7 @@ class Report
     #   tv_episodes: Array of Hashes of all episodes and seasons
     def getTVInfo(tv_show, tv_episodes)
         thetvdb = TheTVDB.new
-        plex = Plex.new($config)
+        plex = Plex.new($advanced)
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
         begin
@@ -380,9 +397,8 @@ def main
     new_seasons = new_episodes[:seasons]
     new_episodes = new_episodes[:new]
 
-    YAML.load_file('/opt/config.yaml')
-    YAML.load_file('/config/advanced.yaml')
-    webtemplate = ERB.new File.new("/config/web_email_body.erb").read, nil, "%"
+    YAML.load_file('/config/cfg/advanced.yaml')
+    webtemplate = ERB.new File.new("/config/web_body.erb").read, nil, "%"
 
     if (movies.empty? && new_seasons.empty? && new_episodes.empty?)
 	    $logger.info('No new media to report!')

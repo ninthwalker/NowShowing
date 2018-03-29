@@ -1,0 +1,566 @@
+/*--------------------------------------------------------------
+# Styles for NowShowing Admin Site index.php
+--------------------------------------------------------------*/
+
+
+
+body {
+  background: #1f1f1f;
+  color: #e6e6e6;
+  /* color: #282a2d; */
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  color: #087caa;
+  transition: 0.5s;
+  
+}
+
+a:hover, a:active, a:focus {
+  color: #e5a00d;
+  outline: none;
+  text-decoration: none;
+}
+
+p {
+  padding: 0;
+  margin: 0 0 30px 0;
+}
+
+hr {
+	background-color: #e6e6e6;
+	border-color: #e6e6e6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600; /* was 400 */
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+.mytooltip {
+    position: relative;
+    display: inline-block;
+    color: #006080;
+	margin-left: 1px;
+	bottom: 15px;
+}
+
+.mytooltip .mytooltiptext {
+    visibility: hidden;
+    position: absolute;
+	margin-top: -16px;
+	margin-left: 30px;
+    width: 350px;
+    background-color: #555;
+    color: #fff;
+	font-weight:normal;
+	font-size: 14px;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity .6s;
+}
+
+
+
+.mytooltip-right::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent #555 transparent transparent;
+}
+
+.mytooltip:hover .mytooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+label {
+    display:inline-block;
+    position:relative;
+	vertical-align: top;
+}
+
+label span {
+    font-weight:bold;
+    position:absolute;
+    left: 3px;
+}
+
+label input, label select {
+    margin-left: 150px;
+	font-weight:normal;
+	color: #e6e6e6;
+	background-color: #404040;
+	border: 0px;
+}
+
+label input:focus, textarea:focus {
+    border-color: #6891a2;
+    outline: 0;
+    -webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.075),0 0 4px #e5a00d;
+    box-shadow: inset 0 4px 4px rgba(0,0,0,.075),0 0 4px #e5a00d;
+}
+
+.fa {
+	color: grey;
+	font-size: 18px;
+    position: absolute;
+    display: inline-block;
+	vertical-align: middle;
+	margin-left: 3px;
+}
+
+h3 {
+	margin-bottom: 0px;
+}
+
+.mybutton {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  overflow: hidden;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+  background-color: #404040;
+  color: #e6e6e6;
+  padding: 5px 12px;
+  border: 1px solid #e5a00d;
+  font-weight:bold;
+  border-radius: 4px;
+  font-weight: normal;
+  -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0,.075),0 0 2px #e5a00d;
+  box-shadow: inset 0 2px 2px rgba(0,0,0,.075),0 0 2px #e5a00d;
+}
+
+.mybuttoncancel {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  overflow: hidden;
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: color, background-color;
+  transition-property: color, background-color;
+  background-color: #404040;
+  color: #e6e6e6;
+  padding: 5px 12px;
+  font-weight:bold;
+  border-radius: 4px;
+  font-weight: normal;
+  border: 1px solid #cc0000;
+  -webkit-box-shadow: inset 0 2px 2px rgba(0,0,0,.075),0 0 2px #cc0000;
+  box-shadow: inset 0 2px 2px rgba(0,0,0,.075),0 0 2px #cc0000;
+  margin-left: 5px;
+}
+  
+.mybutton:hover, .mybutton:focus, .mybutton:active {
+  background-color: #e5a00d;
+  color: #404040;
+  outline: 0;
+  /* -webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.075),0 0 4px #e5a00d;
+  box-shadow: inset 0 4px 4px rgba(0,0,0,.075),0 0 4px #e5a00d; */
+}
+
+.mybuttoncancel:hover, .mybuttoncancel:focus, .mybuttoncancel:active {
+  background-color: #cc0000;
+  color: #e6e6e6;
+  outline: 0;
+  /* -webkit-box-shadow: inset 0 4px 4px rgba(0,0,0,.075),0 0 4px #e5a00d;
+  box-shadow: inset 0 4px 4px rgba(0,0,0,.075),0 0 4px #e5a00d; */
+}
+
+.mybutton.no-highlight {
+  background-color: #404040;
+  border-color: black;
+  outline: 0;
+  color: #e6e6e6;
+}
+
+textarea {
+	width: 266px;
+	height: auto;
+	margin-left: 150px;
+	font-weight:normal;
+	color: #e6e6e6;
+	background-color: #404040;
+	border: none;
+}
+
+.status {
+	visibility: hidden;
+}
+
+.spinner {
+  /* margin: 30px auto 0;
+  margin-left: 5px; */
+  margin-top: 10px;
+  width: 65px;
+  text-align: center;
+}
+
+.spinner > div {
+  width: 12px;
+  height: 12px;
+  background-color: #b8b8b8;
+
+  border-radius: 100%;
+  display: inline-block;
+  -webkit-animation: sk-bouncedelay 1.7s infinite ease-in-out both;
+  animation: sk-bouncedelay 1.7s infinite ease-in-out both;
+}
+
+.spinner .bounce1 {
+  -webkit-animation-delay: -0.32s;
+  animation-delay: -0.32s;
+}
+
+.spinner .bounce2 {
+  -webkit-animation-delay: -0.16s;
+  animation-delay: -0.16s;
+}
+
+@-webkit-keyframes sk-bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes sk-bouncedelay {
+  0%, 80%, 100% { 
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  } 40% { 
+    -webkit-transform: scale(1.0);
+    transform: scale(1.0);
+  }
+}
+
+.nav {
+    border-bottom: 1px solid #e5a00d;
+}
+
+/* tab color */
+.nav-tabs>li>a, .nav-tabs>ul {
+  background-color: #404040;
+  /* border-color: green; */
+  color:#e6e6e6;
+  border-bottom: 1px solid #e5a00d;
+}
+
+/* active tab color */
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
+  color: #e6e6e6;
+  background-color: #1f1f1f;
+  border: 1px solid #e5a00d;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+/* hover tab color */
+.nav-tabs>li>a:hover {
+  border-color: #e5a00d;
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.modal-header {
+   border-bottom: none;
+}
+
+.modal-footer {
+   border-top: none;
+}
+.modal-content {
+  background-color: #404040;
+}
+.modal-body {
+  background-color: #1f1f1f;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+  background: #111;
+  padding: 5px 0;
+  height: 90px;
+  background-image: url("../img/background-admin3.png");
+  }
+
+#header #logo {
+  float: left;
+}
+
+#header #logo h1 {
+  font-size: 20px;
+  margin: 0;
+  padding: 5px 0;
+  line-height: 1;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+#header #logo h1 a, #header #logo h1 a:hover {
+  color: #fff;
+}
+
+#header #logo img {
+  padding: 0;
+  margin: 0;
+  max-height: 80px;
+}
+
+@media (max-width: 768px) {
+  #header {
+    height: 80px;
+  }
+  #header #logo h1 {
+    font-size: 26px;
+  }
+  #header #logo img {
+    max-height: 40px;
+  }
+}
+
+.is-sticky #header {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Nav Menu Essentials */
+.nav-menu, .nav-menu * {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-menu ul {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 99;
+}
+
+.nav-menu li {
+  position: relative;
+  white-space: nowrap;
+}
+
+.nav-menu > li {
+  float: left;
+}
+
+.nav-menu li:hover > ul,
+.nav-menu li.sfHover > ul {
+  display: block;
+}
+
+.nav-menu ul ul {
+  top: 0;
+  left: 100%;
+}
+
+.nav-menu ul li {
+  min-width: 180px;
+}
+
+/* Nav Menu Arrows */
+.sf-arrows .sf-with-ul {
+  padding-right: 30px;
+}
+
+.sf-arrows .sf-with-ul:after {
+  content: "\f107";
+  position: absolute;
+  right: 15px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+}
+
+.sf-arrows ul .sf-with-ul:after {
+  content: "\f105";
+}
+
+/* Nav Meu Container */
+#nav-menu-container {
+  float: right;
+  margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+  #nav-menu-container {
+    display: none;
+  }
+}
+
+/* Nav Meu Styling */
+.nav-menu a {
+  padding: 10px 15px;
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  outline: none;
+}
+
+.nav-menu a:hover, .nav-menu li:hover > a, .nav-menu .menu-active > a {
+  color: #E5A00d;
+}
+
+.nav-menu ul {
+  margin: 4px 0 0 15px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.nav-menu ul li {
+  background: #fff;
+  border-top: 1px solid #f4f4f4;
+}
+
+.nav-menu ul li:first-child {
+  border-top: 0;
+}
+
+.nav-menu ul li:hover {
+  background: #f6f6f6;
+}
+
+.nav-menu ul li a {
+  color: #333;
+}
+
+.nav-menu ul ul {
+  margin: 0;
+}
+
+/* Mobile Nav Toggle */
+#mobile-nav-toggle {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 999;
+  margin: 20px 20px 0 0;
+  border: 0;
+  background: none;
+  font-size: 24px;
+  display: none;
+  transition: all 0.4s;
+  outline: none;
+}
+
+#mobile-nav-toggle i {
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  #mobile-nav-toggle {
+    display: inline;
+  }
+}
+
+/* Mobile Nav Styling */
+#mobile-nav {
+  position: fixed;
+  top: 0;
+  padding-top: 18px;
+  bottom: 0;
+  z-index: 998;
+  background: rgba(0, 0, 0, 0.9);
+  left: -260px;
+  width: 260px;
+  overflow-y: auto;
+  transition: 0.4s;
+}
+
+#mobile-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#mobile-nav ul li {
+  position: relative;
+}
+
+#mobile-nav ul li a {
+  color: #fff;
+  font-size: 16px;
+  overflow: hidden;
+  padding: 10px 22px 10px 15px;
+  position: relative;
+  text-decoration: none;
+  width: 100%;
+  display: block;
+  outline: none;
+}
+
+#mobile-nav ul li a:hover {
+  color: #fff;
+}
+
+#mobile-nav ul li li {
+  padding-left: 30px;
+}
+
+#mobile-nav ul .menu-has-children i {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+  padding: 15px;
+  cursor: pointer;
+  color: #fff;
+}
+
+#mobile-nav ul .menu-has-children i.fa-chevron-up {
+  color: #E5A00d;
+}
+
+#mobile-nav ul .menu-item-active {
+  color: #E5A00d;
+}
+
+#mobile-body-overly {
+  width: 100%;
+  height: 100%;
+  z-index: 997;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+}
+
+/* Mobile Nav body classes */
+body.mobile-nav-active {
+  overflow: hidden;
+}
+
+body.mobile-nav-active #mobile-nav {
+  left: 0;
+}
+
+body.mobile-nav-active #mobile-nav-toggle {
+  color: #fff;
+}
