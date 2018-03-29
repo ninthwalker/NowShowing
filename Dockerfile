@@ -1,7 +1,9 @@
 FROM alpine:3.5
 MAINTAINER ninthwalker
 
-ENV UPDATED_ON 09JAN2018
+ENV UPDATED_ON 28MAR2018
+ENV NOWSHOWING_VERSION 2.0.0
+
 VOLUME /config
 EXPOSE 6878 
 
@@ -9,7 +11,7 @@ EXPOSE 6878
 COPY root/ s6-overlay/ /
 
 # Install permanent packages
-RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev tzdata shadow && \
+RUN apk add --no-cache ruby ruby-json ruby-io-console curl-dev lighttpd php7-cgi php7-json php7-curl php7-mbstring busybox-suid fail2ban ca-certificates wget tzdata shadow && \
 
 # Install temporary build dependencies
 apk add --no-cache --virtual build-dependencies \
@@ -19,11 +21,12 @@ libc-dev \
 make \
 gcc && \
 
-# Create default user
+# Create default user & lighttpd path
 groupmod -g 1000 users && \
 useradd -u 99 -U -d /config -s /bin/false xyz && \
 groupmod -o -g 100 xyz && \
 usermod -G users xyz && \
+mkdir /run/lighttpd /var/run/fail2ban && \
 
 # Insall NowShowing app dependencies
 bundle config --global silence_root_warning 1 && \
@@ -32,6 +35,9 @@ cd /opt/gem ; bundle install && \
 # Remove temp files
 apk del --purge build-dependencies
 
+# Extra copy for smtp.rb fix
+COPY root/opt/smtp.rb /usr/lib/ruby/2.3.0/net/
+
 # Start s6 init & webserver
 ENTRYPOINT ["/init"]
-CMD ["webserver"]
+CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
