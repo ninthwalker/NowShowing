@@ -29,4 +29,4 @@ chown xyz:xyz /opt/nowshowing_schedule.cron
 crontab -u xyz /opt/nowshowing_schedule.cron
 crond
 
-echo "Please go to http://hostServerIP:hostPort/admin to configure settings"
+echo "Please go to http://hostIP:hostPort/admin to configure settings"

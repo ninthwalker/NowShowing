@@ -12,7 +12,7 @@ echo "
 -----------------------------------------
           Brought to you by:
           
-    Ninthwalker/GroxyPod/Limen75
+      Ninthwalker/GroxyPod/Limen75
 
 -----------------------------------------
 User xyz set to:  $(id -u xyz)
