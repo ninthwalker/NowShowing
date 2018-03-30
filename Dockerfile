@@ -28,15 +28,21 @@ groupmod -o -g 100 xyz && \
 usermod -G users xyz && \
 mkdir /run/lighttpd /var/run/fail2ban && \
 
+# fail2ban setup - remove alpine default jail & copy in our jail settings and filter
+rm /etc/fail2ban/jail.d/* && \
+cp /opt/f2b/fail2ban.local /opt/f2b/jail.local /etc/fail2ban/ && \
+cp /opt/f2b/nowshowing.conf /etc/fail2ban/filter.d/ && \
+cp /opt/f2b/iptables-common.conf /etc/fail2ban/action.d/ && \
+
+# smtp.rb mail fix
+cp /opt/smtp.rb /usr/lib/ruby/2.3.0/net/ && \
+
 # Insall NowShowing app dependencies
 bundle config --global silence_root_warning 1 && \
 cd /opt/gem ; bundle install && \
 
 # Remove temp files
 apk del --purge build-dependencies
-
-# Extra copy for smtp.rb fix
-COPY root/opt/smtp.rb /usr/lib/ruby/2.3.0/net/
 
 # Start s6 init & webserver
 ENTRYPOINT ["/init"]
