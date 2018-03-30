@@ -66,25 +66,15 @@ class Report
 	    $advanced = YAML.load_file('/config/cfg/advanced.yaml')
 	    $daystoreport = $advanced['report']['interval'].to_i * 86400
 		
- 	# Log-rotate if greater than 50MB
+ 	# Log-rotate if greater than 25M
             logsize_ns = File.size('/config/logs/nowshowing.log')
-			logsize_f2b = File.size('/config/logs/fail2ban.log')
-			logsize_ltpd = File.size('/config/logs/lighttpd_access.log')
 			logsize_plx = File.size('/config/logs/plex_token_errors.log')
 			
-            if logsize_ns > 50000000
+            if logsize_ns > 25000000
                 File.delete('/config/logs/nowshowing.log')
                 File.write('/config/logs/nowshowing.log', "")
             end
-			if logsize_f2b > 50000000
-                File.delete('/config/logs/fail2ban.log')
-                File.write('/config/logs/fail2ban.log', "")
-            end
-			if logsize_ltpd > 50000000
-                File.delete('/config/logs/lighttpd_access.log')
-                File.write('/config/logs/lighttpd_access.log', "")
-            end
-			if logsize_plx > 50000000
+			if logsize_plx > 25000000
                 File.delete('/config/logs/plex_token_errors.log')
                 File.write('/config/logs/plex_token_errors.log', "")
             end

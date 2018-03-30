@@ -3,13 +3,14 @@
 
 /config/logs/lighttpd_access.log {
         daily
+		maxsize 25M
         missingok
 		copytruncate
-        rotate 7
+        rotate 2
         compress
         notifempty
         sharedscripts
         postrotate
-		/etc/init.d/lighttpd --quiet --ifstarted reload
+		    kill -hup $(cat /var/run/lighttpd.pid)
         endscript
 }

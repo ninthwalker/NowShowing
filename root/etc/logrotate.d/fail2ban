@@ -1,6 +1,7 @@
 /config/logs/fail2ban.log {
     daily
-    rotate 7
+	maxsize 25M
+    rotate 2
     missingok
     compress
     postrotate

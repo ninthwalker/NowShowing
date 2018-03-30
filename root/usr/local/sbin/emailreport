@@ -66,11 +66,17 @@ class Report
 	    $advanced = YAML.load_file('/config/cfg/advanced.yaml')
 	    $daystoreport = $advanced['report']['interval'].to_i * 86400
 		
-	 # Log-rotate if greater than 50MB
-            logsize = File.size('/config/logs/nowshowing.log')
-            if logsize > 50000000
+ 	# Log-rotate if greater than 25M
+            logsize_ns = File.size('/config/logs/nowshowing.log')
+			logsize_plx = File.size('/config/logs/plex_token_errors.log')
+			
+            if logsize_ns > 25000000
                 File.delete('/config/logs/nowshowing.log')
                 File.write('/config/logs/nowshowing.log', "")
+            end
+			if logsize_plx > 25000000
+                File.delete('/config/logs/plex_token_errors.log')
+                File.write('/config/logs/plex_token_errors.log', "")
             end
 
         rescue Errno::ENOENT => e
