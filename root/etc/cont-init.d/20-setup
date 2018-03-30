@@ -12,21 +12,15 @@ fi
 
 # Always load latest cron settings
 ruby /usr/local/sbin/create-cron
-# Always writes latest template variables on container startup to config.yaml
-# not needed anymore - moved to web gui
-# ruby /usr/local/sbin/config-setup
 
-#fail2ban setup
-# remove alpine default jail & copy in our jail settings and filter
-rm /etc/fail2ban/jail.d/*
-cp /opt/f2b/fail2ban.local /opt/f2b/jail.local /etc/fail2ban/
-cp /opt/f2b/nowshowing.conf /etc/fail2ban/filter.d/
-cp /opt/f2b/iptables-common.conf /etc/fail2ban/action.d/
+#fail2ban start
 fail2ban-client start
 
 #read nowshowing_schedule.cron on container startup and add to crontab.
 chown xyz:xyz /opt/nowshowing_schedule.cron
 crontab -u xyz /opt/nowshowing_schedule.cron
+
+#start cron
 crond
 
 echo "Please go to http://hostIP:hostPort/admin to configure settings"
