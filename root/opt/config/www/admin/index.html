@@ -184,7 +184,8 @@
 				<div class="progress">
 					<div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">Dont give up now!</div>
 				</div>
-			    <p>Choose an Email provider, or select 'Other' to enter in your own.</p>
+			    <p>Choose an Email provider, or select 'Other' to enter in your own.<br>
+				   You may also skip this step if you only want to use the web report feature.</p>
 		   
 				<label>
 				<span>Email Provider:</span>
@@ -339,27 +340,7 @@ function step3filled() {
     return filled;
 }
  <!-- end validate step 3 -->
- 
- <!-- validate step 4 -->
-$('#smtp_address, #smtp_port, #email_username, #email_password').on('keyup', function() {
-    if(step4filled()) {
-		$('#mynextbutton').prop('disabled', false);
-		$('#mynextbutton').css('cursor', 'pointer');
-	}
-	else {
-		$('#mynextbutton').prop("disabled", true);
-		$('#mynextbutton').css('cursor', 'not-allowed');
-		}
-});
-
-function step4filled() {
-    var filled = true;
-    $('#smtp_address, #smtp_port, #email_username, #email_password').each(function() {
-        if($(this).val() == '') filled = false;
-    });
-    return filled;
-}
- <!-- end validate step 4 -->
+ <!-- removed step 4 validation to allow users that only want the web feature -->
 </script>
 
 

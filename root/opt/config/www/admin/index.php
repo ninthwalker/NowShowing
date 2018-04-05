@@ -616,7 +616,7 @@ ie: 9181<br>
   <option value="yes" <?=strip_tags($adv['tautulli']['https']) == 'yes' ? ' selected="selected"' : '';?>>Yes</option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
-Is HTTPS enabled on Tautulli?<br>test<br>
+Is HTTPS enabled on Tautulli?<br>
 </span></div>
 </label><br><br>
 
