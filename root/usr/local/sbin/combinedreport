@@ -16,6 +16,7 @@ require_relative '/var/lib/nowshowing/themoviedb'
 require_relative '/var/lib/nowshowing/thetvdb'
 require_relative '/var/lib/nowshowing/omdb'
 require_relative '/var/lib/nowshowing/mailReport'
+require_relative '/var/lib/nowshowing/tautulli'
 
 # Class for parsing the Plex server for new movies and TV Shows
 #
@@ -376,6 +377,18 @@ def main
     startTime = Time.now
     report = Report.new
 
+	#get tautulli stats
+    if (!$advanced['tautulli']['stats'].empty? && !$advanced['tautulli']['server'].empty?)
+      t = Tautulli.new
+      t.get_popular_stats
+      t.get_popular_day
+      t.get_popular_hour
+      t.get_libraries
+      stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics:' : $advanced['tautulli']['title']
+      $logger.info('Adding Statistics from Tautulli')
+    end
+    # end tautulli stats
+	
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     I18n.load_path = Dir['/var/lib/nowshowing/locales/*.yml']
     I18n.backend.load_translations

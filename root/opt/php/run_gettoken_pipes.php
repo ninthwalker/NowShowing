@@ -24,18 +24,18 @@ $process = proc_open('ruby /usr/local/sbin/gettoken-pipes', $descriptorspec, $pi
 		fclose($pipes[1]);
 		proc_close($process);
 	}
-	
-	$adv_array = Spyc::YAMLLoad('../../cfg/advanced.yaml');
-	$adv_array['token'] = array('api_key' => $token);
-	
-	# d/l gravatar avatar
-	exec("wget $avatar -O /config/www/img/avatar.png");
-
-	$adv_yaml = Spyc::YAMLDump($adv_array,2,0);
-	file_put_contents($adv_file, $adv_yaml);
-	
+			
 	if (!empty($token)) {
-		$statustext = "Plex Token Saved!";
+	        # save token to advanced.yaml
+                $adv_array = Spyc::YAMLLoad('../../cfg/advanced.yaml');
+                $adv_array['token'] = array('api_key' => $token);
+                $adv_yaml = Spyc::YAMLDump($adv_array,2,0);
+                file_put_contents($adv_file, $adv_yaml);
+
+                # d/l gravatar avatar
+                exec("wget $avatar -O /config/www/img/avatar.png");
+                
+                $statustext = "Plex Token Saved!";
 		$tokenarray = array( 'token' => $token, 'statustext' => $statustext);
 		echo json_encode($tokenarray);
 		exit;

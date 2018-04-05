@@ -63,6 +63,13 @@ ul {
     list-style-position: inside;
     padding-left:0;
 }
+.stats {
+	font-weight:normal;
+}
+:checked + label {
+	color:#e5a00d;
+}
+
   </style>
 <script>
 $(document).ready(function(){
@@ -81,7 +88,32 @@ $(document).ready(function(){
         $("#emailProviderDiv").hide();
       }
     });
+	
+	$('#ns_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fnowshowing.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
+	
+	$('#ws_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Flighttpd_access.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
+	
+	$('#f2b_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Ffail2ban.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
+	
+	$('#plx_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fplex_token_errors.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
 });
+
 </script>
 </head>
 <body bgcolor="#151515">
@@ -113,11 +145,12 @@ $(document).ready(function(){
 <div class="container">
   <ul class="nav nav-tabs">
     <li class="active"><a data-toggle="tab" href="#welcome">Welcome</a></li>
-    <li><a data-toggle="tab" href="#email">Email</a></li>
 	<li><a data-toggle="tab" href="#smtp">SMTP</a></li>
+    <li><a data-toggle="tab" href="#email">Email</a></li>
     <li><a data-toggle="tab" href="#web">Web</a></li>
     <li><a data-toggle="tab" href="#plex">Plex</a></li>
 	<li><a data-toggle="tab" href="#report">Report</a></li>
+	<li><a data-toggle="tab" href="#stats">Stats</a></li>
 	<li class="dropdown">
       <a class="dropdown-toggle" data-toggle="dropdown" href="#">Tools <span class="caret"></span></a>
       <ul class="dropdown-menu" style="background-color:#404040;">
@@ -125,6 +158,7 @@ $(document).ready(function(){
         <li><a data-toggle="tab" href="#ondemand" style="color:#e6e6e6 !important">On-Demand Report</a></li>
         <li><a data-toggle="tab" href="#announcementpage" style="color:#e6e6e6 !important">Announcement Email</a></li>
 		<li><a data-toggle="tab" href="#admin" style="color:#e6e6e6 !important">Admin Settings</a></li>
+		<li><a data-toggle="tab" href="#logs" style="color:#e6e6e6 !important">Log Viewer</a></li>
 		<li><a data-toggle="tab" href="#help" style="color:#e6e6e6 !important">Help Links</a></li>
       </ul>
     </li>
@@ -543,6 +577,153 @@ Which reports to generate.
 <button type="button" class="mybutton" data-toggle="modal" data-target="#settingsModal">Save Settings</button>
 </p>
 </div>
+
+<!--==========================
+  Statistics Settings
+============================-->
+<div id="stats" class="tab-pane fade"></p>
+<h3>Statistics Settings</h3>
+<hr width="440px" align="left"><br>
+
+Pull Statistics from <a href="http://tautulli.com/" target="_blank">Tautulli</a><br>
+Can add some fun anonymous usage statistics to the Email report.<br>
+Requires a seperate instance of the Tautulli app running (local or remote works).<br>
+Settings can be found in the Tautulli: Settings > Web Interface page.<br></p>
+
+<label>
+<span>Tautulli Host/IP:</span>
+<input name="plexpy_server" value="<?=strip_tags($adv['tautulli']['server'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Tautulli Hostname or IP<br>
+ie: 192.168.1.45 or tautulli.mydomain.com<br>
+Do <i>not</i> include 'http/s'<br>
+</span></div>
+</label><br><br>
+
+<label>
+<span>Tautulli Port:</span>
+<input name="plexpy_port" value="<?=strip_tags($adv['tautulli']['port'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Tautulli Port<br>
+ie: 9181<br>
+</span></div>
+</label><br><br>
+
+<label>
+<span>HTTPS:</span>
+<select name="plexpy_https">
+  <option value="no" <?=strip_tags($adv['tautulli']['https']) == 'no' ? ' selected="selected"' : '';?>>No</option>
+  <option value="yes" <?=strip_tags($adv['tautulli']['https']) == 'yes' ? ' selected="selected"' : '';?>>Yes</option>
+</select>
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Is HTTPS enabled on Tautulli?<br>test<br>
+</span></div>
+</label><br><br>
+
+<label>
+<span>Tautulli HTTP Root:</span>
+<input name="plexpy_root" value="<?=strip_tags($adv['tautulli']['httproot'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Leave blank if not using in Tautulli<br>
+This is the Base URL of Tautulli if you enabled it<br>
+Just the name, no slashes<br>
+ie: plexpy or tautulli<br>
+</span></div>
+</label><br><br>
+
+<label>
+<span>Tautulli API Key:</span>
+<input name="plexpy_api" value="<?=strip_tags($adv['tautulli']['api_key'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Tautulli API Key<br>
+Find in Tautulli: Settings > Web Interface page<br>
+</span></div>
+</label><br><br>
+
+<label>
+<span>Email Stats Title:</span>
+<input name="plexpy_title" value="<?=strip_tags($adv['tautulli']['title'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Required.<br>
+Title header for the Statistics section of the email.<br>
+Include a colon (:) after your Title text if you want<br>
+to be consistent with the other movie/tv section titles.
+ie: Awesome Stats:
+</span></div>
+</label><br></p>
+
+Select the Statistics you want to be added to the Email Report.<br>
+Statistics section will be added to the top of all Email reports.<br>
+<hr width="440px" align="left"></p>
+
+<!--
+# key:
+# m => pop movie
+# v => pop tv
+# a = > pop artist
+# d => day movie
+# D => day TV
+# t => movie time
+# T => TV time
+# u => top user
+# s => stream count
+# A => totals
+-->
+<table width=500px>
+<tr>
+<td>
+  <input name="stats[]" id="pop_movie" value="m" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'm') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="pop_movie">Popular Movie</label><br>
+</td>
+<td>
+  <input name="stats[]" id="pop_tv" value="v" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'v') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="pop_tv">Popular TV Show</label>
+</td>
+<td>
+  <input name="stats[]" id="pop_artist" value="a" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'a') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="pop_artist">Popular Artist</label>
+</td>
+</tr>
+<tr>
+<td>
+  <input name="stats[]" id="day_movie" value="d" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'd') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="day_movie">Popular Day - Movie</label><br>
+</td>
+<td>
+  <input name="stats[]" id="day_tv" value="D" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'D') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="day_tv">Popular Day - TV Show</label>
+</td>
+<td>
+  <input name="stats[]" id="top_user" value="u" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 'u' ? ' checked="checked"' : '';?> />
+  <label class="stats" for="top_user">Top User - Hours</label>
+</td>
+</tr>
+<tr>
+<td>
+  <input name="stats[]" id="time_movie" value="t" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 't') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="time_movie">Popular Time - Movie</label>
+</td>
+<td>
+  <input name="stats[]" id="time_tv" value="T" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 'T' ? ' checked="checked"' : '';?> />
+  <label class="stats" for="time_tv">Popular Time - TV Show</label><br>
+</td>
+<td>
+  <input name="stats[]" id="streams" value="s" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 's' ? ' checked="checked"' : '';?> />
+  <label class="stats" for="streams">Concurrent Streams</label>
+</td>
+</tr>
+<tr>
+<td>
+  <input name="stats[]" id="totals" value="A" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 'A' ? ' checked="checked"' : '';?> />
+  <label class="stats" for="totals">Library Totals</label><br>
+</td>
+</tr>
+</table>
+  
+</p>
+<button type="button" class="mybutton" data-toggle="modal" data-target="#settingsModal">Save Settings</button>
+
+</div>
 </form>
 
 <!--==========================
@@ -746,6 +927,32 @@ Useful for sending a report now or updating the webpage without waiting for the 
 </div>
 
 <!--==========================
+  Log Viewer
+============================-->
+<div id="logs" class="tab-pane fade"></p>
+<h3>Log Viewer</h3>
+<hr width="440px" align="left"><br>
+
+Select a button below to view recent logs.<br>
+Full logs can be found in the /logs directory.</p>
+<!-- Change password -->
+<button id="ns_log_button" class="mybutton" type="button" value="ns_log" name="ns_log_button">Now Showing Logs</button><br>
+- View recent NowShowing Logs.<br><br>
+
+<!-- Reset settings -->
+<button id="ws_log_button" class="mybutton" type="button" value="ws_log" name="ws_log_button">Web Server Logs</button><br>
+- View Web Server Access Logs.<br><br>
+
+<button id="f2b_log_button" class="mybutton" type="button" value="f2b_log" name="f2b_log_button">Fail2ban Logs</button><br>
+- View Fail2ban Logs.<br><br>
+
+<button id="plx_log_button" class="mybutton" type="button" value="plx_log" name="plx_log_button">Plex Token Logs</button><br>
+- View Plex Token Logs.<br><br>
+<div id="showlogs">
+</div>
+</div>
+
+<!--==========================
   Help Links Settings
 ============================-->
 <div id="help" class="tab-pane fade"></p>
@@ -762,7 +969,7 @@ Useful for sending a report now or updating the webpage without waiting for the 
 <b style="color:#087caa;">About</b>
 <ul>
 <li>Version: 2.0.0</li>
-<li>Updated: 28MAR2018</li>
+<li>Updated: 03APR2018</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 
@@ -897,6 +1104,7 @@ Useful for sending a report now or updating the webpage without waiting for the 
 </div>
 </form>
 
+
 <!--==========================
   Reset Modal
 ============================-->
@@ -965,6 +1173,28 @@ Useful for sending a report now or updating the webpage without waiting for the 
   </div>
 </div>
 </form>
+
+<!--==========================
+  Log Viewer Modal
+============================-->
+
+<div class="container">
+  <div class="modal fade" id="logModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><b style="color:#cc0000">&times;</b></button>
+          <h4 class="modal-title">Log Viewer</h4>
+        </div>
+			<div class="modal-body" id="log-div">
+			</div>
+        <div class="modal-footer">
+			<button id="cancel_button11" name="cancel_button" type="button" class="mybuttoncancel" value="cancel" data-dismiss="modal">Close</button>	
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!--==========================
   Logout Modal
