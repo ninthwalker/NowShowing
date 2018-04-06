@@ -807,20 +807,7 @@ Useful for sending a report now or updating the webpage without waiting for the 
 				<span>Email Message:</span>
 				<textarea id="announcementMessage" name="announcementMessage" style="width:480px;height:250px"><?=$announcementMessage?></textarea><br>
 				<font style="margin-left: 150px;font-size: 12px;color: grey;">Announcement message for the email. Use HTML/CSS for formatting.</font>
-				</label></p>	
-				
-				<script>
-					$(document).ready(function(){
-						$(".preview").html($("#announcementMessage").val());
-						$("#announcementMessage").keyup(function(){
-							// Getting the current value of textarea
-							var currentText = $(this).val();
-							
-							// Setting the Div content
-							$(".preview").html(currentText);
-						});
-					});
-				</script>
+				</label></p>
 				
 				<button id="announcement_button" class="mybutton" type="button" value="announcement" name="announcement_button" data-toggle="modal" data-target="#announcementReportModal" style="margin-left:150px">Send Announcement Email</button>
 				<button id="announcement_test_button" class="mybutton" type="button" value="announcement_test" name="announcement_test_button" data-toggle="modal" data-target="#announcementTestReportModal" style="margin-left:118px;margin-top:4px;padding: 3px 3px;font-size:12px">Send Test</button>
@@ -831,7 +818,7 @@ Useful for sending a report now or updating the webpage without waiting for the 
 				<font style="font-size:12px;color:grey;"><b>[</b>Email clients may render slightly different<b>]</b></font><br>
 				<b><hr width="628px" align="left" style="padding:0px;margin:0px;border-style:1px dashed;border:1px dashed"></b></p>
 				
-				<div class="preview" style="max-width:75%;display:block;overflow:auto"></div></p>
+				<div class="preview" style="max-width:628px;display:block;overflow:auto"></div></p>
 
 <!--==========================
   Announcement Modal
@@ -1230,6 +1217,14 @@ Full logs can be found in the /logs directory.</p>
   
   <!-- Template Specific Custom Javascript File -->
   <script src="../js/admin_custom.js"></script>
+  <script>
+	$(document).ready(function(){
+		$(".preview").html($("#announcementMessage").val());
+		$("#announcementMessage").keyup(function(){
+			$(".preview").html(this.value);
+		});
+	});
+  </script>
 
 </body>
 </html>
