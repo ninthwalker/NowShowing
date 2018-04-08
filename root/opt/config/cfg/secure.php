@@ -55,14 +55,23 @@ function showLoginPasswordProtect($error_msg) {
 <html>
 <head>
   <title>NowShowing</title>
+  <META content="width=device-width, initial-scale=0.5" name="viewport">
   <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
   <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
 </head>
 <body>
   <style>
-		body  { background-image: url("../img/background.jpg");
-                color: #e6e6e6;
+		body  { 
+			background-image: url("../img/background.jpg");
+            color: #e6e6e6;
         }
+		
+		@media (max-width: 768px) {
+			body {
+				background-repeat: no-repeat;
+				background-size: 100% 100%;
+			}
+		}
 
         .mybutton {
           display: inline-block;

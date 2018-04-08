@@ -96,8 +96,11 @@ class MailReport
                 content_type 'text/html; charset=UTF-8'
                 body body
             end
-
-            mail.deliver!
+            begin
+              mail.deliver!
+			rescue => e
+			  $logger.info("SMTP mailing failed!\n#{e.message}#{e.backtrace}")
+			end
         #end
     end
 end

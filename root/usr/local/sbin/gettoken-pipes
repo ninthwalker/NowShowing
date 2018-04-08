@@ -37,5 +37,9 @@ class Setup
     end
 end
 
-setup_agent = Setup.new
-setup_agent.start
+begin
+  setup_agent = Setup.new
+  setup_agent.start
+rescue
+  $stderr.puts "Check plex username/password"
+end
