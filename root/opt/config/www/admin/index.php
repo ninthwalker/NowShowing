@@ -956,8 +956,8 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <hr width="440px" align="left">
 <b style="color:#087caa;">About</b>
 <ul>
-<li>Version: 2.0.0</li>
-<li>Updated: 03APR2018</li>
+<li>Version: 2.0.1</li>
+<li>Updated: 08APR2018</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 
