@@ -1,11 +1,29 @@
 #!/usr/bin/with-contenv sh
 
+# get version
+version=$(cat /opt/version)
+
 #Copies config files and creates advanced config file if not present
 if [ -f /config/cfg/advanced.yaml ]; then
-  echo "Advanced config file detected. Keeping existing files"
+  echo "Advanced config file detected. Checking for latest version .."
+  if [ $version = 2.0.1 ]; then
+    # do nothing, latest version
+	echo "Latest Version found."
+  elif [ $version != 2.0.1 ]; then
+    # copy files since last version
+	echo "Version $version found."
+	echo "Backing up files to /config/backup/ & upgrading to latest release"
+	echo "Your cfg directory will not be changed"
+	mkdir -p /config/backup && chmod 775 /config/backup
+	cp -Rfp /config/cfg/ /config/www /config/announcement_body.html /config/email_body.erb /config/web_body.erb /config/backup/
+	cp -Rfp /opt/config/www /opt/config/announcement_body.html /opt/config/email_body.erb /opt/config/web_body.erb /config/
+	chown xyz:xyz -R /config/backup/
+  fi
+  
 else
   # copy files incl advanced.yaml
-  cp -Rp /opt/config/. /config/
+  echo "New Install detected. Installing latest version .."
+  cp -Rfp /opt/config/. /config/
   # set password to a random one
   php-cgi7 /opt/php/randomPass.php
 fi
