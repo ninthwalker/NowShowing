@@ -13,15 +13,14 @@ require_relative '/var/lib/nowshowing/plexTv'
 # Modified by: ninthwalker
 #
 class MailReport
-    def initialize(config, advanced, options)
-        $config = config
+    def initialize(advanced, options)
 	$advanced = advanced
 	$plexEmails = options[:emails]
 	$testEmail = options[:test_email]
-        if !$config['mail']['port'].nil?
-            $port = $config['mail']['port']
+        if !$advanced['mail']['port'].nil?
+            $port = $advanced['mail']['port']
         else
-            $port = 25
+            $port = 587
         end
 
         if !$advanced['mail']['subject'].nil?
@@ -32,13 +31,14 @@ class MailReport
     end
 
     # Method for pulling the email information from the config and emailing all Plex users
+	# set auth to nil, and use ruby smtp.rb modified with auto-detection code.
     def sendMail(body)
-        options = { :address              => $config['mail']['address'],
+        options = { :address              => $advanced['mail']['address'],
                     :port                 => $port,
-                    :domain               => 'otherdomain.com',
-                    :user_name            => $config['mail']['username'],
-                    :password             => $config['mail']['password'],
-                    :authentication       => 'plain',
+                    :domain               => ENV['HOSTNAME'],
+                    :user_name            => $advanced['mail']['username'],
+                    :password             => $advanced['mail']['password'],
+                    :authentication       => nil,
                     :enable_starttls_auto => true  }
             Mail.defaults do
             delivery_method :smtp, options
@@ -48,7 +48,7 @@ class MailReport
 
         # Logic for pulling the email accounts from Plex.tv and/or the
 	# config file
-	plexTv = PlexTv.new($config)
+	plexTv = PlexTv.new($advanced)
 
 	if !$testEmail
       	    if $plexEmails
@@ -85,17 +85,21 @@ class MailReport
 
         #Get owner's email as well and add it to the list of recpients
         users.push(plexTv.get('/users/account')['user']['email'][0])
-
-        users.each do | user |
+     
+	#used to send individual email. Now it bcc's one email
+        #users.each do | user |
             mail = Mail.new do
-                from "#{$advanced['mail']['from']} <#{$config['mail']['username']}>"
-                to user
+                from "#{$advanced['mail']['from']} <#{$advanced['mail']['username']}>"
+                bcc users
                 subject $advanced['mail']['subject'] + " " + (I18n.l Time.now.to_date)
                 content_type 'text/html; charset=UTF-8'
                 body body
             end
-
-            mail.deliver!
-        end
+            begin
+              mail.deliver!
+			rescue => e
+			  $logger.info("SMTP mailing failed!\n#{e.message}#{e.backtrace}")
+			end
+        #end
     end
 end

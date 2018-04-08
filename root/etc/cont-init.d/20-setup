@@ -1,22 +1,45 @@
 #!/usr/bin/with-contenv sh
 
+# get version
+version=$(cat /config/cfg/version)
+
 #Copies config files and creates advanced config file if not present
-if [ -f /config/advanced.yaml ]; then
-  echo "Advanced config file detected. Keeping existing files"
+if [ -f /config/cfg/advanced.yaml ]; then
+  echo "Advanced config file detected. Checking for latest version .."
+  if [ $version = 2.0.1 ]; then
+    # do nothing, latest version
+	echo "Latest Version found."
+  elif [ $version != 2.0.1 ]; then
+    # copy files since last version
+	echo "Version $version found."
+	echo "Backing up files to /config/backup/ & upgrading to latest release"
+	echo "Your cfg directory will not be changed"
+	mkdir -p /config/backup && chmod 775 /config/backup
+	cp -Rfp /config/cfg/ /config/www /config/announcement_body.html /config/email_body.erb /config/web_body.erb /config/backup/
+	cp -Rfp /opt/config/www /opt/config/announcement_body.html /opt/config/email_body.erb /opt/config/web_body.erb /config/
+	cp -fp /opt/config/cfg/version /config/cfg/
+	chown xyz:xyz -R /config/backup/
+  fi
+  
 else
-# copy files incl advanced.yaml
-  cp -Rp /opt/config/* /opt/advanced.yaml /config/
+  # copy files incl advanced.yaml
+  echo "New Install detected. Installing latest version .."
+  cp -Rfp /opt/config/. /config/
+  # set password to a random one
+  php-cgi7 /opt/php/randomPass.php
 fi
 
 # Always load latest cron settings
 ruby /usr/local/sbin/create-cron
-# Always writes latest template variables on container startup to config.yaml
-ruby /usr/local/sbin/config-setup
+
+#fail2ban start
+fail2ban-client start
 
 #read nowshowing_schedule.cron on container startup and add to crontab.
-echo "$(cat /opt/nowshowing_schedule.cron)" > /crontab.tmp
-crontab /crontab.tmp
-rm -rf /crontab.tmp
+chown xyz:xyz /opt/nowshowing_schedule.cron
+crontab -u xyz /opt/nowshowing_schedule.cron
+
+#start cron
 crond
 
-echo "Setup complete! Please read directions for advanced settings and changing the schedule."
+echo "Please go to http://hostIP:hostPort/admin to configure settings"

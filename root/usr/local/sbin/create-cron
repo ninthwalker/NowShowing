@@ -2,7 +2,7 @@
 require 'yaml'
 
 #variables
-advanced = YAML.load_file('/config/advanced.yaml')
+advanced = YAML.load_file('/config/cfg/advanced.yaml')
 reporttype = advanced['report']['report_type']
 webtime = advanced['report']['web_report_time']
 emailtime = advanced['report']['email_report_time']

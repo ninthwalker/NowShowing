@@ -19,6 +19,10 @@ a:hover, a:active, a:focus {
   text-decoration: none;
 }
 
+a.admin:hover {
+    color: #e5a00d;
+}
+
 p {
   padding: 0;
   margin: 0 0 30px 0;
@@ -122,6 +126,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+  #hero {
+  background-size: 100% 50%;
+  background-position: 0 -500px;
+  background-repeat: no-repeat;
+  }
+  
   #hero h1 {
     font-size: 28px;
     line-height: 36px;

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>NowShowing Setup</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <!-- ver1.3 -->
+
+   <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+</script>
+<![endif]-->
+  
+  <!-- Place your favicon.ico and apple-touch-icon.png in the template root directory -->
+  <link href="../img/favicon.ico" rel="shortcut icon">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,990" rel="stylesheet"> 
+  
+  <link rel="stylesheet" href="../lib/admin/bootstrap.min.css">
+  <script src="../lib/admin/jquery.min.js"></script>
+  <script src="../lib/admin/bootstrap.min.js"></script>
+  <script src="../js/modal_steps.js"></script>
+  
+  <!-- Libraries CSS Files -->
+  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  
+  <!-- Main Stylesheet File -->
+  <link href="../css/admin_style.css" rel="stylesheet">
+  <link href="../css/style.css" rel="stylesheet">
+  
+  <script>
+  <!-- modalpopup on page load -->
+  $(document).ready(function () {
+    $('#setupModal').modal('show');
+	
+	$('#email_provider').change(function() {
+      if ( this.value == 'other') {
+        $("#emailProviderDiv").show();
+      }
+      else {
+        $("#emailProviderDiv").hide();
+      }
+    });
+  });
+  </script>
+ 
+  <style>
+  body {
+	  background: #1f1f1f;
+	  background-image: url("../img/background.jpg");
+      color: #e6e6e6;
+      font-family: "Open Sans", sans-serif;
+   }
+   
+  font {
+	  margin-left: 150px;
+	  font-size: 12px;
+	  color: grey;
+  }
+  a, a:link {
+    color:#e5a006;
+	text-decoration:underline;
+  }
+  a:hover, a:visited, a:active {
+    color:#e5a006;
+	text-decoration:none;
+  }
+  .progress {
+	margin-right: 25px;
+	background: #404040;
+  }
+  .progress-bar {
+	color: #e6e6e6;
+  }
+  </style>
+</head>
+<body>
+
+<!--==========================
+  Setup Modal
+============================-->
+
+<div class="modal fade" id="setupModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"> 
+  <div class="modal-dialog">
+    <div class="modal-content">
+	<!-- header -->
+      <div class="modal-header">
+	  <button type="button" class="close" data-dismiss="modal"><b style="color:#990000">&times;</b></button>
+	  <div class="modal-title">
+		<img src="../img/nowshowing-icon.png" alt="NowShowing-Icon" width="45px" style="margin-bottom:5px;margin-right:5px;">
+        <img src="../img/nowshowing.png" alt="NowShowing" width="250px" style="margin-top:20px;">
+        <span style="vertical-align:bottom;margin-left:8px;font-size:24px";>Setup Wizard</span>
+		<hr style="border-color:#e5a006">
+		</div>
+        <h4 class="js-title-step" style="display:inline;">
+		</h4>
+      </div>
+	  
+	  <!-- body -->
+	  <form id="setupForm" action="" method="post">
+      <div class="modal-body">
+		
+		<!-- step 1 welcome page -->
+		<div class="row hide" data-step="1" data-title="Welcome" style="margin-left:10px">
+		 <div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" style="width:15%">Get Ready!</div>
+		</div> 
+				<span style="color:#e5a006;font-size:18px;"><b>Welcome to NowShowing</b></span></p>
+				This docker provides a summary of new media that has recently been added to Plex.<br>
+				NowShowing can generate an email for your users and a webpage for them to visit.
+				Please use this short Setup Wizard for the intitial settings.<br><br>
+				<span style="color:#e5a006;">Thanks, and we hope you enjoy the app!</span></p>
+				</div>
+		
+		
+		<!-- step 2 NowShowing Login info -->
+		<div class="row hide" data-step="2" data-title="Create NowShowing Login" style="margin-left:10px">
+			<div class="progress">
+			  <div class="progress-bar" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width:30%">Go!</div>
+		    </div>
+		<p>Create a Username/Password for the NowShowing Admin site.</p>
+				<label>
+				<span>Username:</span>
+				<input id="ns_username" name="ns_username" type="text" size="30" class="validate" /><br>
+				<font>create your own!</font>
+				</label><br><br>
+		  
+				<label>
+				<span>Password:</span>
+				<input id="ns_password" name="ns_password" type="password" size="30" class="validate" /><br>
+				<font>make it <a href="https://xkcd.com/936/" target="_blank">strong</a>!</font>
+				</label><br>
+        </div>
+		
+		<!-- step 3 Plex Info -->
+				<div class="row hide" data-step="3" data-title="Plex Authentication" style="margin-left:10px">
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">Halfway there!</div>
+		        </div>
+				<p>This will retrieve a token to authenticate to your Plex Server.<br>
+				NowShowing does not store your Plex username or password.</p>
+		   
+				<label>
+				<span>Plex Server Host/IP:<br></span>
+				<input id="server" name="server" type="text" size="30" class="validate" /><br>
+				<font>Uses port 32400 if no 'http/s' protocol specified.</font><br>
+			    <font>ie: 192.168.1.20 or https://plex.mydomain.com:12345</font>
+				</label><br><br>
+				
+				<label>
+				<span>Plex User or Email:</span>
+				<input id="plex_username" name="plex_username" type="text" size="30" class="validate" /><br>
+				<font>ie: BatmansPlex or batman@batcave.com</font>
+				</label><br><br>
+		  
+				<label>
+				<span>Plex Password:</span>
+				<input id="plex_password" name="plex_password" type="password" size="30" /><br>
+				<font>your plex.tv password</font>
+				</label><br><br>
+				
+				<button id="getToken" type="button" class="mybutton" style="margin-left:150px;cursor:not-allowed;" disabled="disabled">Get Token</button>
+				<span id="status_text" style="font-weight:bold"></span></p>
+				
+				<a href="#" id="showToken" style="font-size:12px;margin-left:150px;">I have my own token</a><br>
+				<div id="tokenDiv" style="display:none;">
+				<label><br>
+				<span>Plex Token:</span>
+				<input id="plex_token" name="plex_token" type="text" size="30" /><br>
+				<font>use instead of Plex username/password</font>
+				</label><br>
+				</div>
+        </div>
+		
+		<!-- step 4  Email info -->
+				<div class="row hide" data-step="4" data-title="Email Information" style="margin-left:10px">
+				<div class="progress">
+					<div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%">Dont give up now!</div>
+				</div>
+			    <p>Choose an Email provider, or select 'Other' to enter in your own.<br>
+				   You may also skip this step if you only want to use the web report feature.</p>
+		   
+				<label>
+				<span>Email Provider:</span>
+				<select name="email_provider" id="email_provider">
+				  <option value="gmail">Gmail</option>
+				  <option value="mail.com">Mail.com</option>
+				  <option value="office365">Office 365</option>
+				  <option value="microsoft">Outlook/Live</option>
+				  <option value="yahoo">Yahoo</option>
+				  <option value="zoho">Zoho.com</option>
+				  <option value="other">< Other ></option>
+				</select>
+				<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+				Select Email provider for smtp settings.<br>
+				Select 'Other' to enter your own SMTP port/server.
+				</span></div>
+				</label><br><br>
+
+				<div id="emailProviderDiv" style="display:none;">
+				<label>
+				<span>SMTP Port:</span>
+				<input name="smtp_port" type="text" size="30" />
+				<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+				SMTP port <br>
+				ie: 587
+				</span></div>
+				</label><br><br>
+
+				<label>
+				<span>SMTP Server:</span>
+				<input name="smtp_address" type="text" size="30" />
+				<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+				SMTP Server for email provider<br>
+				ie: smtp.gmail.com
+				</span></div>
+				</label><br><br>
+				</div>
+		  
+				<label>
+				<span>SMTP Username:</span></span>
+				<input id="email_username" name="email_username" type="text" size="30" /><br>
+				<font>usually your email address</font>
+				</label><br><br>
+				
+				<label>
+				<span>SMTP Password:</span>
+				<input id="email_password" name="email_password" type="password" size="30" /><br>
+				<font>usually your email password</font>
+				</label><br>
+				</div>
+		
+		
+		<!-- step 5 finish page -->
+		
+		<div class="row hide" data-step="5" data-title="Finish" style="margin-left:10px">
+		<div class="progress">
+			<div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">Finished!</div>
+		 </div>
+				Click the finish button below to complete the initial setup.</p>
+				By default the webpage will be created nightly at 11:30pm,<br>
+				and the email will be sent to all Plex users on Friday's at 10:30am.<br>
+				To change these settings, run a test report, or other customizations, please login to the Admin site.</p>
+				<span style="color:#e5a006">Thanks for using NowShowing!</span></p>
+				</div>
+		
+		
+		<!-- end body -->
+      </div>
+	  </form>
+	  
+	  <!-- footer -->
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default js-btn-step pull-left" data-orientation="cancel" data-dismiss="modal"></button> -->
+        <button type="button" class="mybuttoncancel js-btn-step" data-orientation="previous"></button>
+        <button id="mynextbutton" type="button" class="mybutton js-btn-step" data-orientation="next" style="margin-left:5px"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type='text/javascript'>
+
+<!-- block all steps until form validation allows -->
+var blockNext = function() {
+	blockNext();
+};
+$('#setupModal').modalSteps({
+	callbacks: {
+		'2': blockNext,
+		'3': blockNext
+	}
+});
+
+<!-- validate step 2 -->
+$('#ns_username, #ns_password').on('keyup', function() {
+    if(step2filled()) {
+		$('#mynextbutton').prop('disabled', false);
+		$('#mynextbutton').css('cursor', 'pointer');
+	}
+	else { 
+		$('#mynextbutton').prop("disabled", true);
+		$('#mynextbutton').css('cursor', 'not-allowed');
+		}
+});
+
+function step2filled() {
+    var filled = true;
+    $('#ns_username, #ns_password').each(function() {
+        if($(this).val() == '') filled = false;
+    });
+    return filled;
+}
+ <!-- end validate step 2 -->
+ 
+ <!-- validate step 3 -->
+ $('#server, #plex_token').on('keyup', function() {
+    if(step3afilled()) {
+		$('#mynextbutton').prop('disabled', false);
+		$('#mynextbutton').css('cursor', 'pointer');
+	}
+	else {
+		$('#mynextbutton').prop("disabled", true);
+		$('#mynextbutton').css('cursor', 'not-allowed');
+		}
+});
+ 
+function step3afilled() {
+    var filled = true;
+    $('#server, #plex_token').each(function() {
+        if($(this).val() == '') filled = false;
+    });
+    return filled;
+}
+
+$('#plex_username, #plex_password, #server').on('keyup', function() {
+    if(step3filled()) {
+		$('#getToken').prop('disabled', false);
+		$('#getToken').css('cursor', 'pointer');
+	}
+	else {
+		$('#getToken').prop("disabled", true);
+		$('#getToken').css('cursor', 'not-allowed');
+	}
+});
+
+function step3filled() {
+    var filled = true;
+    $('#plex_username, #plex_password, #server').each(function() {
+        if($(this).val() == '') filled = false;
+    });
+    return filled;
+}
+ <!-- end validate step 3 -->
+ <!-- removed step 4 validation to allow users that only want the web feature -->
+</script>
+
+
+<!--====================-->
+  <!-- Template Specific Custom Javascript File -->
+  <script src="../js/admin_custom.js"></script>
+
+</body>
+</html>

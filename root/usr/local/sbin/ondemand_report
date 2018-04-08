@@ -1,0 +1,52 @@
+#!/usr/bin/ruby
+require 'yaml'
+
+#variables
+advanced = YAML.load_file('/config/cfg/advanced.yaml')
+reporttype = advanced['report']['report_type']
+webtime = advanced['report']['web_report_time']
+emailtime = advanced['report']['email_report_time']
+details = advanced['report']['extra_details']
+plexusers = advanced['plex']['plex_user_emails']
+test = advanced['report']['test']
+			
+case
+when test == 'enable'
+	exec('combinedreport -t')
+	
+when reporttype == 'both' && plexusers == 'yes' && details == 'yes'
+	exec('combinedreport -d')
+
+when reporttype == 'both' && plexusers == 'yes' && details == 'no'
+	exec('combinedreport')
+
+when reporttype == 'both' && plexusers == 'no' && details == 'yes'
+	exec('combinedreport -n -d')
+	
+when reporttype == 'both' && plexusers == 'no' && details == 'no'
+	exec('combinedreport -n')
+
+when reporttype == 'emailonly' && plexusers == 'yes' && details == 'yes'
+	exec('emailreport -d')
+	
+when reporttype == 'emailonly' && plexusers == 'yes' && details == 'no'
+	exec('emailreport')
+	
+when reporttype == 'emailonly' && plexusers == 'no' && details == 'yes'
+	exec('emailreport -n -d')
+	
+when reporttype == 'emailonly' && plexusers == 'no' && details == 'no'
+	exec('emailreport -n')
+	
+when reporttype == 'webonly' && plexusers == 'yes' && details == 'yes'
+	exec('webreport -d')
+	
+when reporttype == 'webonly' && plexusers == 'yes' && details == 'no'
+	exec('webreport')
+	
+when reporttype == 'webonly' && plexusers == 'no' && details == 'yes'
+	exec('webreport -n -d')
+
+when reporttype == 'webonly' && plexusers == 'no' && details == 'no'
+        exec('webreport -n')
+end

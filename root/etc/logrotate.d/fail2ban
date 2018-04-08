@@ -1,0 +1,10 @@
+/config/logs/fail2ban.log {
+    daily
+	maxsize 25M
+    rotate 2
+    missingok
+    compress
+    postrotate
+    	/usr/bin/fail2ban-client flushlogs 1>/dev/null || true
+    endscript
+}

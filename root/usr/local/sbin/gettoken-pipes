@@ -1,0 +1,45 @@
+#!/usr/bin/with-contenv ruby
+require 'rubygems'
+require 'json'
+require 'httparty'
+
+# Retrive Plex Token
+# Called from a PHP script with proc_open
+# Author: Ninthwalker
+# Email: ninthwalker@gmail.com
+
+class Setup
+
+    include HTTParty
+    base_uri 'https://plex.tv'
+    format :xml
+    #debug_output $stderr
+    
+    def getPlexToken
+                $lines = ARGF.readlines(sep="|+/+/+|")                
+                $plexusername = $lines[0].chomp('|+/+/+|')
+                $plexpassword = $lines[1]
+		$UUID = rand(4674..77238345694)
+                auth = {:username => $plexusername, :password => $plexpassword}	
+
+		headers = {
+			"X-Plex-Product" => "NowShowing",
+			"X-Plex-Version" => "2.0",
+			"X-Plex-Client-Identifier" => "$UUID" 
+		}
+		owner = self.class.post("/users/sign_in.xml", :basic_auth => auth, :headers => headers)
+		$token =  owner['user']['authToken'] + " " + owner['user']['thumb']
+    end
+
+    def start
+        self.getPlexToken
+        puts $token
+    end
+end
+
+begin
+  setup_agent = Setup.new
+  setup_agent.start
+rescue
+  $stderr.puts "Check plex username/password"
+end

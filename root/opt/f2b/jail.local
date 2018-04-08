@@ -1,0 +1,55 @@
+# NowShowing Jail
+#
+# The DEFAULT allows a global definition of the options. They can be overridden
+# in each jail afterwards.
+
+[DEFAULT]
+
+#
+# MISCELLANEOUS OPTIONS
+#
+
+# "usedns" specifies if jails should trust hostnames in logs,
+#   warn when DNS lookups are performed, or ignore all hostnames in logs
+#
+# yes:   if a hostname is encountered, a DNS lookup will be performed.
+# warn:  if a hostname is encountered, a DNS lookup will be performed,
+#        but it will be logged as a warning.
+# no:    if a hostname is encountered, will not be used for banning,
+#        but it will be logged as info.
+# raw:   use raw value (no hostname), allow use it for no-host filters/actions (example user)
+usedns = warn
+
+# "logencoding" specifies the encoding of the log files handled by the jail
+#   This is used to decode the lines from the log file.
+#   Typical examples:  "ascii", "utf-8"
+#   auto:   will use the system locale setting
+logencoding = auto
+
+#defaul disable jail rule
+enabled = false
+
+#
+# ACTIONS
+#
+
+# Specify chain where jumps would need to be added in iptables-* actions
+chain = INPUT
+
+# Format of user-agent https://tools.ietf.org/html/rfc7231#section-5.5.3
+fail2ban_agent = Fail2Ban/%(fail2ban_version)s
+
+#
+# JAILS
+#
+
+[nowshowing]
+enabled = true  
+filter = nowshowing  
+action = iptables[name=NOWSHOWING, port="6878", protocol=TCP]
+logpath = /config/logs/lighttpd_access.log
+bantime = 10m
+findtime  = 5m
+maxretry = 15
+backend = polling
+ignoreip = 127.0.0.1/8 ::1
