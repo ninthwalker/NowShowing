@@ -5,7 +5,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width" />
   </head>
-  <body style="width: 100% !important; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0;" bgcolor="#282a2d"><style type="text/css">
+  <body style="width: 100% !important; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0;" bgcolor="#282a2d">
+  <style type="text/css">
 a:hover {
 color: #2795b6 !important;
 }
@@ -156,7 +157,24 @@ background: #0087bb !important;
 table.google-plus:hover td {
 background: #CC0000 !important;
 }
-@media only screen and (max-width: 600px) {
+table.stats tr:nth-child(even){
+background-color:#171717;
+}
+
+@media {
+  table.stats tr:nth-child(even){
+    background-color:#171717;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  body {table.stats tr:nth-child(even){
+    background-color:#171717;
+  }
+  }
+}
+
+<!-- @media only screen and (min-width: 600px) { -->
   table[class="body"] img {
     width: auto !important; height: auto !important;
   }
@@ -328,7 +346,18 @@ background: #CC0000 !important;
   table[class="body"] .left-text-pad {
     padding-right: 10px !important;
   }
-}
+  table.stats tr:nth-child(even){
+    background-color:#171717;
+  }
+
+
+<!-- .tg {border-collapse:collapse;border-spacing:0;border-style:none;} -->
+<!-- .tg td {padding:10px 5px;border-style:none;overflow:hidden;word-break:normal;} -->
+<!-- .tg th {padding:10px 5px;border-style:none;overflow:hidden;word-break:normal;} -->
+<!-- .tg .tg-yw4l {vertical-align:top;background-color:blue;} -->
+<!-- .tg .tg-yw5l {background-color:#171717 !important} -->
+
+
 </style>
     <table class="body" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; height: 100%; width: 100%; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0;" bgcolor="#282a2d"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center" align="center" valign="top" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0;" bgcolor="#282a2d">
         <center style="width: 100%;">
@@ -338,7 +367,7 @@ background: #CC0000 !important;
 
                   <table class="container" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: inherit; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="center"><td class="wrapper last" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; position: relative; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 10px 0px 0px;" align="center" bgcolor="#282a2d" valign="top">
 
-                        <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: center; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: center; padding: 0;" align="center"><td class="six sub-columns" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; min-width: 0px; width: 100%; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0px 10px 10px 0px;" align="center" bgcolor="#282a2d" valign="top">
+                        <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: center; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: center; padding: 0;" align="center"><td class="six sub-columns" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; min-width: 0px; width: 100%; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0px 10px 10px 0px;" align="center" bgcolor="#282a2d" valign="top"><br>
                               <img src="<%= $advanced['email']['image'] %>" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; float: none; clear: both; display: block;" align="center" /><br><br></td>
 							    <span class="template-label" style="color: #282a2d; font-weight: bold; font-size: 11px;"> </span>
                               </tr></table></td>
@@ -351,10 +380,80 @@ background: #CC0000 !important;
                       <table class="twelve columns" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 580px; margin: 0 auto; padding: 0;"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0px 0px 10px;" align="left" bgcolor="#282a2d" valign="top">
                             <h1 style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 1.3; color: white; word-break: normal; font-size: 30px; background: #282a2d; margin: 0; padding: 0;" align="left"><%= $advanced['email']['title'] %></h1>
                             <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 18px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= I18n.l Time.now.to_date, format: :long  %></p>
-                            <br>
-							
+                            <br></p>
+					<!-- Start Statistics -->
+					<% unless stat_title.nil? %>
+		                   <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 25px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= stat_title if defined?(stat_title) %></p><br>
+
+						<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:100%;table-layout:fixed;" cellpadding="5px" width="100%">
+							  <% unless t.pop_movie.nil? %>
+							    <tr>
+								  <td class="tg-yw4l"><b>Most Watched Movie:</b></td>
+								  <td class="tg-yw4l"><%= t.pop_movie if defined?(t.pop_movie) %></td>
+							    </tr>
+							  <%end %>
+							  <% unless t.pop_tv.nil? %>
+							    <tr>
+								  <td class="tg-yw51"><b>Most Watched TV Show:</b></td>
+								  <td class="tg-yw51"><%= t.pop_tv if defined?(t.pop_tv) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.pop_artist.nil? %>
+							    <tr>
+								  <td class="tg-yw4l"><b>Most Listened to Artist:</b></td>
+								  <td class="tg-yw4l"><%= t.pop_artist if defined?(t.pop_artist) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.movie_day_name.nil? %>
+							    <tr>
+								  <td class="tg-yw51"><b>Most popular day to watch Movies:</b></td>
+								  <td class="tg-yw51"><%= t.movie_day_name if defined?(t.movie_day_name) %></td>
+						        </tr>
+							  <% end %>
+							  <% unless t.friendly_movie_time.nil? %>
+							    <tr>
+								  <td class="tg-yw4l" ><b>Most popular time to watch Movies:</b></td>
+							      <td class="tg-yw41" ><%= t.friendly_movie_time if defined?(t.friendly_movie_time ) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.tv_day_name.nil? %>
+							  <tr>
+								<td class="tg-yw5l"><b>Most popular day to watch TV:</b></td>
+								<td class="tg-yw51"><%= t.tv_day_name if defined?(t.tv_day_name) %></td>
+							  </tr>
+							  <% end %>
+							  <% unless t.friendly_tv_time.nil? %>
+							    <tr>
+								  <td class="tg-yw4l"><b>Most popular time to watch TV:</b></td>
+								  <td class="tg-yw41"><%= t.friendly_tv_time if defined?(t.friendly_tv_time) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.friendly_top_user.nil? %>
+							    <tr>
+								  <td class="tg-yw5l"><b>Top User Watched:</b></td>
+								  <td class="tg-yw51"><%= t.friendly_top_user if defined?(t.friendly_top_user) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.streams.nil? %>
+							    <tr>
+								  <td class="tg-yw4l"><b>Most Concurrent Streams:</b></td>
+								  <td class="tg-yw41"><%= t.streams if defined?(t.streams) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.movie_count_sum.nil? %>
+							    <tr>
+								  <td class="tg-yw51" colspan="2"><center><b>Total Movies:</b>&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total TV Shows:</b>&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total Songs:</b>&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></center></td>
+							    </tr>
+							  <% end %>
+							    
+							</table><br>
+							<hr style="border-color:#e5a00d">
+							<br><br></p>
+					    <% end %>
+					<!-- end statistics -->
+					
 							<% if movies != [] %>
-                            <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 25px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= I18n.t :new_movies %>:</p>
+                            <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 25px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= I18n.t :new_movies %>:<br></p>
                   <!-- start loop here -->
                   <% movies.each do |movie| %>
                   </tr></table><table class="row" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: block; padding: 0px;"><!-- start loop here --><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="wrapper" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; position: relative; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 10px 20px 0px 0px;" align="left" bgcolor="#282a2d" valign="top">

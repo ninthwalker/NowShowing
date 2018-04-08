@@ -35,5 +35,13 @@ report:
   web_report_time: '30 23 * * *'
   extra_details: "no"
   test: "disable"
+tautulli:
+  server: ""
+  port: ""
+  api_key: ""
+  httproot: ""
+  https: "no"
+  title: "Statistics:"
+  stats: ""
 token:
   api_key: ""
