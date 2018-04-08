@@ -17,6 +17,7 @@ if [ -f /config/cfg/advanced.yaml ]; then
 	mkdir -p /config/backup && chmod 775 /config/backup
 	cp -Rfp /config/cfg/ /config/www /config/announcement_body.html /config/email_body.erb /config/web_body.erb /config/backup/
 	cp -Rfp /opt/config/www /opt/config/announcement_body.html /opt/config/email_body.erb /opt/config/web_body.erb /config/
+	rm /config/www/admin/gettoken-pipes-setup.php /config/www/admin/index.html /config/www/admin/save_setup.php 
 	cp -fp /opt/config/cfg/version /config/cfg/
 	chown xyz:xyz -R /config/backup/
   fi
