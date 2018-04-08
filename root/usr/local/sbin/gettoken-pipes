@@ -43,4 +43,3 @@ begin
 rescue
   $stderr.puts "Check plex username/password"
 end
-

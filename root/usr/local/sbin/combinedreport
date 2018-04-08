@@ -376,17 +376,20 @@ end
 def main
     startTime = Time.now
     report = Report.new
-
-	#get tautulli stats
-    if (!$advanced['tautulli']['stats'].empty? && !$advanced['tautulli']['server'].empty?)
-      t = Tautulli.new
-      t.get_popular_stats
-      t.get_popular_day
-      t.get_popular_hour
-      t.get_libraries
-      stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics:' : $advanced['tautulli']['title']
-      $logger.info('Adding Statistics from Tautulli')
-    end
+    
+	#get tautulli stats\
+	begin
+      if (!$advanced['tautulli']['stats'].empty? && !$advanced['tautulli']['server'].empty?)
+        t = Tautulli.new
+        t.get_popular_stats
+        t.get_popular_day
+        t.get_popular_hour
+        t.get_libraries
+        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics:' : $advanced['tautulli']['title']
+        $logger.info('Adding Statistics from Tautulli')
+      end
+	rescue => e
+	  $logger.info("Tautulli Statistics failed. Check settings/Tautulli app is running.\n#{e.message}#{e.backtrace}")
     # end tautulli stats
 	
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)

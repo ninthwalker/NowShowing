@@ -922,6 +922,7 @@ Useful for sending a report now or updating the webpage without waiting for the 
 
 Select a button below to view recent logs.<br>
 Full logs can be found in the /logs directory.</p>
+View docker syslogs via cmd line: 'docker logs NowShowingv2'
 <!-- Change password -->
 <button id="ns_log_button" class="mybutton" type="button" value="ns_log" name="ns_log_button">Now Showing Logs</button><br>
 - View recent NowShowing Logs.<br><br>
