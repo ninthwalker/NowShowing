@@ -390,6 +390,7 @@ def main
       end
 	rescue => e
 	  $logger.info("Tautulli Statistics failed. Check settings/Tautulli app is running.\n#{e.message}#{e.backtrace}")
+	end
     # end tautulli stats
 	
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
