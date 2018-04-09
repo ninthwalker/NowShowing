@@ -1,7 +1,7 @@
 
 # NowShowing v2
 
-![](https://raw.githubusercontent.com/ninthwalker/NowShowing/master/images/nowshowing-iconx100.png)
+![](https://raw.githubusercontent.com/ninthwalker/NowShowing/v2/images/ns_v2_title.png)
 
 [![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/) [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing.svg)](https://microbadger.com/images/ninthwalker/nowshowing "NowShowing") [![Build Passing](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)  
 
