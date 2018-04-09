@@ -18,14 +18,14 @@ The NowShowing docker provides a summary of new media that has recently been add
 * Same great Email/webpage for Plex recently added as v1
 * All new Web Interface for settings and customization
 * Library Filtering!
-* Tautilli(https://github.com/Tautulli/Tautulli) Statistics integration
+* [Tautilli](https://github.com/Tautulli/Tautulli) Statistics integration
 * New user Setup Wizard
 * Announcement Emails
 * Web based Log Viewer
 * Easy Plex token retrieval
 * Most email providers supported
 * BCC users instead of multiple emails
-* On-Demand and Test reports
+* Web tools including On-Demand and Test reports
 
 
 
