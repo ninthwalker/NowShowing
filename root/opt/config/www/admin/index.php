@@ -818,7 +818,7 @@ Useful for sending a report now or updating the webpage without waiting for the 
 				
 				<label>
 				<span>Email Message:</span>
-				<textarea id="announcementMessage" name="announcementMessage" style="width:480px;height:250px"><?=$announcementMessage?></textarea><br>
+				<textarea id="announcementMessage" name="announcementMessage" style="width:480px;height:250px;margin-left:150px;"><?=$announcementMessage?></textarea><br>
 				<font style="margin-left: 150px;font-size: 12px;color: grey;">Announcement message for the email. Use HTML/CSS for formatting.</font>
 				</label></p>
 				
