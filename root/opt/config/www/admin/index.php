@@ -653,7 +653,7 @@ ie: Awesome Stats:
 </label><br></p>
 
 Select the Statistics you want to be added to the Email Report.<br>
-Statistics section will be added to the top of all Email reports.<br>
+Statistics section will be added to the top of all Email Reports.<br>
 <hr width="440px" align="left"></p>
 
 <!--
@@ -671,55 +671,63 @@ Statistics section will be added to the top of all Email reports.<br>
 # S => include songs in totals
 -->
 <table width=550px>
+<!-- removed select all for now
 <tr>
 <td>
-  <input name="stats[]" id="pop_movie" value="m" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'm') !== false ? ' checked="checked"' : '';?> />
+  <input name="selectall" id="selectall" value="selectall" type="checkbox" />
+  <label class="stats" for="selectall"><b><u>Enable All Stats</u></b></label><br>
+</td>
+<tr>
+-->
+<tr>
+<td>
+  <input name="stats[]" id="pop_movie" value="m" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'm') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="pop_movie">Popular Movie</label><br>
 </td>
 <td>
-  <input name="stats[]" id="pop_tv" value="v" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'v') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="pop_tv" value="v" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'v') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="pop_tv">Popular TV Show</label>
 </td>
 <td>
-  <input name="stats[]" id="pop_artist" value="a" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'a') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="pop_artist" value="a" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'a') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="pop_artist">Popular Artist</label>
 </td>
 </tr>
 <tr>
 <td>
-  <input name="stats[]" id="day_movie" value="d" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'd') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="day_movie" value="d" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'd') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="day_movie">Popular Day - Movie</label><br>
 </td>
 <td>
-  <input name="stats[]" id="day_tv" value="D" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'D') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="day_tv" value="D" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'D') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="day_tv">Popular Day - TV Show</label>
 </td>
 <td>
-  <input name="stats[]" id="top_user" value="u" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'u') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="top_user" value="u" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'u') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="top_user">Top User - Hours</label>
 </td>
 </tr>
 <tr>
 <td>
-  <input name="stats[]" id="time_movie" value="t" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 't') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="time_movie" value="t" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 't') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="time_movie">Popular Time - Movie</label>
 </td>
 <td>
-  <input name="stats[]" id="time_tv" value="T" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'T') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="time_tv" value="T" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'T') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="time_tv">Popular Time - TV Show</label><br>
 </td>
 <td>
-  <input name="stats[]" id="streams" value="s" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 's') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="streams" value="s" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 's') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="streams">Concurrent Streams</label>
 </td>
 </tr>
 <tr>
 <td>
-  <input name="stats[]" id="totals" value="A" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'A') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="totals" value="A" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'A') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="totals">Library Totals</label><br>
 </td>
 <td>
-  <input name="stats[]" id="totals_with_songs" value="S" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'S') !== false ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="totals_with_songs" value="S" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'S') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="totals_with_songs">Add songs to Library Totals</label><br>
 </td>
 </tr>
@@ -961,8 +969,8 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <hr width="440px" align="left">
 <b style="color:#087caa;">About</b>
 <ul>
-<li>Version: 2.0.1</li>
-<li>Updated: 08APR2018</li>
+<li>Version: 2.0.2</li>
+<li>Updated: 10APR2018</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 
@@ -974,7 +982,7 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit4" alt="Donate">
 <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
-- Like NowShowing and want to donate?</p>
+- Like NowShowing and want to buy us a beer?</p>
 
 </p></div>
 
@@ -1224,11 +1232,30 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
   <!-- Template Specific Custom Javascript File -->
   <script src="../js/admin_custom.js"></script>
   <script>
+  <!-- show announcement template preview -->
 	$(document).ready(function(){
 		$(".preview").html($("#announcementMessage").val());
 		$("#announcementMessage").keyup(function(){
 			$(".preview").html(this.value);
 		});
+		
+		<!-- select all checkbox - removed for now-->
+		<!-- $("#selectall").change(function(){ $('.stats_box').prop('checked', $(this).prop('checked')); });
+		
+		<!-- select totals if songs is checked-->
+		$('#totals_with_songs').change(function() {   
+			if (this.checked){
+				$("#totals").prop('checked', true);
+			}
+		});
+		
+		<!-- unselect songs if totals is unchecked-->
+		$('#totals').change(function() {   
+			if ($("#totals_with_songs").prop('checked', true)) {
+				$("#totals_with_songs").prop('checked', false);
+			}
+		});
+
 	});
   </script>
 
