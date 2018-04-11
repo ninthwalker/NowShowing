@@ -442,14 +442,17 @@ background-color:#171717;
 							  <% end %>
 							  <% unless t.movie_count_sum.nil? %>
 							    <tr>
-								  <td class="tg-yw51" colspan="2"><center><b>Total Movies:</b>&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total TV Shows:</b>&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total Songs:</b>&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></center></td>
+								  <td class="tg-yw51" colspan="2"><center><b>Total Movies:</b>&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total TV Shows:</b>&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <% unless t.music_count_sum.nil? %>
+								  <b>&nbsp;|&nbsp;</b> <b>Total Songs:</b>&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></center></td>
+								  <% end %>
 							    </tr>
 							  <% end %>
 							    
-							</table><br>
-							<hr style="border-color:#e5a00d">
-							<br><br></p>
-					    <% end %>
+						</table><br>
+						<hr style="border-color:#e5a00d">
+						<br><br></p>
+					<% end %>
 					<!-- end statistics -->
 					
 							<% if movies != [] %>

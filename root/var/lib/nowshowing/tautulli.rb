@@ -18,16 +18,17 @@ require 'httparty'
 # T => TV time
 # u => top user
 # s => stream count
-# A => totals
+# A => totals (movie and tv)
+# S => include songs in total
 
 class Tautulli
     include HTTParty
     format :json
 	
     def initialize
-                $advanced = YAML.load_file('/config/cfg/advanced.yaml')
+        $advanced = YAML.load_file('/config/cfg/advanced.yaml')
 		$time  = $advanced['report']['interval']
-                $server = $advanced['tautulli']['server']
+        $server = $advanced['tautulli']['server']
 		$port = $advanced['tautulli']['port']
 		$api_key = $advanced['tautulli']['api_key']
 		$httproot = "/" + $advanced['tautulli']['httproot']
@@ -189,8 +190,10 @@ class Tautulli
 			    end
 		    end
 	    @tv_count_sum = tv_count.map!(&:to_i).inject(:+)
-
-	    # music library total (songs)
+	  end
+	  
+	  if $stats.include? "S"
+	  	    # music library total (songs)
 	    music_count = Array.new
 	    library_stats = libraries["response"]["data"]
 		    library_stats.each do |section|
@@ -198,7 +201,7 @@ class Tautulli
 				    music_count.push(section['child_count'])
 			    end
 		    end
-	    @music_count_sum = music_count.map!(&:to_i).inject(:+)
+		@music_count_sum = music_count.map!(&:to_i).inject(:+)
 	  end
 	end
 	attr_reader :movie_count_sum
@@ -209,5 +212,5 @@ class Tautulli
 	# for future reference:
 	# sorts = .sort_by {|k,v| v}.reverse
     # average = .reduce(:+).to_f / movie_day.size
-    #array string to integers = movie_count.map!(&:to_i).inject(:+)
+    # array string to integers = movie_count.map!(&:to_i).inject(:+)
 end

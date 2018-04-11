@@ -6,10 +6,10 @@ version=$(cat /config/cfg/version)
 #Copies config files and creates advanced config file if not present
 if [ -f /config/cfg/advanced.yaml ]; then
   echo "Advanced config file detected. Checking for latest version .."
-  if [ $version = 2.0.1 ]; then
+  if [ $version = 2.0.2 ]; then
     # do nothing, latest version
 	echo "Latest Version found."
-  elif [ $version != 2.0.1 ]; then
+  elif [ $version != 2.0.2 ]; then
     # copy files since last version
 	echo "Version $version found."
 	echo "Backing up files to /config/backup/ & upgrading to latest release"

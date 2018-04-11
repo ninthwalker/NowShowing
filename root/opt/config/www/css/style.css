@@ -127,8 +127,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   #hero {
-  background-size: 100% 50%;
-  background-position: 0 -500px;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   }
   

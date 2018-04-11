@@ -667,9 +667,10 @@ Statistics section will be added to the top of all Email reports.<br>
 # T => TV time
 # u => top user
 # s => stream count
-# A => totals
+# A => totals (movie & tv)
+# S => include songs in totals
 -->
-<table width=500px>
+<table width=550px>
 <tr>
 <td>
   <input name="stats[]" id="pop_movie" value="m" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'm') !== false ? ' checked="checked"' : '';?> />
@@ -694,7 +695,7 @@ Statistics section will be added to the top of all Email reports.<br>
   <label class="stats" for="day_tv">Popular Day - TV Show</label>
 </td>
 <td>
-  <input name="stats[]" id="top_user" value="u" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 'u' ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="top_user" value="u" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'u') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="top_user">Top User - Hours</label>
 </td>
 </tr>
@@ -704,18 +705,22 @@ Statistics section will be added to the top of all Email reports.<br>
   <label class="stats" for="time_movie">Popular Time - Movie</label>
 </td>
 <td>
-  <input name="stats[]" id="time_tv" value="T" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 'T' ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="time_tv" value="T" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'T') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="time_tv">Popular Time - TV Show</label><br>
 </td>
 <td>
-  <input name="stats[]" id="streams" value="s" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 's' ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="streams" value="s" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 's') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="streams">Concurrent Streams</label>
 </td>
 </tr>
 <tr>
 <td>
-  <input name="stats[]" id="totals" value="A" type="checkbox" <?=strip_tags($adv['tautulli']['stats']) == 'A' ? ' checked="checked"' : '';?> />
+  <input name="stats[]" id="totals" value="A" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'A') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="totals">Library Totals</label><br>
+</td>
+<td>
+  <input name="stats[]" id="totals_with_songs" value="S" type="checkbox" <?=strpos(strip_tags($adv['tautulli']['stats']), 'S') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="totals_with_songs">Add songs to Library Totals</label><br>
 </td>
 </tr>
 </table>
