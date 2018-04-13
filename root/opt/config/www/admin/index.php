@@ -286,6 +286,7 @@ Optional.
   <option value="en" <?=strip_tags($adv['email']['language']) == 'en' ? ' selected="selected"' : '';?>>English</option>
   <option value="de" <?=strip_tags($adv['email']['language']) == 'de' ? ' selected="selected"' : '';?>>German</option>
   <option value="fr" <?=strip_tags($adv['email']['language']) == 'fr' ? ' selected="selected"' : '';?>>French</option>
+  <option value="no" <?=strip_tags($adv['email']['language']) == 'no' ? ' selected="selected"' : '';?>>Norwegian</option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 Email Language. Best-effort when grabbing metadata.<br>
@@ -425,6 +426,7 @@ Optional.
   <option value="en" <?=strip_tags($adv['web']['language']) == 'en' ? ' selected="selected"' : '';?>>English</option>
   <option value="de" <?=strip_tags($adv['web']['language']) == 'de' ? ' selected="selected"' : '';?>>German</option>
   <option value="fr" <?=strip_tags($adv['web']['language']) == 'fr' ? ' selected="selected"' : '';?>>French</option>
+  <option value="no" <?=strip_tags($adv['web']['language']) == 'no' ? ' selected="selected"' : '';?>>Norwegian</option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 Webpage language for title/headlines/footer, etc.
@@ -986,7 +988,7 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <b style="color:#087caa;">About</b>
 <ul>
 <li>Version: 2.0.2</li>
-<li>Updated: 10APR2018</li>
+<li>Updated: 13APR2018</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 
