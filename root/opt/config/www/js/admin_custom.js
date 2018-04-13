@@ -17,6 +17,7 @@ $(function() {
 $(function() {
 $("#mainform").submit(function() {
  $('#settingsModal').modal('hide');
+ $("#status_text").empty();
 // $('#logout').blur(); tried to use to get rid of focus color after modal closing
 // e.preventDefault() using return false instead of this for now
  $.ajax({
@@ -62,6 +63,7 @@ $("#mainform").submit(function() {
 $(function() {
     $("#test_report_form").submit(function() {
 			$('#testReportModal').modal('hide');
+			$("#status_text").empty();
 			$('#test_report_button').attr("disabled", true);
 			$('#ondemand_report_button').attr("disabled", true);
 			$('#test_report_button').css( 'cursor', 'not-allowed' );
@@ -128,6 +130,7 @@ $(function() {
 			$('#test_report_button').css( 'cursor', 'not-allowed' );
 			$('#ondemand_report_button').css( 'cursor', 'not-allowed' );
 			$('#ondemandReportModal').modal('hide');
+			$("#status_text").empty();
 			$.ajax({
 				xhr: function () {
 					var xhr = new window.XMLHttpRequest();
@@ -192,6 +195,7 @@ $(function() {
 			$('#announcement_test_button').attr("disabled", true);
 			$('#announcement_test_button').css( 'cursor', 'not-allowed' );
 			$('#announcementReportModal').modal('hide');
+			$("#status_text").empty();
 			$.ajax({
 				xhr: function () {
 					var xhr = new window.XMLHttpRequest();
@@ -259,6 +263,7 @@ $(function() {
 			$('#announcement_test_button').attr("disabled", true);
 			$('#announcement_test_button').css( 'cursor', 'not-allowed' );
 			$('#announcementTestReportModal').modal('hide');
+			$("#status_text").empty();
 			$.ajax({
 				xhr: function () {
 					var xhr = new window.XMLHttpRequest();
@@ -320,6 +325,7 @@ $(function() {
 $(function() {
 $("#announcement_save_report").click(function() {
  $('#announcementSaveReportModal').modal('hide');
+ $("#status_text").empty();
  $.ajax({
   url: "save_announcement.php",
   type: 'post',
@@ -363,6 +369,7 @@ $("#announcement_save_report").click(function() {
 $(function() {
 $("#get_token_form").submit(function() {
  $('#tokenModal').modal('hide');
+ $("#status_text").empty();
  $.ajax({
   url: "gettoken-pipes.php",
   type: 'post',
@@ -405,6 +412,53 @@ $("#get_token_form").submit(function() {
   }
 });
   return false;
+});
+});
+
+// ---------------------------------------------------------------------
+// Tautulli Check
+// ---------------------------------------------------------------------
+
+$(function() {
+$("#tautulliCheck").click(function() {
+$("#tautulliStatus").empty();
+ $.ajax({
+  url: "tautulli_check.php",
+  type: 'post',
+  data: {tautulliCheck: "tautulliCheck", save_settings: "save_settings"},
+    success: function(response){
+    // on success
+	if ( response.indexOf("Successful!") > -1 ) {
+	$('#tautulliStatus').css({
+		color: 'green'
+	});
+	$('#tautulliStatus').text(response);
+	$("#tautulliStatus").delay(3000).fadeOut(2000,function() {
+		$("#tautulliStatus").empty().show();
+	});
+	}
+	// on tautulli failure
+	else {
+		console.log(response);
+		$('#tautulliStatus').css({
+		color: '#cc0000'
+	});
+	$('#tautulliStatus').text(response);
+	}
+  },
+  error: function(){
+    // on failure
+	console.log(response);
+	$('#tautulliStatus').css({
+		color: '#cc0000'
+	});
+	$('#tautulliStatus').text("Error: Could not divide by zero");
+		$("#tautulliStatus").delay(3000).fadeOut(2000,function() {
+			$("#tautulliStatus").empty().show();
+	});
+  }
+});
+ return false;
 });
 });
 

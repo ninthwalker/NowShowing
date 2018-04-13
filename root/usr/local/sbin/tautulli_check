@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+require 'timeout'
+require_relative '/var/lib/nowshowing/tautulli'
+
+Timeout::timeout(8) {
+begin
+  t = Tautulli.new
+  t.test_connection
+  puts t.test_result
+rescue
+  $stderr.puts "Failed to connect to Tautulli"
+end
+}

@@ -44,6 +44,13 @@ class Tautulli
         end
     end
 	
+    def test_connection
+	  testConnection = self.class.get("arnold")
+	  test = JSON.parse(testConnection.body)
+	  @test_result = test["response"]["result"]
+    end
+	attr_reader :test_result
+	
     def timeConvert h
       p, l = h.divmod(12)
       "#{l.zero? ? 12 : l}#{p.zero? ? ":00 A" : ":00 P"}M"

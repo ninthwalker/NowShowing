@@ -592,7 +592,7 @@ Settings can be found in the Tautulli: Settings > Web Interface page.<br></p>
 
 <label>
 <span>Tautulli Host/IP:</span>
-<input name="plexpy_server" value="<?=strip_tags($adv['tautulli']['server'])?>" type="text" size="30" />
+<input name="plexpy_server" id="plexpy_server" value="<?=strip_tags($adv['tautulli']['server'])?>" type="text" size="30" />
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 Tautulli Hostname or IP<br>
 ie: 192.168.1.45 or tautulli.mydomain.com<br>
@@ -637,7 +637,8 @@ ie: plexpy or tautulli<br>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 Tautulli API Key<br>
 Find in Tautulli: Settings > Web Interface page<br>
-</span></div>
+</span>
+</div>
 </label><br><br>
 
 <label>
@@ -734,7 +735,22 @@ Statistics section will be added to the top of all Email Reports.<br>
 </table>
   
 </p>
+
+
+
+<label>
 <button type="button" class="mybutton" data-toggle="modal" data-target="#settingsModal">Save Settings</button>
+</label>
+<label>
+<button type="button" class="mybutton" style="margin-top:8px;margin-left:8px;font-weight:normal;padding: 2px 8px;font-size:12px;" id="tautulliCheck" name="tautulliCheck">Test Connection</button>
+<div class="mytooltip"><i class="fa fa-info-circle" style="margin-top:6px;"></i><span class="mytooltiptext mytooltip-right">
+Save Settings first.<br>
+Use to test Tautulli connection.<br>
+</span>
+</div>
+</label>
+<span id="tautulliStatus" style="margin-top:9px;margin-left:22px;font-weight:bold;display:inline-block;"></span>
+</p>
 
 </div>
 </form>
