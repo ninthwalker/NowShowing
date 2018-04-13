@@ -1,0 +1,76 @@
+no:
+  air_date: "Sendedato"
+  cast: "Rollebesetning"
+  credits_sentence: "Grafikk, tekst og metadata er hentet fra themoviedb.org og thetvdb.com"
+  date:
+    abbr_day_names:
+      - Søn
+      - Man
+      - Tir
+      - Ons
+      - Tor
+      - Fre
+      - Lør
+    abbr_month_names:
+      -
+      - Jan
+      - Feb
+      - Mar
+      - Apr
+      - Mai
+      - Jun
+      - Jul
+      - Aug
+      - Sep
+      - Okt
+      - Nov
+      - Des
+    day_names:
+      - Søndag
+      - Mandag
+      - Tirsdag
+      - Onsdag
+      - Torsdag
+      - Fredag
+      - Lørdag
+    formats:
+      default: "%d.%m.%Y"
+      long: "%d %B, %Y"
+      short: "%d &b"
+    month_names:
+      -
+      - Januar
+      - Februar
+      - Mars
+      - April
+      - Mai
+      - Juni
+      - Juli
+      - August
+      - September
+      - Oktober
+      - November
+      - Desember
+    order:
+      - :måned
+      - :dag
+      - :år
+  director: "Regissør"
+  from: "fra"
+  genre: "Sjanger"
+  help_page_sentence: "Opplever du problemer? Liker du hva du ser? Vil du hjelpe til? Så sjekk ut min <a href=\"https://github.com/ninthwalker/nowshowing\">github</a> side"
+  imdb_rating: "IMDB Vurdering"
+  minutes: "minutter"
+  network: "Nettverk"
+  new_episodes: "Nye Episoder"
+  new_movies: "Nye Filmer"
+  new_seasons: "Nye Sesonger"
+  rating: "Vurdering"
+  release_date: "Utgivelsesdato"
+  runtime: "Spilletid"
+  seasons: {
+    one: "sesong",
+    other: "sesonger"
+  }
+  thanks_sentence: "Takk for at du ser på!"
+  users: "brukere"
