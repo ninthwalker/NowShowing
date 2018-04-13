@@ -444,6 +444,9 @@ $("#tautulliStatus").empty();
 		color: '#cc0000'
 	});
 	$('#tautulliStatus').text(response);
+	$("#tautulliStatus").delay(3000).fadeOut(2000,function() {
+		$("#tautulliStatus").empty().show();
+	});
 	}
   },
   error: function(){
