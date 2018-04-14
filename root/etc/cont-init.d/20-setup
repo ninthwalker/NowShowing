@@ -1,31 +1,39 @@
 #!/usr/bin/with-contenv sh
 
+# current version
+this_version=2.0.2
+
 # get version
-version=$(cat /config/cfg/version)
+if [ -f /config/cfg/version ]; then
+  their_version=$(cat /config/cfg/version)
+else
+  echo "version not detected."
+fi
 
 #Copies config files and creates advanced config file if not present
 if [ -f /config/cfg/advanced.yaml ]; then
-  echo "Advanced config file detected. Checking for latest version .."
-  if [ $version = 2.0.1 ]; then
+  echo "Advanced config file detected. Checking version .."
+  if [ $their_version = $this_version ]; then
     # do nothing, latest version
-	echo "Latest Version found."
-  elif [ $version != 2.0.1 ]; then
+	echo "Latest $this_version release found. Nothing to update."
+  elif [ $their_version != $this_version ]; then
     # copy files since last version
-	echo "Version $version found."
-	echo "Backing up files to /config/backup/ & upgrading to latest release"
-	echo "Your cfg directory will not be changed"
+	echo "Version $their_version found."
+	echo "Backing up files to /config/backup/ & upgrading to $this_version release."
 	mkdir -p /config/backup && chmod 775 /config/backup
 	cp -Rfp /config/cfg/ /config/www /config/announcement_body.html /config/email_body.erb /config/web_body.erb /config/backup/
 	cp -Rfp /opt/config/www /opt/config/announcement_body.html /opt/config/email_body.erb /opt/config/web_body.erb /config/
-	rm /config/www/admin/gettoken-pipes-setup.php /config/www/admin/index.html /config/www/admin/save_setup.php 
+	rm /config/www/admin/gettoken-pipes-setup.php /config/www/admin/index.html /config/www/admin/save_setup.php
 	cp -fp /opt/config/cfg/version /config/cfg/
 	chown xyz:xyz -R /config/backup/
   fi
   
 else
   # copy files incl advanced.yaml
-  echo "New Install detected. Installing latest version .."
+  echo "New Install detected. Installing $this_version release .."
   cp -Rfp /opt/config/. /config/
+  cp -fp /opt/avatar.png /config/www/img/
+  cp -fp /opt/index.html /config/www/
   # set password to a random one
   php-cgi7 /opt/php/randomPass.php
 fi

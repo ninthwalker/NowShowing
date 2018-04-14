@@ -167,14 +167,11 @@ background-color:#171717;
   }
 }
 
-@media only screen and (min-width: 600px) {
-  body {table.stats tr:nth-child(even){
-    background-color:#171717;
+@media only screen and (max-width: 600px) {
+  body {table.stats tr:nth-child(even) {
+	background-color:#171717;
+    }
   }
-  }
-}
-
-<!-- @media only screen and (min-width: 600px) { -->
   table[class="body"] img {
     width: auto !important; height: auto !important;
   }
@@ -349,14 +346,7 @@ background-color:#171717;
   table.stats tr:nth-child(even){
     background-color:#171717;
   }
-
-
-<!-- .tg {border-collapse:collapse;border-spacing:0;border-style:none;} -->
-<!-- .tg td {padding:10px 5px;border-style:none;overflow:hidden;word-break:normal;} -->
-<!-- .tg th {padding:10px 5px;border-style:none;overflow:hidden;word-break:normal;} -->
-<!-- .tg .tg-yw4l {vertical-align:top;background-color:blue;} -->
-<!-- .tg .tg-yw5l {background-color:#171717 !important} -->
-
+}
 
 </style>
     <table class="body" style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; height: 100%; width: 100%; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0;" bgcolor="#282a2d"><tr style="vertical-align: top; text-align: left; padding: 0;" align="left"><td class="center" align="center" valign="top" style="word-break: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: center; font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; line-height: 19px; color: white; font-size: 14px; background: #282a2d; margin: 0; padding: 0;" bgcolor="#282a2d">
@@ -388,31 +378,31 @@ background-color:#171717;
 						<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:100%;table-layout:fixed;" cellpadding="5px" width="100%">
 							  <% unless t.pop_movie.nil? %>
 							    <tr>
-								  <td class="tg-yw4l"><b>Most Watched Movie:</b></td>
+								  <td class="tg-yw4l"><b>Most watched movie:</b></td>
 								  <td class="tg-yw4l"><%= t.pop_movie if defined?(t.pop_movie) %></td>
 							    </tr>
 							  <%end %>
 							  <% unless t.pop_tv.nil? %>
 							    <tr>
-								  <td class="tg-yw51"><b>Most Watched TV Show:</b></td>
+								  <td class="tg-yw51"><b>Most watched TV show:</b></td>
 								  <td class="tg-yw51"><%= t.pop_tv if defined?(t.pop_tv) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.pop_artist.nil? %>
 							    <tr>
-								  <td class="tg-yw4l"><b>Most Listened to Artist:</b></td>
+								  <td class="tg-yw4l"><b>Most listened to artist:</b></td>
 								  <td class="tg-yw4l"><%= t.pop_artist if defined?(t.pop_artist) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.movie_day_name.nil? %>
 							    <tr>
-								  <td class="tg-yw51"><b>Most popular day to watch Movies:</b></td>
+								  <td class="tg-yw51"><b>Most popular day to watch movies:</b></td>
 								  <td class="tg-yw51"><%= t.movie_day_name if defined?(t.movie_day_name) %></td>
 						        </tr>
 							  <% end %>
 							  <% unless t.friendly_movie_time.nil? %>
 							    <tr>
-								  <td class="tg-yw4l" ><b>Most popular time to watch Movies:</b></td>
+								  <td class="tg-yw4l" ><b>Most popular time to watch movies:</b></td>
 							      <td class="tg-yw41" ><%= t.friendly_movie_time if defined?(t.friendly_movie_time ) %></td>
 							    </tr>
 							  <% end %>
@@ -430,26 +420,29 @@ background-color:#171717;
 							  <% end %>
 							  <% unless t.friendly_top_user.nil? %>
 							    <tr>
-								  <td class="tg-yw5l"><b>Top User Watched:</b></td>
+								  <td class="tg-yw5l"><b>Top user watched:</b></td>
 								  <td class="tg-yw51"><%= t.friendly_top_user if defined?(t.friendly_top_user) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.streams.nil? %>
 							    <tr>
-								  <td class="tg-yw4l"><b>Most Concurrent Streams:</b></td>
+								  <td class="tg-yw4l"><b>Most concurrent streams:</b></td>
 								  <td class="tg-yw41"><%= t.streams if defined?(t.streams) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.movie_count_sum.nil? %>
 							    <tr>
-								  <td class="tg-yw51" colspan="2"><center><b>Total Movies:</b>&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total TV Shows:</b>&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total Songs:</b>&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></center></td>
+								  <td class="tg-yw51" colspan="2"><center><b>Total Movies:</b>&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total TV Shows:</b>&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <% unless t.music_count_sum.nil? %>
+								  <b>&nbsp;|&nbsp;</b> <b>Total Songs:</b>&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></center></td>
+								  <% end %>
 							    </tr>
 							  <% end %>
 							    
-							</table><br>
-							<hr style="border-color:#e5a00d">
-							<br><br></p>
-					    <% end %>
+						</table><br>
+						<hr style="border-color:#e5a00d">
+						<br><br></p>
+					<% end %>
 					<!-- end statistics -->
 					
 							<% if movies != [] %>
