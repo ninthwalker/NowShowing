@@ -372,7 +372,7 @@ background-color:#171717;
                             <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 18px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= I18n.l Time.now.to_date, format: :long  %></p>
                             <br></p>
 					<!-- Start Statistics -->
-					<% unless stat_title.nil? %>
+					<% if stats_email == "yes" %>
 		                   <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 25px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= stat_title if defined?(stat_title) %></p><br>
 
 						<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:100%;table-layout:fixed;" cellpadding="5px" width="100%">

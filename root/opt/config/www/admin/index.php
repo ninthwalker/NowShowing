@@ -588,7 +588,7 @@ Which reports to generate.
 <hr width="440px" align="left"><br>
 
 Pull Statistics from <a href="http://tautulli.com/" target="_blank">Tautulli</a><br>
-Can add some fun anonymous usage statistics to the Email report.<br>
+Can add some fun anonymous usage statistics to the reports.<br>
 Requires a seperate instance of the Tautulli app running (local or remote works).<br>
 Settings can be found in the Tautulli: Settings > Web Interface page.<br></p>
 
@@ -618,7 +618,7 @@ ie: 9181<br>
   <option value="yes" <?=strip_tags($adv['tautulli']['https']) == 'yes' ? ' selected="selected"' : '';?>>Yes</option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
-Is HTTPS enabled on Tautulli?<br>
+Is HTTPS enabled in Tautulli or your domain?<br>
 </span></div>
 </label><br><br>
 
@@ -644,19 +644,29 @@ Find in Tautulli: Settings > Web Interface page<br>
 </label><br><br>
 
 <label>
-<span>Email Stats Title:</span>
+<span>Statistics Title:</span>
 <input name="plexpy_title" value="<?=strip_tags($adv['tautulli']['title'])?>" type="text" size="30" />
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 Required.<br>
-Title header for the Statistics section of the email.<br>
-Include a colon (:) after your Title text if you want<br>
-to be consistent with the other movie/tv section titles.
-ie: Awesome Stats:
+Title header for the Statistics section of the email and webpage<br>
+A colon (:) is automatically added at the end for the email<br>
+title to be consistent with the other movie/tv section titles.
+ie: Awesome Stats
 </span></div>
-</label><br></p>
+</label><br><br>
 
-Select the Statistics you want to be added to the Email Report.<br>
-Statistics section will be added to the top of all Email Reports.<br>
+<label>
+<span>Enable Statistics:</span>
+<select name="stats[]" id="enable_stats">
+  <option value="B" <?=strpos(strip_tags($adv['tautulli']['stats']), 'B') !== false ? ' selected="selected"' : '';?>>Web & Email </option>
+  <option value="W" <?=strpos(strip_tags($adv['tautulli']['stats']), 'W') !== false ? ' selected="selected"' : '';?>>Web Only </option>
+  <option value="E" <?=strpos(strip_tags($adv['tautulli']['stats']), 'E') !== false ? ' selected="selected"' : '';?>>Email Only </option>
+  <option value="N" <?=strpos(strip_tags($adv['tautulli']['stats']), 'N') !== false ? ' selected="selected"' : '';?>>None </option>
+</select>
+</label><br><br>
+ 
+Select the Statistics you want to be added to the reports.<br>
+Statistics section will be added to the top of each report if enabled.</p>
 <hr width="440px" align="left"></p>
 
 <!--
@@ -672,6 +682,7 @@ Statistics section will be added to the top of all Email Reports.<br>
 # s => stream count
 # A => totals (movie & tv)
 # S => include songs in totals
+# B,W,E,N => enable statistics?
 -->
 <table width=550px>
 <!-- removed select all for now
@@ -987,8 +998,8 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <hr width="440px" align="left">
 <b style="color:#087caa;">About</b>
 <ul>
-<li>Version: 2.0.2</li>
-<li>Updated: 13APR2018</li>
+<li>Version: 2.0.3</li>
+<li>Updated: 20APR2018</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 

@@ -377,15 +377,27 @@ def main
     startTime = Time.now
     report = Report.new
     
-	#get tautulli stats\
+	#get tautulli stats
 	begin
-      if (!$advanced['tautulli']['stats'].empty? && !$advanced['tautulli']['server'].empty?)
+      if ($advanced['tautulli']['stats'].include? "B" or $advanced['tautulli']['stats'].include? "W" or $advanced['tautulli']['stats'].include? "E")
         t = Tautulli.new
         t.get_popular_stats
         t.get_popular_day
         t.get_popular_hour
         t.get_libraries
-        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics:' : $advanced['tautulli']['title']
+        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics' : $advanced['tautulli']['title']
+		
+		if $advanced['tautulli']['stats'].include? "W"
+		  stats_web = "yes"
+		  stats_email = "no"
+		elsif $advanced['tautulli']['stats'].include? "E"
+		  stats_web = "no"
+		  stats_email = "yes"
+		else
+		  stats_web = "yes"
+		  stats_email = "yes"
+		end
+		  
         $logger.info('Adding Statistics from Tautulli')
       end
 	rescue => e

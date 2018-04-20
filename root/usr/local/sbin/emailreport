@@ -379,14 +379,23 @@ def main
 	
     #get tautulli stats
 	begin
-      if (!$advanced['tautulli']['stats'].empty? && !$advanced['tautulli']['server'].empty?)
+      if ($advanced['tautulli']['stats'].include? "B" or $advanced['tautulli']['stats'].include? "E")
         t = Tautulli.new
         t.get_popular_stats
         t.get_popular_day
         t.get_popular_hour
         t.get_libraries
-        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics:' : $advanced['tautulli']['title']
-        $logger.info('Adding Statistics from Tautulli')
+        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics' : $advanced['tautulli']['title']
+
+		if $advanced['tautulli']['stats'].include? "E"
+		  stats_web = "no"
+		  stats_email = "yes"
+		else
+		  stats_web = "yes"
+		  stats_email = "yes"
+		end
+		
+        $logger.info('Adding Statistics from Tautulli to email report')
       end
 	rescue => e
 	  $logger.info("Tautulli Statistics failed. Check settings/Tautulli app is running.\n#{e.message}#{e.backtrace}")
