@@ -495,8 +495,8 @@ ie: TV Shows,Kids Movies
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 For testing cron schedule.<br>
 See Tools section for On-demand test.<br>
-Will use Email Report Time to send email only to yourself<br>
-and create the webpage. For testing purposes.
+Enabling this will test both email and web reports using the email report cron time.<br>
+Only the admin will be sent an email, users will <i>NOT</i> receive one.
 </span></div>
 </label><br><br>
 
@@ -655,7 +655,7 @@ ie: Awesome Stats
 </label><br><br>
 
 <label>
-<span>Statistics Web Layout:</span>
+<span>Web Layout:</span>
 <select name="stats[]" id="stats_layout">
   <option value="L" <?=strpos(strip_tags($adv['tautulli']['stats']), 'L') !== false ? ' selected="selected"' : '';?>>Table </option>
   <option value="G" <?=strpos(strip_tags($adv['tautulli']['stats']), 'G') !== false ? ' selected="selected"' : '';?>>Grid </option>
@@ -669,10 +669,10 @@ Either a table line-item format, or a grid bootstrap style.
 <label>
 <span>Enable Statistics:</span>
 <select name="stats[]" id="enable_stats">
+  <option value="N" <?=strpos(strip_tags($adv['tautulli']['stats']), 'N') !== false ? ' selected="selected"' : '';?>>None </option>
   <option value="B" <?=strpos(strip_tags($adv['tautulli']['stats']), 'B') !== false ? ' selected="selected"' : '';?>>Web & Email </option>
   <option value="W" <?=strpos(strip_tags($adv['tautulli']['stats']), 'W') !== false ? ' selected="selected"' : '';?>>Web Only </option>
   <option value="E" <?=strpos(strip_tags($adv['tautulli']['stats']), 'E') !== false ? ' selected="selected"' : '';?>>Email Only </option>
-  <option value="N" <?=strpos(strip_tags($adv['tautulli']['stats']), 'N') !== false ? ' selected="selected"' : '';?>>None </option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 Select which report(s) you want statistics added.<br>
