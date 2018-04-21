@@ -30,12 +30,6 @@
   
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
-  <style>
-body {table.stats tr:nth-child(even) {
-	background-color:#171717;
-    }
-  }
-</style>
   </head>
 
 <body>
@@ -103,9 +97,7 @@ body {table.stats tr:nth-child(even) {
   
 <div class="container wow fadeInUp">
       
-  <div class="row">
-        
-    <div class="col-md-12">
+  <div class="row row-center">
     
 <!-- header of Statistics section -->
 <br>
@@ -113,78 +105,159 @@ body {table.stats tr:nth-child(even) {
           
 <div class="section-title-divider"></div>
 
+<!--  table layout start -->
+<% if stats_layout == "table" %>
 
-<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:100%;table-layout:fixed;" cellpadding="5px" width="100%">
+<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:60%;table-layout:fixed;" cellpadding="5px" width="60%" align="center">
 							  <% unless t.pop_movie.nil? %>
 							    <tr>
-								  <td class="tg-yw4l"><b>Most watched movie:</b></td>
-								  <td class="tg-yw4l"><%= t.pop_movie if defined?(t.pop_movie) %></td>
+								  <td class="tg-yw4l"  align="right"><b>Most watched movie:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw4la"><%= t.pop_movie if defined?(t.pop_movie) %></td>
 							    </tr>
 							  <%end %>
 							  <% unless t.pop_tv.nil? %>
 							    <tr>
-								  <td class="tg-yw51"><b>Most watched TV show:</b></td>
-								  <td class="tg-yw51"><%= t.pop_tv if defined?(t.pop_tv) %></td>
+								  <td class="tg-yw51" align="right"><b>Most watched TV show:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw51a"><%= t.pop_tv if defined?(t.pop_tv) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.pop_artist.nil? %>
 							    <tr>
-								  <td class="tg-yw4l"><b>Most listened to artist:</b></td>
-								  <td class="tg-yw4l"><%= t.pop_artist if defined?(t.pop_artist) %></td>
+								  <td class="tg-yw4l" align="right"><b>Most listened to artist:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw4la"><%= t.pop_artist if defined?(t.pop_artist) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.movie_day_name.nil? %>
 							    <tr>
-								  <td class="tg-yw51"><b>Most popular day to watch movies:</b></td>
-								  <td class="tg-yw51"><%= t.movie_day_name if defined?(t.movie_day_name) %></td>
+								  <td class="tg-yw51" align="right"><b>Most popular day to watch movies:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw51a"><%= t.movie_day_name if defined?(t.movie_day_name) %></td>
 						        </tr>
 							  <% end %>
 							  <% unless t.friendly_movie_time.nil? %>
 							    <tr>
-								  <td class="tg-yw4l" ><b>Most popular time to watch movies:</b></td>
-							      <td class="tg-yw41" ><%= t.friendly_movie_time if defined?(t.friendly_movie_time ) %></td>
+								  <td class="tg-yw4l" align="right"><b>Most popular time to watch movies:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+							      <td class="tg-yw41a" ><%= t.friendly_movie_time if defined?(t.friendly_movie_time ) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.tv_day_name.nil? %>
 							  <tr>
-								<td class="tg-yw5l"><b>Most popular day to watch TV:</b></td>
-								<td class="tg-yw51"><%= t.tv_day_name if defined?(t.tv_day_name) %></td>
+								<td class="tg-yw5l" align="right"><b>Most popular day to watch TV:</b></td>
+								<td class="tg-yw3l">&nbsp;</td>
+								<td class="tg-yw51a"><%= t.tv_day_name if defined?(t.tv_day_name) %></td>
 							  </tr>
 							  <% end %>
 							  <% unless t.friendly_tv_time.nil? %>
 							    <tr>
-								  <td class="tg-yw4l"><b>Most popular time to watch TV:</b></td>
-								  <td class="tg-yw41"><%= t.friendly_tv_time if defined?(t.friendly_tv_time) %></td>
+								  <td class="tg-yw4l" align="right"><b>Most popular time to watch TV:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw41a"><%= t.friendly_tv_time if defined?(t.friendly_tv_time) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.friendly_top_user.nil? %>
 							    <tr>
-								  <td class="tg-yw5l"><b>Top user watched:</b></td>
-								  <td class="tg-yw51"><%= t.friendly_top_user if defined?(t.friendly_top_user) %></td>
+								  <td class="tg-yw5l" align="right"><b>Top user watched:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw51a"><%= t.friendly_top_user if defined?(t.friendly_top_user) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.streams.nil? %>
 							    <tr>
-								  <td class="tg-yw4l"><b>Most concurrent streams:</b></td>
-								  <td class="tg-yw41"><%= t.streams if defined?(t.streams) %></td>
+								  <td class="tg-yw4l" align="right"><b>Most concurrent streams:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw41a"><%= t.streams if defined?(t.streams) %></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.movie_count_sum.nil? %>
 							    <tr>
-								  <td class="tg-yw51" colspan="2"><center><b>Total Movies: &nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> &nbsp;|&nbsp; Total TV Shows: &nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <td class="tg-yw51b" colspan="3"><center><b>Total Movies: &nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> &nbsp;|&nbsp; Total TV Shows: &nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
 								  <% unless t.music_count_sum.nil? %>
 								  &nbsp;|&nbsp; Total Songs: &nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></b></center></td>
 								  <% end %>
 							    </tr>
-							  <% end %>
-							    
+							  <% end %>	    
 						</table>
 
+<!--  table layout end -->
+<% end %>
+
+<!--  Grid layout start -->
+<% if stats_layout == "grid" %>
+							  <% unless t.pop_movie.nil? %>
+							  <div class="col-md-3 col-center" align="center">
+								<b>Most watched movie:</b><br>
+								 <%= t.pop_movie if defined?(t.pop_movie) %></p>
+							  </div>
+							  <%end %>
+							  <% unless t.pop_tv.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most watched TV show:</b><br>
+								  <%= t.pop_tv if defined?(t.pop_tv) %></p>
+								 </div>
+							  <% end %>
+							  <% unless t.pop_artist.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most listened to artist:</b><br>
+								  <%= t.pop_artist if defined?(t.pop_artist) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.movie_day_name.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most popular day to watch movies:</b><br>
+								  <%= t.movie_day_name if defined?(t.movie_day_name) %></p>
+						        </div>
+							  <% end %>
+							  <% unless t.friendly_movie_time.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most popular time to watch movies:</b><br>
+							      <%= t.friendly_movie_time if defined?(t.friendly_movie_time ) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.tv_day_name.nil? %>
+							  <div class="col-md-3 col-center" align="center">
+								<b>Most popular day to watch TV:</b><br>
+								<%= t.tv_day_name if defined?(t.tv_day_name) %></p>
+							  </div>
+							  <% end %>
+							  <% unless t.friendly_tv_time.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most popular time to watch TV:</b><br>
+								  <%= t.friendly_tv_time if defined?(t.friendly_tv_time) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.friendly_top_user.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Top user watched:</b><br>
+								  <%= t.friendly_top_user if defined?(t.friendly_top_user) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.streams.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most concurrent streams:</b><br>
+								  <%= t.streams if defined?(t.streams) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.movie_count_sum.nil? %>
+							    </p><div class="col-md-12" align="center">
+								<center>
+								<b>Total Movies: &nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> &nbsp;|&nbsp; Total TV Shows: &nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <% unless t.music_count_sum.nil? %>
+								  &nbsp;|&nbsp; Total Songs: &nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></b>
+								  </center></p>
+								  </div>
+								  <% end %>
+							  <% end %>
+
+
+<% end %>
+<!--  Grid layout end -->
 
 <!-- Place text below between P tag for text under section header -->           
-<p class="section-description">  </p>
-        
-     </div>
+<p class="section-description"></p>
       
   </div>
  
@@ -204,7 +277,7 @@ body {table.stats tr:nth-child(even) {
   
 <div class="container wow fadeInUp">
       
-  <div class="row">
+  <div class="row row-center">
         
     <div class="col-md-12">
     
@@ -224,13 +297,13 @@ body {table.stats tr:nth-child(even) {
 
 
      
-<div class="row">
+<div class="row row-center">
 
 <!-- start loop here -->
 
 <% movies.each do |movie| %> 
 
-  <div class="col-md-3">
+  <div class="col-md-3 col-center">
       <a class="portfolio-item" style="background-image: url(<%= movie[:image] %>);" href="<%= movie[:imdb] %>">
     
     <div class="details">
@@ -265,7 +338,7 @@ body {table.stats tr:nth-child(even) {
 
 <div class="container wow fadeInUp">
       
-  <div class="row">
+  <div class="row row-center">
         
     <div class="col-md-12">
     
@@ -289,13 +362,13 @@ body {table.stats tr:nth-child(even) {
 
 
      
-<div class="row">
+<div class="row row-center">
 
 <!-- start new episodes loop here -->
 <% new_episodes.each do |episode| %>
 
   
-<div class="col-md-3">
+<div class="col-md-3 col-center">
       
 <a class="portfolio-item" style="background-image: url(
 <%= episode[:image] %>);" href="<%= episode[:imdb] %>">
@@ -337,7 +410,7 @@ body {table.stats tr:nth-child(even) {
 
 <div class="container wow fadeInUp">
       
-  <div class="row">
+  <div class="row row-center">
         
     <div class="col-md-12">
     
@@ -362,13 +435,13 @@ body {table.stats tr:nth-child(even) {
 
 
      
-<div class="row">
+<div class="row row-center">
 
 <!-- start new seasons loop here -->
 <% new_seasons.each do |season| %>
 
   
-<div class="col-md-3">
+<div class="col-md-3 col-center">
       
 <a class="portfolio-item" style="background-image: url(
 <%= season[:image] %>);" href="<%= season[:imdb] %>">
@@ -403,7 +476,7 @@ body {table.stats tr:nth-child(even) {
 ============================--> 
   <footer id="footer">
       <div class="container">
-        <div class="row">
+        <div class="row row-center">
           <div class="col-md-12">
             <div class="copyright">
               <%= $advanced['web']['footer'] %>

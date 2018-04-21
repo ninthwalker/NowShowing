@@ -647,11 +647,22 @@ Find in Tautulli: Settings > Web Interface page<br>
 <span>Statistics Title:</span>
 <input name="plexpy_title" value="<?=strip_tags($adv['tautulli']['title'])?>" type="text" size="30" />
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
-Required.<br>
-Title header for the Statistics section of the email and webpage<br>
-A colon (:) is automatically added at the end for the email<br>
+Title header for the Statistics section of the email and webpage.
+A colon (:) is automatically added at the end for the email
 title to be consistent with the other movie/tv section titles.
 ie: Awesome Stats
+</span></div>
+</label><br><br>
+
+<label>
+<span>Statistics Web Layout:</span>
+<select name="stats[]" id="stats_layout">
+  <option value="L" <?=strpos(strip_tags($adv['tautulli']['stats']), 'L') !== false ? ' selected="selected"' : '';?>>Table </option>
+  <option value="G" <?=strpos(strip_tags($adv['tautulli']['stats']), 'G') !== false ? ' selected="selected"' : '';?>>Grid </option>
+</select>
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Stats layout for the website.<br>
+Either a table line-item format, or a grid bootstrap style.
 </span></div>
 </label><br><br>
 
@@ -663,6 +674,9 @@ ie: Awesome Stats
   <option value="E" <?=strpos(strip_tags($adv['tautulli']['stats']), 'E') !== false ? ' selected="selected"' : '';?>>Email Only </option>
   <option value="N" <?=strpos(strip_tags($adv['tautulli']['stats']), 'N') !== false ? ' selected="selected"' : '';?>>None </option>
 </select>
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Select which report(s) you want statistics added.<br>
+</span></div>
 </label><br><br>
  
 Select the Statistics you want to be added to the reports.<br>
@@ -683,6 +697,7 @@ Statistics section will be added to the top of each report if enabled.</p>
 # A => totals (movie & tv)
 # S => include songs in totals
 # B,W,E,N => enable statistics?
+# L,G => stats layout
 -->
 <table width=550px>
 <!-- removed select all for now

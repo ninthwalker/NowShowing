@@ -398,6 +398,12 @@ def main
 		  stats_email = "yes"
 		end
 		  
+		if $advanced['tautulli']['stats'].include? "L"
+		  stats_layout = "table"
+		else
+          stats_layout = "grid"
+		end 
+		 
         $logger.info('Adding Statistics from Tautulli')
       end
 	rescue => e

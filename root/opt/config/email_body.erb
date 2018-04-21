@@ -373,7 +373,7 @@ background-color:#171717;
                             <br></p>
 					<!-- Start Statistics -->
 					<% if stats_email == "yes" %>
-		                   <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 25px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= stat_title if defined?(stat_title) %></p><br>
+		                   <p class="lead" style="font-family: 'Helvetica', 'Arial', sans-serif; font-weight: normal; text-align: left; line-height: 21px; color: white; font-size: 25px; background: #282a2d; margin: 0 0 10px; padding: 0;" align="left"><%= stat_title if defined?(stat_title) %>:</p><br>
 
 						<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:100%;table-layout:fixed;" cellpadding="5px" width="100%">
 							  <% unless t.pop_movie.nil? %>

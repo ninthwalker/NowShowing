@@ -3,8 +3,43 @@
 --------------------------------------------------------------*/
 body {
   background: #fff;
-  color: #666666;
+  color: #282a2d;
   font-family: "Open Sans", sans-serif;
+}
+
+td {
+	padding: 5px;
+	border-bottom: 1px solid #868c96;
+}
+
+/* leave these out for now.
+Use if wanted centered rows, but only works for 3 across, not 4.
+-----------------------
+.row-center {
+  text-align:center;
+}
+
+.col-center {
+  display:inline-block;
+  float:none;
+}
+------------------------
+*/
+
+.tg-yw3l {
+	width:2px;
+}
+.tg-yw4l {
+	text-align: right;
+}
+.tg-yw4la {
+	text-align: left;
+}
+.tg-yw51 {
+	text-align: right;
+}
+.tg-yw51a {
+	text-align: left;
 }
 
 a {
