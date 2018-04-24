@@ -71,50 +71,6 @@ ul {
 }
 
   </style>
-<script>
-$(document).ready(function(){
-		if ( document.getElementById('email_provider').value == "other" ) {
-		$("#emailProviderDiv").show();
-	}
-    else {
-        $("#emailProviderDiv").hide();
-    }
-	
-    $('#email_provider').change(function() {
-      if ( this.value == 'other') {
-        $("#emailProviderDiv").show();
-      }
-      else {
-        $("#emailProviderDiv").hide();
-      }
-    });
-	
-	$('#ns_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fnowshowing.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-	
-	$('#ws_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Flighttpd_access.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-	
-	$('#f2b_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Ffail2ban.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-	
-	$('#plx_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fplex_token_errors.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-});
-
-</script>
 </head>
 <body bgcolor="#151515">
   
@@ -138,6 +94,14 @@ $(document).ready(function(){
     </div>
   </header><!-- #header -->
     
+<!--==========================
+  Notifications
+============================-->
+
+<div class="notifications" id="test_cronDiv">
+</div>
+
+	
 <!--==========================
   Body Section
 ============================--> 
@@ -190,7 +154,10 @@ NowShowing will generate an email for your users and a webpage for them to visit
 Please use the tabs to configure additional settings and customization options.</p>
 - Thanks for using NowShowing!
 </p>
-<div><?=$msg?></div>
+<div>
+<span id="update_msg" ><?=$update_available?></span></p>
+<?=$msg?>
+</div>
 </div>
 
 <!--==========================
@@ -488,7 +455,7 @@ ie: TV Shows,Kids Movies
 
 <label>
 <span>Test Cron Schedule:</span>
-<select name="test">
+<select name="test" id="test_cron">
   <option value="disable" <?=strip_tags($adv['report']['test']) == 'disable' ? ' selected="selected"' : '';?>>No</option>
   <option value="enable" <?=strip_tags($adv['report']['test']) == 'enable' ? ' selected="selected"' : '';?>>Yes</option>
 </select>
@@ -1014,7 +981,7 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <b style="color:#087caa;">About</b>
 <ul>
 <li>Version: 2.0.3</li>
-<li>Updated: 20APR2018</li>
+<li>Updated: 24APR2018</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 

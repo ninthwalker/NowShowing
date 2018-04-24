@@ -1,4 +1,71 @@
 // ------------------------------------------------
+// On Page load
+// ------------------------------------------------
+
+$(document).ready(function(){
+	<!-- show 'other' smtp settings on selection -->
+	if ( document.getElementById('email_provider').value == "other" ) {
+		$("#emailProviderDiv").show();
+	}
+    else {
+        $("#emailProviderDiv").hide();
+    }
+	
+    $('#email_provider').change(function() {
+      if ( this.value == 'other') {
+        $("#emailProviderDiv").show();
+      }
+      else {
+        $("#emailProviderDiv").hide();
+      }
+    });
+	
+	<!-- show Test cron - enabled warning -->
+	if ( document.getElementById('test_cron').value == "enable" ) {
+		$('#test_cronDiv').text("test cron enabled");
+		$("#test_cronDiv").show();
+	}
+    else {
+        $("#test_cronDiv").hide();
+    }
+	
+    $('#test_cron').change(function() {
+      if ( this.value == 'enable') {
+		$('#test_cronDiv').text("test cron enabled");
+        $("#test_cronDiv").show();
+      }
+      else {
+        $("#test_cronDiv").hide();
+      }
+    });
+	
+	<!-- Log Buttons -->
+	$('#ns_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fnowshowing.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
+	
+	$('#ws_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Flighttpd_access.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
+	
+	$('#f2b_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Ffail2ban.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
+	
+	$('#plx_log_button').on('click',function(){
+      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fplex_token_errors.log'),function(){
+        $('#logModal').modal({show:true}).fadeIn();
+      });
+    });
+});
+
+// ------------------------------------------------
 // allows linking directly to tab name .ie: #report
 // ------------------------------------------------
 

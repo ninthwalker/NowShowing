@@ -4,6 +4,7 @@ include('spyc.php');
 $adv = Spyc::YAMLLoad('/config/cfg/advanced.yaml');
 $announcementSubject = file_get_contents('/opt/announcementSubject');
 $announcementMessage = file_get_contents('/config/announcement_body.html');
+$this_ver = file_get_contents('/config/cfg/version');
 
 if (!empty($adv['mail']['recipients'])) {
         $recipients_array = implode(',',$adv['mail']['recipients']);
@@ -41,4 +42,12 @@ function get_data($url) {
         return $data;
 }
 $msg = get_data('https://raw.githubusercontent.com/ninthwalker/docker-templates/master/msg');
+$cur_ver = get_data('https://raw.githubusercontent.com/ninthwalker/NowShowing/v2/root/opt/config/cfg/version');
+
+if ($this_ver != $cur_ver) {
+	$update_available = "<a href=\"https://github.com/ninthwalker/NowShowing/releases\" target=\"_blank\">New Version Available!</a><br>Update your docker image for latest $cur_ver release.";
+}
+else {
+	$update_available = "";
+}
 ?>

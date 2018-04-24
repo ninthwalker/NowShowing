@@ -292,6 +292,41 @@ textarea {
 }
 
 /*--------------------------------------------------------------
+# Notifications
+--------------------------------------------------------------*/
+
+.notifications {
+	left:65%;
+	top:0px;
+	position:fixed;
+	background-color:#e5a00d;
+	color:#1f1f1f;
+	font-weight:bold;
+	font-size:13px;
+	margin-left:-180px;
+	opacity:0.9;
+	text-align:center;
+	text-transform:uppercase;
+	width:180px;
+	display:none;
+}
+
+#update_msg {
+	color: #e5a00d;
+}
+
+#update_msg a {
+	color: #e5a00d;
+	font-weight:bold;
+}
+
+#update_msg a:hover, a:active, a:focus {
+  color: #087caa;
+  outline: none;
+  text-decoration: none;
+}
+
+/*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
 #header {
