@@ -5,13 +5,15 @@ if(!empty($_POST['ns_username']) && !empty($_POST['ns_password'])) {
   $adv_file = "/config/cfg/advanced.yaml";
   $adv_array = Spyc::YAMLLoad($adv_file);
   
-  # Write ns user/pass to secure.php
-  $user = $_POST['ns_username'];
-  $pass = $_POST['ns_password'];
+  # Write ns user/pass to secure.php - Escape single quotes and backslashes
   $provider = strip_tags($_POST['email_provider']);
   
-  #system('ls '.escapeshellarg($dir));
-  exec("sed -i \"10s/.*/\'$user\\' => \'$pass\'/\" /config/cfg/secure.php");
+  $user = addcslashes($_POST['ns_username'], "\'");
+  $pass = addcslashes($_POST['ns_password'], "\'");
+  $login_file = "/config/cfg/secure.php";
+  $lines = file($login_file, FILE_IGNORE_NEW_LINES);
+  $lines[9] = "'$user' => '$pass'";
+  file_put_contents($login_file , implode("\n", $lines));
   
   # email provider selection
   	switch ($provider) {
