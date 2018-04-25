@@ -32,8 +32,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 ### [Screenshots](https://github.com/ninthwalker/NowShowing/wiki/Screenshots)
 
 ## Supported Platforms
-* unRAID v6.3.x (Fully Supported)
-* unRAID v6.x (Supported, but docker template may appear different)
+* unRAID v6+ (Fully Supported)
 * Other Docker platforms (Supported, but extra docker commandline options may be needed. [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
 
 ## Supported Email Clients
