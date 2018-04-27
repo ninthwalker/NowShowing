@@ -647,7 +647,10 @@ Select which report(s) you want statistics added.<br>
 </label><br><br>
  
 Select the Statistics you want to be added to the reports.<br>
-Statistics section will be added to the top of each report if enabled.</p>
+Statistics section will be added to the top of each report if enabled.
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+See <a href ="https://github.com/ninthwalker/NowShowing/wiki/Screenshots" style="text-decoration:none; color:#e5a00d;" target="_blank">Github wiki</a> for an example of what all stats look like.
+</span></div><br>
 <hr width="440px" align="left"></p>
 
 <!--
@@ -661,6 +664,7 @@ Statistics section will be added to the top of each report if enabled.</p>
 # T => TV time
 # u => top user
 # s => stream count
+# c => Recently added counts
 # A => totals (movie & tv)
 # S => include songs in totals
 # B,W,E,N => enable statistics?
@@ -718,6 +722,10 @@ Statistics section will be added to the top of each report if enabled.</p>
 </td>
 </tr>
 <tr>
+<td>
+  <input name="stats[]" id="counts" value="c" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'c') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="counts">TV/Movies added count</label><br>
+</td>
 <td>
   <input name="stats[]" id="totals" value="A" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'A') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="totals">Library Totals</label><br>
