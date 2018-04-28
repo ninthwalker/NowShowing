@@ -350,6 +350,7 @@ class Report
                                             end
                                         end
                                     else
+									    $season_count += 1
                                         $logger.info("Reporting #{show['Series']['SeriesName']} Season #{[season['index']]}")
                                         tv_episodes[:seasons].push({
                                             :id             => show_id,

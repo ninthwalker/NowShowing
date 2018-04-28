@@ -440,15 +440,15 @@ background-color:#171717;
 								    <% if moviecount != 0 %>
 								      <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b>
 									<% end %>
-									<b>New TV Shows:</b>&nbsp; <font color="#e5a00d"><%= t.tvcount if defined?(tvcount) %></font>
+									<b>New TV Shows:</b>&nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
 								  <% end %>
 								  <% if seasoncount != 0 %>
 								    <% if tvcount != 0 or moviecount != 0 %>
 								      <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b>
 									<% end %>
-									<b>New Seasons:</b>&nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font></center></td>
+									<b>New Seasons:</b>&nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
 								  <% end %>
-							    </tr>
+							    </center></td></tr>
 							  <% end %>
 							  <% unless t.movie_count_sum.nil? %>
 							    <tr>
