@@ -5,12 +5,12 @@ jQuery(document).ready(function( $ ) {
     $('#preloader').delay(100).fadeOut('slow',function(){$(this).remove();});
   });
 
-  //Limittext synopsis to 260 char
+  //Limittext synopsis to 260 char - changed to 225 after adding imdb/trailer img's
   $(".limittext").each(function(){
     len=$(this).text().length;
-    if(len>260)
+    if(len>225)
     {
-      $(this).text($(this).text().substr(0,260)+'...');
+      $(this).text($(this).text().substr(0,225)+'...');
     }
   });
   
@@ -116,4 +116,32 @@ jQuery(document).ready(function( $ ) {
       return false;
   });
 
+	  var $videoSrc;  
+	$('.video-btn').click(function() {
+		$videoSrc = $(this).data( "src" );
+		console.log($videoSrc);
+	});
+	  
+	// when the modal is opened autoplay it  
+	$('#myModal').on('shown.bs.modal', function (e) {
+		
+	// set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+	$("#video").attr('src',$videoSrc + "?rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1" ); 
+	})
+	  
+	// stop playing the youtube video when I close the modal
+	$('#myModal').on('hide.bs.modal', function (e) {
+		// a poor man's stop video
+		$("#video").attr('src',$videoSrc); 
+	}) 
+
 });
+
+//$(document).ready(function() {
+
+// Gets the video src from the data-src on each button
+
+
+
+// document ready  
+// });

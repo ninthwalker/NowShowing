@@ -26,6 +26,35 @@ Use if wanted centered rows, but only works for 3 across, not 4.
 ------------------------
 */
 
+/* video modal */
+
+.modal-dialog {
+      max-width: 800px;
+      margin: 30px auto;
+}
+.modal-body {
+  position:relative;
+  padding:0px;
+}
+.close {
+  position:absolute;
+  right:-30px;
+  top:0;
+  z-index:999;
+  font-size:2rem;
+  font-weight: normal;
+  color:#fff;
+  opacity:1;
+}
+
+.video-btn {
+	outline:none;
+	border:none;
+	padding:0;
+	overflow: hidden;
+	background-color:transparent;
+}
+
 .tg-yw3l {
 	width:2px;
 }
@@ -549,12 +578,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .movies .portfolio-item .details {
   height: 260px;
-  background: #abb8c6;
+  background: rgba(0, 0, 0, 0.85);
   display: table-cell;
   vertical-align: middle;
   opacity: 0;
-  transition: 0.6s;
+  transition: 0.7s;
   text-align: center;
+  color: #fff;
 }
 /* color here is for item title text*/
 .movies .portfolio-item .details h4 {
@@ -565,13 +595,13 @@ body.mobile-nav-active #mobile-nav-toggle {
   -webkit-transform: translate3d(0, -15px, 0);
   transform: translate3d(0, -15px, 0);
   font-weight: 700;
-  color: #000;
+  color: #fff;
 }
 
 /* color here is for item description */
 .movies .portfolio-item .details span {
   display: block;
-  color: #000;
+  color: #fff;
   font-size: 13px;
   transition: opacity 0.3s, -webkit-transform 0.3s;
   transition: transform 0.3s, opacity 0.3s;
@@ -581,7 +611,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .movies .portfolio-item:hover .details {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .movies .portfolio-item:hover .details h4 {

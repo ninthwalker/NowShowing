@@ -37,6 +37,31 @@
 <!-- Below loads the preload icon -->
 <!-- <div id="preloader"></div> -->
 <!-- <span style="position:absolute;top:0pt;right:0pt;color:#111"><a class="admin" href="../admin/" style="color:#111;" target="_self">Admin</a></span> -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="YoutubeModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      
+      <div class="modal-body">
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always">></iframe>
+</div>
+        
+        
+      </div>
+
+    </div>
+  </div>
+</div> 
+
 <!--==========================
   Hero Section
 ============================-->
@@ -179,30 +204,30 @@
 								  <td class="tg-yw51b" colspan="3">
 								  <center><b>
 								  <% if moviecount != 0 %>
-								    New Movies: &nbsp; <font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
+								    New Movies:&nbsp; <font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
 								  <% end %>
 								  <% if tvcount != 0 %>
 								    <% if moviecount != 0 %>
-								      &nbsp;&nbsp;|&nbsp;&nbsp;
+								      &nbsp; | &nbsp;
 									<% end %>
-									New Episodes: &nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
+									New Episodes:&nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
 								  <% end %>
 								  <% if seasoncount != 0 %>
 								    <% if tvcount != 0 or moviecount != 0 %>
-								      &nbsp;&nbsp;|&nbsp;&nbsp;
+								      &nbsp; | &nbsp;
 									<% end %>
-									New Seasons: &nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
+									New Seasons:&nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
 								  <% end %>
 								  </b></center></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.movie_count_sum.nil? %>
 							    <tr>
-								  <td class="tg-yw51b" colspan="3"><center><b>Total Movies: &nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> &nbsp;|&nbsp; Total TV Shows: &nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <td class="tg-yw51b" colspan="3"><center><b>Total Movies:&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp; |&nbsp; Total TV Shows:&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
 								  <% unless t.music_count_sum.nil? %>
-								  &nbsp;|&nbsp; Total Songs: &nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></b></center></td>
+								  &nbsp; |&nbsp; Total Songs:&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
 								  <% end %>
-							    </tr>
+							    </b></center></td></tr>
 							  <% end %>	    
 						</table>
 
@@ -269,19 +294,19 @@
 							    </p><div class="col-md-12" align="center">
 								<center><b>
 								<% if moviecount != 0 %>
-								  New Movies: &nbsp; <font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
+								  New Movies:&nbsp; <font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
 								<% end %>
 								<% if tvcount != 0 %>
 								  <% if moviecount != 0 %>
-								    &nbsp;&nbsp;|&nbsp;&nbsp;
+								    &nbsp; | &nbsp;
 								  <% end %>
-								  New Episodes: &nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
+								  New Episodes:&nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
 								<% end %>
 								<% if seasoncount != 0 %>
 								  <% if tvcount != 0 or moviecount != 0 %>
-								    &nbsp;&nbsp;|&nbsp;&nbsp;
+								    &nbsp; | &nbsp;
 								  <% end %>
-								  New Seasons: &nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
+								  New Seasons:&nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
 								<% end %>
 								  </b></center></p>
 								  </div>
@@ -289,10 +314,10 @@
 							  <% unless t.movie_count_sum.nil? %>
 							    </p><div class="col-md-12" align="center">
 								<center>
-								<b>Total Movies: &nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> &nbsp;|&nbsp; Total TV Shows: &nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								<b>Total Movies:&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp; |&nbsp; Total TV Shows: &nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
 								  <% unless t.music_count_sum.nil? %>
-								  &nbsp;|&nbsp; Total Songs: &nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></b>
-								  </center></p>
+								  &nbsp; |&nbsp; Total Songs:&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
+								  </b></center></p>
 								  </div>
 								  <% end %>
 							  <% end %>
@@ -340,9 +365,6 @@
      </div>
       
   </div>
- 
-
-
      
 <div class="row row-center">
 
@@ -351,17 +373,20 @@
 <% movies.each do |movie| %> 
 
   <div class="col-md-3 col-center">
-      <a class="portfolio-item" style="background-image: url(<%= movie[:image] %>);" href="<%= movie[:imdb] %>">
+      <div class="portfolio-item" style="background-image: url(<%= movie[:image] %>);">
     
     <div class="details">
-              <h4><%= movie[:title] %> (<%= movie[:date] %>) </h4>
-		<h5 class="bold"><%= movie[:tagline] %></h5>
-              <span class="limittext"><%= movie[:synopsis] %></span>
-             
+              <h4><%= movie[:title] %> (<%= movie[:date] %>)</h4>
+		      <h5 class="bold"><%= movie[:tagline] %></h5>
+              <span class="limittext"><%= movie[:synopsis] %></span><br>
+			  <span><a href="<%= movie[:imdb] %>"><img src="img/imdb.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <button type="submit" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/<%= movie[:trailer] %>" data-target="#myModal">
+			  <img src="img/youtube.png"></button>
+			  </span>
+              
     </div>
     
-      </a>
-
+      </div>
 </div> 
 <% end %>
 </div>
@@ -370,11 +395,6 @@
 </div> 
 
 </section>
-
-
-
-
-
 
 <!--==========================
   New TV Shows Section
@@ -417,8 +437,7 @@
   
 <div class="col-md-3 col-center">
       
-<a class="portfolio-item" style="background-image: url(
-<%= episode[:image] %>);" href="<%= episode[:imdb] %>">
+<div class="portfolio-item" style="background-image: url(<%= episode[:image] %>);">
     
     
 <div class="details">
@@ -429,11 +448,15 @@
 <%= episode[:episode_number] %> - <%= episode[:title] %>
 </h5>
               
-<span class="limittext"><%= episode[:synopsis] %></span>
+<span class="limittext"><%= episode[:synopsis] %></span><br>
+  <span><a href="<%= episode[:imdb] %>"><img src="img/imdb.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/<%= episode[:trailer] %>" data-target="#myModal">
+  <img src="img/youtube.png"></button>
+  </span>
              
     </div>
     
-      </a>
+      </div>
 
 </div> 
 <% end %>
