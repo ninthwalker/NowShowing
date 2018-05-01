@@ -6,13 +6,13 @@
 
 [![Docker Automated build](https://img.shields.io/docker/automated/ninthwalker/nowshowing.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/) ![](https://img.shields.io/docker/pulls/ninthwalker/nowshowing.svg) [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:v2.svg)](https://microbadger.com/images/ninthwalker/nowshowing:v2 "NowShowing") [![Build Passing](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)  
 
-## Description / Background
-NowShowing is the successor of the popular plexReport docker. The original brainchild of [bstascavage](https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
-
 ## Introduction
 The NowShowing docker provides a summary of new media that has recently been added to Plex, giving the Plex owner the option of delivering the information in two ways:
 1) An email summary sent to all or selected users of the Plex Server
 2) A web page for users to visit  
+
+## Description / Background
+NowShowing is the successor of the popular plexReport docker. The original brainchild of [bstascavage](https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.  
 
 ## New in v2:
 ### Complete code rewrite with tons of new features!
