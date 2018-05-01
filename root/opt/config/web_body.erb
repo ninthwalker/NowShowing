@@ -135,7 +135,7 @@
 <!--  table layout start -->
 <% if stats_layout == "table" %>
 
-<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:60%;table-layout:fixed;" cellpadding="5px" width="60%" align="center">
+<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:60%;table-layout:fixed;" cellpadding="5px" align="center">
 							  <% unless t.pop_movie.nil? %>
 							    <tr>
 								  <td class="tg-yw4l"  align="right"><b>Most watched movie:</b></td>
@@ -204,28 +204,28 @@
 								  <td class="tg-yw51b" colspan="3">
 								  <center><b>
 								  <% if moviecount != 0 %>
-								    New Movies:&nbsp; <font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
+								    New Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
 								  <% end %>
 								  <% if tvcount != 0 %>
 								    <% if moviecount != 0 %>
-								      &nbsp; | &nbsp;
+								      &nbsp;&nbsp;|&nbsp;&nbsp;
 									<% end %>
-									New Episodes:&nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
+									New Episodes:&nbsp;&nbsp;<font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
 								  <% end %>
 								  <% if seasoncount != 0 %>
 								    <% if tvcount != 0 or moviecount != 0 %>
-								      &nbsp; | &nbsp;
+								      &nbsp;&nbsp;|&nbsp;&nbsp;
 									<% end %>
-									New Seasons:&nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
+									New Seasons:&nbsp;&nbsp;<font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
 								  <% end %>
 								  </b></center></td>
 							    </tr>
 							  <% end %>
 							  <% unless t.movie_count_sum.nil? %>
 							    <tr>
-								  <td class="tg-yw51b" colspan="3"><center><b>Total Movies:&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp; |&nbsp; Total TV Shows:&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <td class="tg-yw51b" colspan="3"><center><b>Total Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp;&nbsp;|&nbsp;&nbsp;Total TV Shows:&nbsp;&nbsp;<font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
 								  <% unless t.music_count_sum.nil? %>
-								  &nbsp; |&nbsp; Total Songs:&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
+								  &nbsp;&nbsp;|&nbsp;&nbsp;Total Songs:&nbsp;&nbsp;<font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
 								  <% end %>
 							    </b></center></td></tr>
 							  <% end %>	    
@@ -294,19 +294,19 @@
 							    </p><div class="col-md-12" align="center">
 								<center><b>
 								<% if moviecount != 0 %>
-								  New Movies:&nbsp; <font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
+								  New Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
 								<% end %>
 								<% if tvcount != 0 %>
 								  <% if moviecount != 0 %>
-								    &nbsp; | &nbsp;
+								    &nbsp;&nbsp;|&nbsp;&nbsp;
 								  <% end %>
-								  New Episodes:&nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
+								  New Episodes:&nbsp;&nbsp;<font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
 								<% end %>
 								<% if seasoncount != 0 %>
 								  <% if tvcount != 0 or moviecount != 0 %>
-								    &nbsp; | &nbsp;
+								    &nbsp;&nbsp;|&nbsp;&nbsp;
 								  <% end %>
-								  New Seasons:&nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
+								  New Seasons:&nbsp;&nbsp;<font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
 								<% end %>
 								  </b></center></p>
 								  </div>
@@ -314,9 +314,9 @@
 							  <% unless t.movie_count_sum.nil? %>
 							    </p><div class="col-md-12" align="center">
 								<center>
-								<b>Total Movies:&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp; |&nbsp; Total TV Shows: &nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								<b>Total Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp;&nbsp;|&nbsp;&nbsp;Total TV Shows:&nbsp;&nbsp;<font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
 								  <% unless t.music_count_sum.nil? %>
-								  &nbsp; |&nbsp; Total Songs:&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
+								  &nbsp;&nbsp;|&nbsp;&nbsp;Total Songs:&nbsp;&nbsp;<font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
 								  </b></center></p>
 								  </div>
 								  <% end %>
@@ -513,8 +513,7 @@
   
 <div class="col-md-3 col-center">
       
-<a class="portfolio-item" style="background-image: url(
-<%= season[:image] %>);" href="<%= season[:imdb] %>">
+<div class="portfolio-item" style="background-image: url(<%= season[:image] %>);">
     
     
 <div class="details">
@@ -525,11 +524,15 @@
 <%= I18n.t :seasons, count: season[:season].length %><%= season[:season].min %>-<%= season[:season].max %>
 </h5>
               
-<span class="limittext"><%= season[:synopsis] %></span>
+<span class="limittext"><%= season[:synopsis] %></span><br>
+  <span><a href="<%= season[:imdb] %>"><img src="img/imdb.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/<%= season[:trailer] %>" data-target="#myModal">
+  <img src="img/youtube.png"></button>
+  </span>
              
     </div>
     
-      </a>
+      </div>
 
 </div> 
 <% end %>

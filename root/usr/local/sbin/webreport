@@ -376,7 +376,7 @@ class Report
             end
         end
     rescue Exception => e
-        $logger.error("Something failed.  If you are seeing this, please turn on debugging and open an issue.")
+        $logger.error("Something failed. Most likely metadata related. If you see this error all the time, turn on debugging and open an issue on github.")
         $logger.debug(tv_show)
         $logger.debug(e)
     end
@@ -399,7 +399,6 @@ def main
 
     new_seasons = new_episodes[:seasons]
     new_episodes = new_episodes[:new]
-	puts $actual
 	
 	#get tautulli stats
 	begin

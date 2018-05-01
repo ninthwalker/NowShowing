@@ -174,7 +174,7 @@ class Report
 
             if !movie_id.include?('local')
                 begin
-                    movie = moviedb.get("movie/#{movie_id}")
+                    movie = moviedb.get("movie/#{movie_id}","append_to_response=videos")
                     if "en" == language
                         localized_movie = movie
                     else
@@ -186,6 +186,7 @@ class Report
                     $logger.info("Reporting Movie: #{movie['title']}")
                         return {
                             :id          => movie['id'],
+							:trailer     => movie['videos']['results'][0]['key'],
                             :title       => (localized_movie['title'].nil? ? movie['title'] : localized_movie['title'] ),
                             :image       => "https://image.tmdb.org/t/p/w154#{poster_path}",
                             :date        => omdb_result['Year'],
@@ -259,6 +260,7 @@ class Report
     #   tv_episodes: Array of Hashes of all episodes and seasons
     def getTVInfo(tv_show, tv_episodes)
         thetvdb = TheTVDB.new
+		moviedb = TheMovieDB.new($advanced)
         plex = Plex.new($advanced)
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
 
@@ -279,6 +281,8 @@ class Report
 
             begin
                 show = thetvdb.get("series/#{show_id}/all/#{language}.xml")['Data']
+				tmdb_mapping = moviedb.get("find/#{show_id}","external_source=tvdb_id")['tv_results'][0]['id']
+				tv = moviedb.get("tv/#{tmdb_mapping}","append_to_response=videos")
                 episodes = show['Episode'].sort_by { |hsh| hsh[:FirstAired] }.reverse!
             rescue
                 $logger.error("Connection to thetvdb.com failed while retrieving info for #{tv_show['title']}")
@@ -303,6 +307,7 @@ class Report
                                     $logger.info("Reporting #{show['Series']['SeriesName']} Season #{episode['SeasonNumber']} Episode #{episode['EpisodeNumber']}")
                                     tv_episodes[:new].push({
                                         :id             => show_id,
+										:trailer        => tv['videos']['results'][0]['key'],
                                         :series_name    => show['Series']['SeriesName'],
                                         :image          => "https://thetvdb.com/banners/#{show['Series']['poster']}",
                                         :network        => show['Series']['Network'],
@@ -370,7 +375,7 @@ class Report
             end
         end
     rescue Exception => e
-        $logger.error("Something failed.  If you are seeing this, please turn on debugging and open an issue.")
+        $logger.error("Something failed. Most likely metadata related. If you see this error all the time, turn on debugging and open an issue on github.")
         $logger.debug(tv_show)
         $logger.debug(e)
     end

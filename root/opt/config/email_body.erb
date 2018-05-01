@@ -434,29 +434,29 @@ background-color:#171717;
 							    <tr>
 								  <td class="tg-yw51" colspan="2"><center>
 								  <% if moviecount != 0 %>
-								    <b>New Movies:</b>&nbsp; <font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
+								    <b>New Movies:</b>&nbsp;&nbsp;<font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
 								  <% end %>
 								  <% if tvcount != 0 %>
 								    <% if moviecount != 0 %>
 								      <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b>
 									<% end %>
-									<b>New Episodes:</b>&nbsp; <font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
+									<b>New Episodes:</b>&nbsp;&nbsp;<font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
 								  <% end %>
 								  <% if seasoncount != 0 %>
 								    <% if tvcount != 0 or moviecount != 0 %>
 								      <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b>
 									<% end %>
-									<b>New Seasons:</b>&nbsp; <font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
+									<b>New Seasons:</b>&nbsp;&nbsp;<font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
 								  <% end %>
 							    </center></td></tr>
 							  <% end %>
 							  <% unless t.movie_count_sum.nil? %>
 							    <tr>
-								  <td class="tg-yw51" colspan="2"><center><b>Total Movies:</b>&nbsp; <font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font> <b>&nbsp;|&nbsp;</b> <b>Total TV Shows:</b>&nbsp; <font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								 <td class="tg-yw51" colspan="2"><center><b>Total Movies:</b>&nbsp;&nbsp;<font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font><b>&nbsp;&nbsp;|&nbsp;&nbsp;</b><b>Total TV Shows:</b>&nbsp;&nbsp;<font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
 								  <% unless t.music_count_sum.nil? %>
-								  <b>&nbsp;|&nbsp;</b> <b>Total Songs:</b>&nbsp; <font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font></center></td>
+								  <b>&nbsp;&nbsp;|&nbsp;&nbsp;</b><b>Total Songs:</b>&nbsp;&nbsp;<font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
 								  <% end %>
-							    </tr>
+							    </center></td></tr>
 							  <% end %>
 							    
 						</table><br>
