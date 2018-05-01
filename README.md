@@ -3,6 +3,7 @@
 
 ![](https://raw.githubusercontent.com/ninthwalker/NowShowing/v2/images/ns_v2_title.png)
 
+
 [![Docker Automated build](https://img.shields.io/docker/automated/ninthwalker/nowshowing.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/) [![](https://img.shields.io/docker/pulls/ninthwalker/nowshowing.svg)] [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:v2.svg)](https://microbadger.com/images/ninthwalker/nowshowing:v2 "NowShowing") [![Build Passing](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)  
 
 ## Description / Background
