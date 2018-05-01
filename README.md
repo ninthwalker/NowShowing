@@ -3,7 +3,8 @@
 
 ![](https://raw.githubusercontent.com/ninthwalker/NowShowing/v2/images/ns_v2_title.png)
 
-[![Docker Automated build](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/) [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:v2.svg)](https://microbadger.com/images/ninthwalker/nowshowing:v2 "NowShowing") [![Build Passing](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)  
+
+[![Docker Automated build](https://img.shields.io/docker/automated/ninthwalker/nowshowing.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/) [![](https://img.shields.io/docker/pulls/ninthwalker/nowshowing.svg)] [![](https://images.microbadger.com/badges/image/ninthwalker/nowshowing:v2.svg)](https://microbadger.com/images/ninthwalker/nowshowing:v2 "NowShowing") [![Build Passing](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://hub.docker.com/r/ninthwalker/nowshowing/)  
 
 ## Description / Background
 NowShowing is the successor of the popular plexReport docker. The original brainchild of [bstascavage](https://github.com/bstascavage/plexReport). Further developed by NinthWalker & enhanced by GroxyPod, NowShowing adds additional improvements and features in a friendly, easy to install docker.
@@ -32,9 +33,9 @@ The NowShowing docker provides a summary of new media that has recently been add
 ### [Screenshots](https://github.com/ninthwalker/NowShowing/wiki/Screenshots)
 
 ## Supported Platforms
-* unRAID v6.3.x (Fully Supported)
-* unRAID v6.x (Supported, but docker template may appear different)
-* Other Docker platforms (Supported, but extra docker commandline options may be needed. [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
+* Docker [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
+* unRAID v6+
+
 
 ## Supported Email Clients
 * Most Email providers with SSL SMTP support [see Wiki FAQ](https://github.com/ninthwalker/NowShowing/wiki/FAQ-&-Known-Issues)

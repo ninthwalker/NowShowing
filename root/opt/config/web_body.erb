@@ -37,6 +37,31 @@
 <!-- Below loads the preload icon -->
 <!-- <div id="preloader"></div> -->
 <!-- <span style="position:absolute;top:0pt;right:0pt;color:#111"><a class="admin" href="../admin/" style="color:#111;" target="_self">Admin</a></span> -->
+
+<!-- Modal -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="YoutubeModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      
+      <div class="modal-body">
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always">></iframe>
+</div>
+        
+        
+      </div>
+
+    </div>
+  </div>
+</div> 
+
 <!--==========================
   Hero Section
 ============================-->
@@ -86,6 +111,234 @@
     </div>
   </header><!-- #header -->
     
+	
+<!--==========================
+  Statistics Section
+============================-->
+<section id="stats" class="stats">
+<!-- Start Statistics -->
+<% if stats_web == "yes" %>
+
+  
+<div class="container wow fadeInUp">
+      
+  <div class="row row-center">
+  
+	<div class="col-md-12">
+    
+<!-- header of Statistics section -->
+<br>
+<h5 class="section-title"><%= stat_title if defined?(stat_title) %></h5>
+          
+<div class="section-title-divider"></div>
+
+<!--  table layout start -->
+<% if stats_layout == "table" %>
+
+<table class="stats" style="border-collapse:collapse;border-spacing:0;border-style:none;width:60%;table-layout:fixed;" cellpadding="5px" align="center">
+							  <% unless t.pop_movie.nil? %>
+							    <tr>
+								  <td class="tg-yw4l"  align="right"><b>Most watched movie:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw4la"><%= t.pop_movie if defined?(t.pop_movie) %></td>
+							    </tr>
+							  <%end %>
+							  <% unless t.pop_tv.nil? %>
+							    <tr>
+								  <td class="tg-yw51" align="right"><b>Most watched TV show:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw51a"><%= t.pop_tv if defined?(t.pop_tv) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.pop_artist.nil? %>
+							    <tr>
+								  <td class="tg-yw4l" align="right"><b>Most listened to artist:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw4la"><%= t.pop_artist if defined?(t.pop_artist) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.movie_day_name.nil? %>
+							    <tr>
+								  <td class="tg-yw51" align="right"><b>Most popular day to watch movies:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw51a"><%= t.movie_day_name if defined?(t.movie_day_name) %></td>
+						        </tr>
+							  <% end %>
+							  <% unless t.friendly_movie_time.nil? %>
+							    <tr>
+								  <td class="tg-yw4l" align="right"><b>Most popular time to watch movies:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+							      <td class="tg-yw41a" ><%= t.friendly_movie_time if defined?(t.friendly_movie_time ) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.tv_day_name.nil? %>
+							  <tr>
+								<td class="tg-yw5l" align="right"><b>Most popular day to watch TV:</b></td>
+								<td class="tg-yw3l">&nbsp;</td>
+								<td class="tg-yw51a"><%= t.tv_day_name if defined?(t.tv_day_name) %></td>
+							  </tr>
+							  <% end %>
+							  <% unless t.friendly_tv_time.nil? %>
+							    <tr>
+								  <td class="tg-yw4l" align="right"><b>Most popular time to watch TV:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw41a"><%= t.friendly_tv_time if defined?(t.friendly_tv_time) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.friendly_top_user.nil? %>
+							    <tr>
+								  <td class="tg-yw5l" align="right"><b>Top user watched:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw51a"><%= t.friendly_top_user if defined?(t.friendly_top_user) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.streams.nil? %>
+							    <tr>
+								  <td class="tg-yw4l" align="right"><b>Most concurrent streams:</b></td>
+								  <td class="tg-yw3l">&nbsp;</td>
+								  <td class="tg-yw41a"><%= t.streams if defined?(t.streams) %></td>
+							    </tr>
+							  <% end %>
+							  <% unless tvcount.nil? %>
+							    <tr>
+								  <td class="tg-yw51b" colspan="3">
+								  <center><b>
+								  <% if moviecount != 0 %>
+								    New Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
+								  <% end %>
+								  <% if tvcount != 0 %>
+								    <% if moviecount != 0 %>
+								      &nbsp;&nbsp;|&nbsp;&nbsp;
+									<% end %>
+									New Episodes:&nbsp;&nbsp;<font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
+								  <% end %>
+								  <% if seasoncount != 0 %>
+								    <% if tvcount != 0 or moviecount != 0 %>
+								      &nbsp;&nbsp;|&nbsp;&nbsp;
+									<% end %>
+									New Seasons:&nbsp;&nbsp;<font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
+								  <% end %>
+								  </b></center></td>
+							    </tr>
+							  <% end %>
+							  <% unless t.movie_count_sum.nil? %>
+							    <tr>
+								  <td class="tg-yw51b" colspan="3"><center><b>Total Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp;&nbsp;|&nbsp;&nbsp;Total TV Shows:&nbsp;&nbsp;<font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <% unless t.music_count_sum.nil? %>
+								  &nbsp;&nbsp;|&nbsp;&nbsp;Total Songs:&nbsp;&nbsp;<font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
+								  <% end %>
+							    </b></center></td></tr>
+							  <% end %>	    
+						</table>
+
+<!--  table layout end -->
+<% end %>
+
+<!--  Grid layout start -->
+<% if stats_layout == "grid" %>
+							  <% unless t.pop_movie.nil? %>
+							  <div class="col-md-3 col-center" align="center">
+								<b>Most watched movie:</b><br>
+								 <%= t.pop_movie if defined?(t.pop_movie) %></p>
+							  </div>
+							  <%end %>
+							  <% unless t.pop_tv.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most watched TV show:</b><br>
+								  <%= t.pop_tv if defined?(t.pop_tv) %></p>
+								 </div>
+							  <% end %>
+							  <% unless t.pop_artist.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most listened to artist:</b><br>
+								  <%= t.pop_artist if defined?(t.pop_artist) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.movie_day_name.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most popular day to watch movies:</b><br>
+								  <%= t.movie_day_name if defined?(t.movie_day_name) %></p>
+						        </div>
+							  <% end %>
+							  <% unless t.friendly_movie_time.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most popular time to watch movies:</b><br>
+							      <%= t.friendly_movie_time if defined?(t.friendly_movie_time ) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.tv_day_name.nil? %>
+							  <div class="col-md-3 col-center" align="center">
+								<b>Most popular day to watch TV:</b><br>
+								<%= t.tv_day_name if defined?(t.tv_day_name) %></p>
+							  </div>
+							  <% end %>
+							  <% unless t.friendly_tv_time.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most popular time to watch TV:</b><br>
+								  <%= t.friendly_tv_time if defined?(t.friendly_tv_time) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.friendly_top_user.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Top user watched:</b><br>
+								  <%= t.friendly_top_user if defined?(t.friendly_top_user) %></p>
+							    </div>
+							  <% end %>
+							  <% unless t.streams.nil? %>
+							    <div class="col-md-3 col-center" align="center">
+								  <b>Most concurrent streams:</b><br>
+								  <%= t.streams if defined?(t.streams) %></p>
+							    </div>
+							  <% end %>
+							  <% unless tvcount.nil? %>
+							    </p><div class="col-md-12" align="center">
+								<center><b>
+								<% if moviecount != 0 %>
+								  New Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= moviecount if defined?(moviecount) %></font>
+								<% end %>
+								<% if tvcount != 0 %>
+								  <% if moviecount != 0 %>
+								    &nbsp;&nbsp;|&nbsp;&nbsp;
+								  <% end %>
+								  New Episodes:&nbsp;&nbsp;<font color="#e5a00d"><%= tvcount if defined?(tvcount) %></font>
+								<% end %>
+								<% if seasoncount != 0 %>
+								  <% if tvcount != 0 or moviecount != 0 %>
+								    &nbsp;&nbsp;|&nbsp;&nbsp;
+								  <% end %>
+								  New Seasons:&nbsp;&nbsp;<font color="#e5a00d"><%= seasoncount if defined?(seasoncount) %></font>
+								<% end %>
+								  </b></center></p>
+								  </div>
+							  <% end %>
+							  <% unless t.movie_count_sum.nil? %>
+							    </p><div class="col-md-12" align="center">
+								<center>
+								<b>Total Movies:&nbsp;&nbsp;<font color="#e5a00d"><%= t.movie_count_sum if defined?(t.movie_count_sum) %></font>&nbsp;&nbsp;|&nbsp;&nbsp;Total TV Shows:&nbsp;&nbsp;<font color="#e5a00d"><%= t.tv_count_sum if defined?(t.tv_count_sum) %></font> 
+								  <% unless t.music_count_sum.nil? %>
+								  &nbsp;&nbsp;|&nbsp;&nbsp;Total Songs:&nbsp;&nbsp;<font color="#e5a00d"><%= t.music_count_sum if defined?(t.music_count_sum) %></font>
+								  </b></center></p>
+								  </div>
+								  <% end %>
+							  <% end %>
+
+
+<% end %>
+<!--  Grid layout end -->
+
+<!-- Place text below between P tag for text under section header -->           
+<p class="section-description"></p>
+      
+  </div>
+ 
+<% end %>
+
+</div>
+
+</div>
+
+</section>
+
 <!--==========================
   Movie Section
 ============================-->
@@ -96,7 +349,7 @@
   
 <div class="container wow fadeInUp">
       
-  <div class="row">
+  <div class="row row-center">
         
     <div class="col-md-12">
     
@@ -112,28 +365,28 @@
      </div>
       
   </div>
- 
-
-
      
-<div class="row">
+<div class="row row-center">
 
 <!-- start loop here -->
 
 <% movies.each do |movie| %> 
 
-  <div class="col-md-3">
-      <a class="portfolio-item" style="background-image: url(<%= movie[:image] %>);" href="<%= movie[:imdb] %>">
+  <div class="col-md-3 col-center">
+      <div class="portfolio-item" style="background-image: url(<%= movie[:image] %>);">
     
     <div class="details">
-              <h4><%= movie[:title] %> (<%= movie[:date] %>) </h4>
-		<h5 class="bold"><%= movie[:tagline] %></h5>
-              <span class="limittext"><%= movie[:synopsis] %></span>
-             
+              <h4><%= movie[:title] %> (<%= movie[:date] %>)</h4>
+		      <h5 class="bold"><%= movie[:tagline] %></h5>
+              <span class="limittext"><%= movie[:synopsis] %></span><br>
+			  <span><a href="<%= movie[:imdb] %>"><img src="img/imdb.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			  <button type="submit" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/<%= movie[:trailer] %>" data-target="#myModal">
+			  <img src="img/youtube.png"></button>
+			  </span>
+              
     </div>
     
-      </a>
-
+      </div>
 </div> 
 <% end %>
 </div>
@@ -142,11 +395,6 @@
 </div> 
 
 </section>
-
-
-
-
-
 
 <!--==========================
   New TV Shows Section
@@ -157,7 +405,7 @@
 
 <div class="container wow fadeInUp">
       
-  <div class="row">
+  <div class="row row-center">
         
     <div class="col-md-12">
     
@@ -181,16 +429,15 @@
 
 
      
-<div class="row">
+<div class="row row-center">
 
 <!-- start new episodes loop here -->
 <% new_episodes.each do |episode| %>
 
   
-<div class="col-md-3">
+<div class="col-md-3 col-center">
       
-<a class="portfolio-item" style="background-image: url(
-<%= episode[:image] %>);" href="<%= episode[:imdb] %>">
+<div class="portfolio-item" style="background-image: url(<%= episode[:image] %>);">
     
     
 <div class="details">
@@ -201,11 +448,15 @@
 <%= episode[:episode_number] %> - <%= episode[:title] %>
 </h5>
               
-<span class="limittext"><%= episode[:synopsis] %></span>
+<span class="limittext"><%= episode[:synopsis] %></span><br>
+  <span><a href="<%= episode[:imdb] %>"><img src="img/imdb.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/<%= episode[:trailer] %>" data-target="#myModal">
+  <img src="img/youtube.png"></button>
+  </span>
              
     </div>
     
-      </a>
+      </div>
 
 </div> 
 <% end %>
@@ -229,7 +480,7 @@
 
 <div class="container wow fadeInUp">
       
-  <div class="row">
+  <div class="row row-center">
         
     <div class="col-md-12">
     
@@ -254,16 +505,15 @@
 
 
      
-<div class="row">
+<div class="row row-center">
 
 <!-- start new seasons loop here -->
 <% new_seasons.each do |season| %>
 
   
-<div class="col-md-3">
+<div class="col-md-3 col-center">
       
-<a class="portfolio-item" style="background-image: url(
-<%= season[:image] %>);" href="<%= season[:imdb] %>">
+<div class="portfolio-item" style="background-image: url(<%= season[:image] %>);">
     
     
 <div class="details">
@@ -274,11 +524,15 @@
 <%= I18n.t :seasons, count: season[:season].length %><%= season[:season].min %>-<%= season[:season].max %>
 </h5>
               
-<span class="limittext"><%= season[:synopsis] %></span>
+<span class="limittext"><%= season[:synopsis] %></span><br>
+  <span><a href="<%= season[:imdb] %>"><img src="img/imdb.png"></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="button" class="video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/<%= season[:trailer] %>" data-target="#myModal">
+  <img src="img/youtube.png"></button>
+  </span>
              
     </div>
     
-      </a>
+      </div>
 
 </div> 
 <% end %>
@@ -295,7 +549,7 @@
 ============================--> 
   <footer id="footer">
       <div class="container">
-        <div class="row">
+        <div class="row row-center">
           <div class="col-md-12">
             <div class="copyright">
               <%= $advanced['web']['footer'] %>

@@ -18,6 +18,7 @@ require 'httparty'
 # T => TV time
 # u => top user
 # s => stream count
+# c => Recently added counts
 # A => totals (movie and tv)
 # S => include songs in total
 

@@ -3,8 +3,72 @@
 --------------------------------------------------------------*/
 body {
   background: #fff;
-  color: #666666;
+  color: #282a2d;
   font-family: "Open Sans", sans-serif;
+}
+
+td {
+	padding: 5px;
+	border-bottom: 1px solid #868c96;
+}
+
+/* leave these out for now.
+Use if wanted centered rows, but only works for 3 across, not 4.
+-----------------------
+.row-center {
+  text-align:center;
+}
+
+.col-center {
+  display:inline-block;
+  float:none;
+}
+------------------------
+*/
+
+/* video modal */
+
+.modal-dialog {
+      max-width: 800px;
+      margin: 30px auto;
+}
+.modal-body {
+  position:relative;
+  padding:0px;
+}
+.close {
+  position:absolute;
+  right:-30px;
+  top:0;
+  z-index:999;
+  font-size:2rem;
+  font-weight: normal;
+  color:#fff;
+  opacity:1;
+}
+
+.video-btn {
+	outline:none;
+	border:none;
+	padding:0;
+	overflow: hidden;
+	background-color:transparent;
+}
+
+.tg-yw3l {
+	width:2px;
+}
+.tg-yw4l {
+	text-align: right;
+}
+.tg-yw4la {
+	text-align: left;
+}
+.tg-yw51 {
+	text-align: right;
+}
+.tg-yw51a {
+	text-align: left;
 }
 
 a {
@@ -127,8 +191,8 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
   #hero {
-  background-size: 100% 100%;
   background-repeat: no-repeat;
+  background: url(../img/background-m.png) top center fixed;
   }
   
   #hero h1 {
@@ -375,8 +439,18 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
+  .stats table tbody td tr {
+    display: block !important;
+  }
+}
+
+@media (max-width: 768px) {
   #mobile-nav-toggle {
     display: inline;
+  }
+  
+  .stats {
+	  width:100% !important;
   }
 }
 
@@ -514,12 +588,13 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 .movies .portfolio-item .details {
   height: 260px;
-  background: #abb8c6;
+  background: rgba(0, 0, 0, 0.85);
   display: table-cell;
   vertical-align: middle;
   opacity: 0;
-  transition: 0.6s;
+  transition: 0.7s;
   text-align: center;
+  color: #fff;
 }
 /* color here is for item title text*/
 .movies .portfolio-item .details h4 {
@@ -530,13 +605,13 @@ body.mobile-nav-active #mobile-nav-toggle {
   -webkit-transform: translate3d(0, -15px, 0);
   transform: translate3d(0, -15px, 0);
   font-weight: 700;
-  color: #000;
+  color: #fff;
 }
 
 /* color here is for item description */
 .movies .portfolio-item .details span {
   display: block;
-  color: #000;
+  color: #fff;
   font-size: 13px;
   transition: opacity 0.3s, -webkit-transform 0.3s;
   transition: transform 0.3s, opacity 0.3s;
@@ -546,7 +621,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .movies .portfolio-item:hover .details {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
 .movies .portfolio-item:hover .details h4 {

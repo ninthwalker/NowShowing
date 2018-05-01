@@ -16,6 +16,7 @@ require_relative '/var/lib/nowshowing/themoviedb'
 require_relative '/var/lib/nowshowing/thetvdb'
 require_relative '/var/lib/nowshowing/omdb'
 require_relative '/var/lib/nowshowing/mailReport'
+require_relative '/var/lib/nowshowing/tautulli'
 
 # Class for parsing the Plex server for new movies and TV Shows
 #
@@ -105,7 +106,7 @@ class Report
     	omdb = OMDB.new
 	    plex = Plex.new($advanced)
 	    movies = Array.new
-
+		$movie_count = 0
 	    library = plex.get('/library/sections')
 
         library['MediaContainer']['Directory'].each do | element |
@@ -115,7 +116,7 @@ class Report
                 if !$advanced['plex']['libraries_to_skip'].nil?
                     if $advanced['plex']['libraries_to_skip'].include?(element['title'])
                         $logger.info("Skipping Movie Library: #{element['title']}")
-			next
+			            next
                     end
                 end
 
@@ -135,6 +136,7 @@ class Report
 		                movie = self.getMovieInfo(element)
 		                if !movie.nil?
 		                    movies.push(movie)
+							$movie_count += 1
 		                end
 		            end
                 end
@@ -153,7 +155,7 @@ class Report
         plex = Plex.new($advanced)
         movies = Array.new
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
-
+		
         if plex_movie.is_a?(Hash)
         if (Time.now.to_i - plex_movie['addedAt'].to_i < $daystoreport)
             plex_movie = plex.get("/library/metadata/#{plex_movie['ratingKey']}")['MediaContainer']['Video']
@@ -172,7 +174,7 @@ class Report
 
             if !movie_id.include?('local')
                 begin
-                    movie = moviedb.get("movie/#{movie_id}")
+                    movie = moviedb.get("movie/#{movie_id}","append_to_response=videos")
                     if "en" == language
                         localized_movie = movie
                     else
@@ -184,6 +186,7 @@ class Report
                     $logger.info("Reporting Movie: #{movie['title']}")
                         return {
                             :id          => movie['id'],
+							:trailer     => movie['videos']['results'][0]['key'],
                             :title       => (localized_movie['title'].nil? ? movie['title'] : localized_movie['title'] ),
                             :image       => "https://image.tmdb.org/t/p/w154#{poster_path}",
                             :date        => omdb_result['Year'],
@@ -213,6 +216,8 @@ class Report
         tv_episodes = Hash.new
         tv_episodes[:new] = []
         tv_episodes[:seasons] = []
+		$tv_count = 0
+		$season_count = 0
 
         library = plex.get('/library/sections')
         library['MediaContainer']['Directory'].each do | element |
@@ -222,7 +227,7 @@ class Report
                 if !$advanced['plex']['libraries_to_skip'].nil?
                     if $advanced['plex']['libraries_to_skip'].include?(element['title'])
                         $logger.info("Skipping TV Library: #{element['title']}")
-			next
+			            next
                     end
                 end
 
@@ -255,9 +260,10 @@ class Report
     #   tv_episodes: Array of Hashes of all episodes and seasons
     def getTVInfo(tv_show, tv_episodes)
         thetvdb = TheTVDB.new
+		moviedb = TheMovieDB.new($advanced)
         plex = Plex.new($advanced)
         language = $advanced['email']['language'].nil? ? "en" : $advanced['email']['language']
-
+		
         begin
         $logger.debug(plex.get("/library/metadata/#{tv_show['ratingKey']}"))
         last_updated = plex.get("/library/metadata/#{tv_show['ratingKey']}")['MediaContainer']['Directory']['updatedAt'].to_i
@@ -275,6 +281,8 @@ class Report
 
             begin
                 show = thetvdb.get("series/#{show_id}/all/#{language}.xml")['Data']
+				tmdb_mapping = moviedb.get("find/#{show_id}","external_source=tvdb_id")['tv_results'][0]['id']
+				tv = moviedb.get("tv/#{tmdb_mapping}","append_to_response=videos")
                 episodes = show['Episode'].sort_by { |hsh| hsh[:FirstAired] }.reverse!
             rescue
                 $logger.error("Connection to thetvdb.com failed while retrieving info for #{tv_show['title']}")
@@ -295,9 +303,11 @@ class Report
                             series = plex.get("/library/metadata/#{tv_show['ratingKey']}/allLeaves")['MediaContainer']['Video']
                             series.each do | plex_episode |
                                 if (episode['EpisodeNumber'] == plex_episode['index'] && episode['SeasonNumber'] == plex_episode['parentIndex'])
+								    $tv_count += 1
                                     $logger.info("Reporting #{show['Series']['SeriesName']} Season #{episode['SeasonNumber']} Episode #{episode['EpisodeNumber']}")
                                     tv_episodes[:new].push({
                                         :id             => show_id,
+										:trailer        => tv['videos']['results'][0]['key'],
                                         :series_name    => show['Series']['SeriesName'],
                                         :image          => "https://thetvdb.com/banners/#{show['Series']['poster']}",
                                         :network        => show['Series']['Network'],
@@ -338,15 +348,18 @@ class Report
                                         tv_episodes[:seasons].each do |x|
                                             if x[:id] == show_id
                                                 if !x[:season].include? season['index']
+												    $season_count += 1
                                                     $logger.info("Reporting #{show['Series']['SeriesName']} Season #{[season['index']]}")
                                                     x[:season].push(season['index'])
                                                 end
                                             end
                                         end
                                     else
+									    $season_count += 1
                                         $logger.info("Reporting #{show['Series']['SeriesName']} Season #{[season['index']]}")
                                         tv_episodes[:seasons].push({
                                             :id             => show_id,
+											:trailer        => tv['videos']['results'][0]['key'],
                                             :series_name    => show['Series']['SeriesName'],
                                             :image          => "https://thetvdb.com/banners/#{show['Series']['poster']}",
                                             :season         => [season['index']],
@@ -363,7 +376,7 @@ class Report
             end
         end
     rescue Exception => e
-        $logger.error("Something failed.  If you are seeing this, please turn on debugging and open an issue.")
+        $logger.error("Something failed. Most likely metadata related. If you see this error all the time, turn on debugging and open an issue on github.")
         $logger.debug(tv_show)
         $logger.debug(e)
     end
@@ -375,18 +388,55 @@ end
 def main
     startTime = Time.now
     report = Report.new
-
+	
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     I18n.load_path = Dir['/var/lib/nowshowing/locales/*.yml']
     I18n.backend.load_translations
     I18n.locale = $advanced['email']['language'].nil? ? 'en' : $advanced['email']['language']
-
+	
     movies = report.getMovies
     new_episodes = report.getTVEpisodes
 
     new_seasons = new_episodes[:seasons]
     new_episodes = new_episodes[:new]
-
+	
+	#get tautulli stats
+	begin
+      if ($advanced['tautulli']['stats'].include? "B" or $advanced['tautulli']['stats'].include? "W")
+        t = Tautulli.new
+        t.get_popular_stats
+        t.get_popular_day
+        t.get_popular_hour
+        t.get_libraries
+        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics' : $advanced['tautulli']['title']
+		
+		if $advanced['tautulli']['stats'].include? "c"
+		  moviecount = $movie_count
+	      tvcount = $tv_count
+	      seasoncount = $season_count
+		end
+		
+		if $advanced['tautulli']['stats'].include? "W"
+		  stats_web = "yes"
+		  stats_email = "no"
+		else
+		  stats_web = "yes"
+		  stats_email = "yes"
+		end
+		
+		if $advanced['tautulli']['stats'].include? "L"
+		  stats_layout = "table"
+		else
+          stats_layout = "grid"
+		end
+		
+        $logger.info('Adding Statistics from Tautulli to webpage report')
+      end
+	rescue => e
+	  $logger.info("Tautulli Statistics failed. Check settings/Tautulli app is running.\n#{e.message}#{e.backtrace}")
+	end
+    # end tautulli stats
+	
     YAML.load_file('/config/cfg/advanced.yaml')
     webtemplate = ERB.new File.new("/config/web_body.erb").read, nil, "%"
 

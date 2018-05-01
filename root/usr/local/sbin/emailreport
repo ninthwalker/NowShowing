@@ -106,7 +106,7 @@ class Report
     	omdb = OMDB.new
 	    plex = Plex.new($advanced)
 	    movies = Array.new
-
+        $movie_count = 0
 	    library = plex.get('/library/sections')
 
         library['MediaContainer']['Directory'].each do | element |
@@ -136,6 +136,7 @@ class Report
 		                movie = self.getMovieInfo(element)
 		                if !movie.nil?
 		                    movies.push(movie)
+							$movie_count += 1
 		                end
 		            end
                 end
@@ -214,6 +215,8 @@ class Report
         tv_episodes = Hash.new
         tv_episodes[:new] = []
         tv_episodes[:seasons] = []
+		$tv_count = 0
+		$season_count = 0
 
         library = plex.get('/library/sections')
         library['MediaContainer']['Directory'].each do | element |
@@ -296,6 +299,7 @@ class Report
                             series = plex.get("/library/metadata/#{tv_show['ratingKey']}/allLeaves")['MediaContainer']['Video']
                             series.each do | plex_episode |
                                 if (episode['EpisodeNumber'] == plex_episode['index'] && episode['SeasonNumber'] == plex_episode['parentIndex'])
+								    $tv_count += 1
                                     $logger.info("Reporting #{show['Series']['SeriesName']} Season #{episode['SeasonNumber']} Episode #{episode['EpisodeNumber']}")
                                     tv_episodes[:new].push({
                                         :id             => show_id,
@@ -339,12 +343,14 @@ class Report
                                         tv_episodes[:seasons].each do |x|
                                             if x[:id] == show_id
                                                 if !x[:season].include? season['index']
+												    $season_count += 1
                                                     $logger.info("Reporting #{show['Series']['SeriesName']} Season #{[season['index']]}")
                                                     x[:season].push(season['index'])
                                                 end
                                             end
                                         end
                                     else
+									    $season_count += 1
                                         $logger.info("Reporting #{show['Series']['SeriesName']} Season #{[season['index']]}")
                                         tv_episodes[:seasons].push({
                                             :id             => show_id,
@@ -364,7 +370,7 @@ class Report
             end
         end
     rescue Exception => e
-        $logger.error("Something failed.  If you are seeing this, please turn on debugging and open an issue.")
+        $logger.error("Something failed. Most likely metadata related. If you see this error all the time, turn on debugging and open an issue on github.")
         $logger.debug(tv_show)
         $logger.debug(e)
     end
@@ -377,22 +383,6 @@ def main
     startTime = Time.now
     report = Report.new
 	
-    #get tautulli stats
-	begin
-      if (!$advanced['tautulli']['stats'].empty? && !$advanced['tautulli']['server'].empty?)
-        t = Tautulli.new
-        t.get_popular_stats
-        t.get_popular_day
-        t.get_popular_hour
-        t.get_libraries
-        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics:' : $advanced['tautulli']['title']
-        $logger.info('Adding Statistics from Tautulli')
-      end
-	rescue => e
-	  $logger.info("Tautulli Statistics failed. Check settings/Tautulli app is running.\n#{e.message}#{e.backtrace}")
-	end  
-    # end tautulli stats
-	
     I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
     I18n.load_path = Dir['/var/lib/nowshowing/locales/*.yml']
     I18n.backend.load_translations
@@ -403,6 +393,43 @@ def main
 
     new_seasons = new_episodes[:seasons]
     new_episodes = new_episodes[:new]
+	
+	#get tautulli stats
+	begin
+      if ($advanced['tautulli']['stats'].include? "B" or $advanced['tautulli']['stats'].include? "E")
+        t = Tautulli.new
+        t.get_popular_stats
+        t.get_popular_day
+        t.get_popular_hour
+        t.get_libraries
+        stat_title = $advanced['tautulli']['title'].empty? ? 'Statistics' : $advanced['tautulli']['title']
+
+		if $advanced['tautulli']['stats'].include? "c"
+		  moviecount = $movie_count
+	      tvcount = $tv_count
+	      seasoncount = $season_count
+		end
+		
+		if $advanced['tautulli']['stats'].include? "E"
+		  stats_web = "no"
+		  stats_email = "yes"
+		else
+		  stats_web = "yes"
+		  stats_email = "yes"
+		end
+		
+		if $advanced['tautulli']['stats'].include? "L"
+		  stats_layout = "table"
+		else
+          stats_layout = "grid"
+		end
+		
+        $logger.info('Adding Statistics from Tautulli to email report')
+      end
+	rescue => e
+	  $logger.info("Tautulli Statistics failed. Check settings/Tautulli app is running.\n#{e.message}#{e.backtrace}")
+	end  
+    # end tautulli stats
 
     YAML.load_file('/config/cfg/advanced.yaml')
     template = ERB.new File.new("/config/email_body.erb").read, nil, "%"

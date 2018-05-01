@@ -71,50 +71,6 @@ ul {
 }
 
   </style>
-<script>
-$(document).ready(function(){
-		if ( document.getElementById('email_provider').value == "other" ) {
-		$("#emailProviderDiv").show();
-	}
-    else {
-        $("#emailProviderDiv").hide();
-    }
-	
-    $('#email_provider').change(function() {
-      if ( this.value == 'other') {
-        $("#emailProviderDiv").show();
-      }
-      else {
-        $("#emailProviderDiv").hide();
-      }
-    });
-	
-	$('#ns_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fnowshowing.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-	
-	$('#ws_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Flighttpd_access.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-	
-	$('#f2b_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Ffail2ban.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-	
-	$('#plx_log_button').on('click',function(){
-      $('#log-div').load(encodeURI('logs.php?p=%2Fconfig%2Flogs%2Fplex_token_errors.log'),function(){
-        $('#logModal').modal({show:true}).fadeIn();
-      });
-    });
-});
-
-</script>
 </head>
 <body bgcolor="#151515">
   
@@ -126,7 +82,7 @@ $(document).ready(function(){
     
 <!--  link to logo -->
       <div id="logo" class="pull-left">
-	  <a href="../index.html">
+	  <a href="../index.html" target="_blank">
 	  <img src="../img/nowshowing-icon2.png" alt="NowShowing-Icon" style="margin-bottom:15px;margin-top:2px;" width="66px">
       <img src="../img/nowshowing.png" alt="NowShowing" width="350px" style="margin-top:12px;"></a>
       </div>
@@ -138,6 +94,14 @@ $(document).ready(function(){
     </div>
   </header><!-- #header -->
     
+<!--==========================
+  Notifications
+============================-->
+
+<div class="notifications" id="test_cronDiv">
+</div>
+
+	
 <!--==========================
   Body Section
 ============================--> 
@@ -190,7 +154,10 @@ NowShowing will generate an email for your users and a webpage for them to visit
 Please use the tabs to configure additional settings and customization options.</p>
 - Thanks for using NowShowing!
 </p>
-<div><?=$msg?></div>
+<div>
+<span id="update_msg" ><?=$update_available?></span></p>
+<?=$msg?>
+</div>
 </div>
 
 <!--==========================
@@ -488,15 +455,15 @@ ie: TV Shows,Kids Movies
 
 <label>
 <span>Test Cron Schedule:</span>
-<select name="test">
+<select name="test" id="test_cron">
   <option value="disable" <?=strip_tags($adv['report']['test']) == 'disable' ? ' selected="selected"' : '';?>>No</option>
   <option value="enable" <?=strip_tags($adv['report']['test']) == 'enable' ? ' selected="selected"' : '';?>>Yes</option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 For testing cron schedule.<br>
 See Tools section for On-demand test.<br>
-Will use Email Report Time to send email only to yourself<br>
-and create the webpage. For testing purposes.
+Enabling this will test both email and web reports using the email report cron time.<br>
+Only the admin will be sent an email, users will <i>NOT</i> receive one.
 </span></div>
 </label><br><br>
 
@@ -588,7 +555,7 @@ Which reports to generate.
 <hr width="440px" align="left"><br>
 
 Pull Statistics from <a href="http://tautulli.com/" target="_blank">Tautulli</a><br>
-Can add some fun anonymous usage statistics to the Email report.<br>
+Can add some fun anonymous usage statistics to the reports.<br>
 Requires a seperate instance of the Tautulli app running (local or remote works).<br>
 Settings can be found in the Tautulli: Settings > Web Interface page.<br></p>
 
@@ -618,7 +585,7 @@ ie: 9181<br>
   <option value="yes" <?=strip_tags($adv['tautulli']['https']) == 'yes' ? ' selected="selected"' : '';?>>Yes</option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
-Is HTTPS enabled on Tautulli?<br>
+Is HTTPS enabled in Tautulli or your domain?<br>
 </span></div>
 </label><br><br>
 
@@ -644,19 +611,46 @@ Find in Tautulli: Settings > Web Interface page<br>
 </label><br><br>
 
 <label>
-<span>Email Stats Title:</span>
+<span>Statistics Title:</span>
 <input name="plexpy_title" value="<?=strip_tags($adv['tautulli']['title'])?>" type="text" size="30" />
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
-Required.<br>
-Title header for the Statistics section of the email.<br>
-Include a colon (:) after your Title text if you want<br>
-to be consistent with the other movie/tv section titles.
-ie: Awesome Stats:
+Title header for the Statistics section of the email and webpage.
+A colon (:) is automatically added at the end for the email
+title to be consistent with the other movie/tv section titles.
+ie: Awesome Stats
 </span></div>
-</label><br></p>
+</label><br><br>
 
-Select the Statistics you want to be added to the Email Report.<br>
-Statistics section will be added to the top of all Email Reports.<br>
+<label>
+<span>Web Layout:</span>
+<select name="stats[]" id="stats_layout">
+  <option value="L" <?=strpos(strip_tags($adv['tautulli']['stats']), 'L') !== false ? ' selected="selected"' : '';?>>Table </option>
+  <option value="G" <?=strpos(strip_tags($adv['tautulli']['stats']), 'G') !== false ? ' selected="selected"' : '';?>>Grid </option>
+</select>
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Stats layout for the website.<br>
+Either a table line-item format, or a grid bootstrap style.
+</span></div>
+</label><br><br>
+
+<label>
+<span>Enable Statistics:</span>
+<select name="stats[]" id="enable_stats">
+  <option value="N" <?=strpos(strip_tags($adv['tautulli']['stats']), 'N') !== false ? ' selected="selected"' : '';?>>None </option>
+  <option value="B" <?=strpos(strip_tags($adv['tautulli']['stats']), 'B') !== false ? ' selected="selected"' : '';?>>Web & Email </option>
+  <option value="W" <?=strpos(strip_tags($adv['tautulli']['stats']), 'W') !== false ? ' selected="selected"' : '';?>>Web Only </option>
+  <option value="E" <?=strpos(strip_tags($adv['tautulli']['stats']), 'E') !== false ? ' selected="selected"' : '';?>>Email Only </option>
+</select>
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+Select which report(s) you want statistics added.<br>
+</span></div>
+</label><br><br>
+ 
+Select the Statistics you want to be added to the reports.<br>
+Statistics section will be added to the top of each report if enabled.
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+See <a href ="https://github.com/ninthwalker/NowShowing/wiki/Screenshots" style="text-decoration:none; color:#e5a00d;" target="_blank">Github wiki</a> for an example of what all stats look like.
+</span></div><br>
 <hr width="440px" align="left"></p>
 
 <!--
@@ -670,8 +664,11 @@ Statistics section will be added to the top of all Email Reports.<br>
 # T => TV time
 # u => top user
 # s => stream count
+# c => Recently added counts
 # A => totals (movie & tv)
 # S => include songs in totals
+# B,W,E,N => enable statistics?
+# L,G => stats layout
 -->
 <table width=550px>
 <!-- removed select all for now
@@ -725,6 +722,10 @@ Statistics section will be added to the top of all Email Reports.<br>
 </td>
 </tr>
 <tr>
+<td>
+  <input name="stats[]" id="counts" value="c" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'c') !== false ? ' checked="checked"' : '';?> />
+  <label class="stats" for="counts">TV/Movies added count</label><br>
+</td>
 <td>
   <input name="stats[]" id="totals" value="A" type="checkbox" class="stats_box" <?=strpos(strip_tags($adv['tautulli']['stats']), 'A') !== false ? ' checked="checked"' : '';?> />
   <label class="stats" for="totals">Library Totals</label><br>
@@ -987,8 +988,8 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <hr width="440px" align="left">
 <b style="color:#087caa;">About</b>
 <ul>
-<li>Version: 2.0.2</li>
-<li>Updated: 13APR2018</li>
+<li>Version: 2.0.3</li>
+<li>Updated: 24APR2018</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 

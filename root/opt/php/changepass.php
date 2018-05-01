@@ -2,10 +2,13 @@
 if (isset($_POST['changepass'])) {
 	# change password
 	if(!empty($_POST['ns_username']) && !empty($_POST['ns_password'])) {
-		# Write ns user/pass to secure.php
-  		$user = $_POST['ns_username'];
-  		$pass = $_POST['ns_password'];
-  		exec("sed -i \"10s/.*/\'$user\\' => \'$pass\'/\" /config/cfg/secure.php");
+		# Write ns user/pass to secure.php - Escape single quotes and backslashes
+  		$user = addcslashes($_POST['ns_username'], "\'");
+  		$pass = addcslashes($_POST['ns_password'], "\'");
+		$login_file = "/config/cfg/secure.php";
+        $lines = file($login_file, FILE_IGNORE_NEW_LINES);
+        $lines[9] = "'$user' => '$pass'";
+        file_put_contents($login_file , implode("\n", $lines));
   	}
 	else {
 		echo "Fill in username/password fields";
@@ -18,4 +21,3 @@ if (isset($_POST['changepass'])) {
 }
 exit;
 ?>
-

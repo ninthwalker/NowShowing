@@ -1,11 +1,11 @@
 <?php
 ###############################################################
-# Password Protect 2.13
+# Password Protect 2.13 - http://www.zubrag.com/scripts/
 ###############################################################
-# Visit http://www.zubrag.com/scripts/ for updates
-##################################################################
-#  SETTINGS START
-##################################################################
+# SETTINGS START
+#
+# NOTE: All single quotes (') and backslashes (\) are preceded be the escape character.
+# Escape character is the \ (backslash). ie: O'Reilly is entered as O\'Reilly
 $LOGIN_INFORMATION = array(
 'NowShowing' => 'NowShowing'
 );
