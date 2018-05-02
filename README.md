@@ -19,6 +19,7 @@ NowShowing is the successor of the popular plexReport docker. The original brain
 * Same great Email/webpage for Plex recently added as v1
 * All new Web Interface for settings and customization
 * Library Filtering!
+* Movie/TV Trailers
 * [Tautilli](https://github.com/Tautulli/Tautulli) Statistics integration
 * New user Setup Wizard
 * Announcement Emails
