@@ -19,6 +19,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 * Same great Email/webpage for Plex recently added as v1
 * All new Web Interface for settings and customization
 * Library Filtering!
+* Movie/TV Trailers
 * [Tautilli](https://github.com/Tautulli/Tautulli) Statistics integration
 * New user Setup Wizard
 * Announcement Emails
@@ -33,7 +34,7 @@ The NowShowing docker provides a summary of new media that has recently been add
 ### [Screenshots](https://github.com/ninthwalker/NowShowing/wiki/Screenshots)
 
 ## Supported Platforms
-* Docker [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
+* Docker (Windows or Linux based) [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
 * unRAID v6+
 
 
