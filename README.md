@@ -33,7 +33,7 @@ NowShowing is the successor of the popular plexReport docker. The original brain
 ### [Screenshots](https://github.com/ninthwalker/NowShowing/wiki/Screenshots)
 
 ## Supported Platforms
-* Docker [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
+* Docker (Windows or Linux based) [See Wiki](https://github.com/ninthwalker/NowShowing/wiki/Other-Docker-Platforms)
 * unRAID v6+
 
 
