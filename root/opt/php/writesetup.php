@@ -49,8 +49,8 @@ if(!empty($_POST['ns_username']) && !empty($_POST['ns_password'])) {
   
   # save main settings to advanced.yaml
   $adv_array['plex'] = array('plex_user_emails' => "yes", 'libraries_to_skip' => "", 'server' => strip_tags($_POST['server']));
-  $adv_array['mail'] = array('from' => "Plex Server", 'subject' => "Now Showing", 'recipients_email' => "", 'recipients' => "", 'provider' => $provider, 'address' => $smtp_address, 'port' => $smtp_port, 'username' => strip_tags($_POST['email_username']), 'password' => $_POST['email_password']);
-  
+  $adv_array['mail'] = array('from' => "Plex Server", 'subject' => "Now Showing", 'recipients_email' => "", 'recipients' => "", 'provider' => $provider, 'address' => $smtp_address, 'port' => $smtp_port, 'username' => strip_tags($_POST['email_username']), 'password' => $_POST['email_password'], 'sender' => $_POST['email_sender']);
+
   if (!empty($_POST['plex_token'])) {
 	$adv_array['token'] = array('api_key' => strip_tags($_POST['plex_token']));
   }

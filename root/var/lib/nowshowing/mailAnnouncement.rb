@@ -56,8 +56,8 @@ class MailReport
                 plex_users = plexTv.get('/pms/friends/all')
 
                 if plex_users.nil? || plex_users.empty?
-                    $logger.info("No Plex friends found.")  
-                else                
+                    $logger.info("No Plex friends found.")
+                else
                     plex_users['MediaContainer']['User'].each do | user |
 			if !user['email'].empty?
                             users.push(user['email'])
@@ -86,11 +86,11 @@ class MailReport
 
         #Get owner's email as well and add it to the list of recpients
         users.push(plexTv.get('/users/account')['user']['email'][0])
-     
+
 	#used to send individual email. Now it bcc's one email
         #users.each do | user |
             mail = Mail.new do
-                from "#{$advanced['mail']['from']} <#{$advanced['mail']['username']}>"
+                from "#{$advanced['mail']['from']} <#{$advanced['mail']['sender']}>"
                 bcc users
                 subject $subject
                 content_type 'text/html; charset=UTF-8'

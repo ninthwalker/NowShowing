@@ -326,6 +326,16 @@ SMTP Password<br>
 Usually your Email password
 </span></div>
 </label><br><br>
+<label>
+
+<span>SMTP Sender:</span>
+<input name="email_sender" value="<?=strip_tags($adv['mail']['sender'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+SMTP Sender<br>
+The email address you'd like to send from. This is often the same value as your username.
+</span></div>
+</label><br><br>
+
 <button type="button" class="mybutton" data-toggle="modal" data-target="#settingsModal">Save Settings</button>
 </p>
 </div>
