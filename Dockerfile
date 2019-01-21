@@ -35,10 +35,8 @@ cp /opt/smtp.rb /usr/lib/ruby/2.3.0/net/ && \
 # Insall NowShowing app dependencies
 bundle config --global silence_root_warning 1 && \
 cd /opt/gem ; bundle install && \
-
 # Remove temp files
 apk del --purge build-dependencies
-
 # Start s6 init & webserver
 ENTRYPOINT ["/init"]
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
