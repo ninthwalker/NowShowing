@@ -20,6 +20,23 @@ $(document).ready(function(){
       }
     });
 	
+	<!-- show 'sendgrid' smtp settings on selection -->
+	if ( document.getElementById('email_sender').value == "sendgrid" ) {
+		$("#emailSenderDiv").show();
+	}
+    else {
+        $("#emailSenderDiv").hide();
+    }
+	
+    $('#email_sender').change(function() {
+      if ( this.value == 'sendgrid') {
+        $("#emailSenderDiv").show();
+      }
+      else {
+        $("#emailSenderDiv").hide();
+      }
+    });
+	
 	<!-- show Test cron - enabled warning -->
 	if ( document.getElementById('test_cron').value == "enable" ) {
 		$('#test_cronDiv').text("test cron enabled");

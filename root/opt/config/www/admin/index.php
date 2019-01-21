@@ -281,6 +281,7 @@ If language selected is not found, falls back to english.
   <option value="microsoft" <?=strip_tags($adv['mail']['provider']) == 'microsoft' ? ' selected="selected"' : '';?>>Outlook/Live</option>
   <option value="yahoo" <?=strip_tags($adv['mail']['provider']) == 'yahoo' ? ' selected="selected"' : '';?>>Yahoo</option>
   <option value="zoho" <?=strip_tags($adv['mail']['provider']) == 'zoho' ? ' selected="selected"' : '';?>>Zoho.com</option>
+  <option value="sendgrid" <?=strip_tags($adv['mail']['provider']) == 'sendgrid' ? ' selected="selected"' : '';?>>SendGrid</option>
   <option value="other" <?=strip_tags($adv['mail']['provider']) == 'other' ? ' selected="selected"' : '';?>>< Other ></option>
 </select>
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
@@ -296,6 +297,16 @@ Select 'Other' to enter your own SMTP port/server.
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 SMTP port <br>
 ie: 587
+</span></div>
+</label><br><br>
+
+<div id="emailSenderDiv" style="display:none;">
+<label>
+<span>SMTP Sender:</span>
+<input name="smtp_sender" value="<?=strip_tags($adv['mail']['sender'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+SMTP Sender. Used for SendGrid. Usually an email address.<br>
+ie: batman@batcave.com
 </span></div>
 </label><br><br>
 
@@ -988,8 +999,8 @@ View docker syslogs via cmd line: 'docker logs NowShowingv2'</p>
 <hr width="440px" align="left">
 <b style="color:#087caa;">About</b>
 <ul>
-<li>Version: 2.0.3</li>
-<li>Updated: 24APR2018</li>
+<li>Version: 2.0.4</li>
+<li>Updated: 21JAN2019</li>
 <li>Created By: Ninthwalker/GroxyPod/Limen75</li>
 </ul>
 
