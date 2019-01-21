@@ -38,7 +38,6 @@ cd /opt/gem ; bundle install && \
 
 # Remove temp files
 apk del --purge build-dependencies
-
 # Start s6 init & webserver
 ENTRYPOINT ["/init"]
 CMD ["lighttpd", "-D", "-f", "/etc/lighttpd/lighttpd.conf"]
