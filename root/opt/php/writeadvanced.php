@@ -48,7 +48,7 @@ if (isset($_POST['save_settings'])) {
 			$smtp_port = '587';
 			break;
 		case 'sendgrid':
-			$smtp_address = 'smtp.sendgrid.com';
+			$smtp_address = 'smtp.sendgrid.net';
 			$smtp_port = '587';
 			$username = 'apikey';
 			break;
