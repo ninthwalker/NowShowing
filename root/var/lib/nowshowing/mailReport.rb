@@ -23,6 +23,12 @@ class MailReport
             $port = 587
         end
 
+		if !$advanced['mail']['sender'].nil?
+            $sender = $advanced['mail']['sender']
+        else
+            $sender = $advanced['mail']['username']
+        end
+		
         if !$advanced['mail']['subject'].nil?
             $subject = $advanced['mail']['subject']
         else
@@ -89,7 +95,7 @@ class MailReport
 	#used to send individual email. Now it bcc's one email
         #users.each do | user |
             mail = Mail.new do
-                from "#{$advanced['mail']['from']} <#{$advanced['mail']['username']}>"
+                from "#{$advanced['mail']['from']} <#{$sender}>"
                 bcc users
                 subject $advanced['mail']['subject'] + " " + (I18n.l Time.now.to_date)
                 content_type 'text/html; charset=UTF-8'

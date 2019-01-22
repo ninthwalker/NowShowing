@@ -27,6 +27,13 @@ else {
         $libraries_to_skip_array = "";
 }
 
+if (!empty($adv['mail']['sender'])) {
+        $smtp_sender = $adv['mail']['sender'];
+}
+else {
+        $smtp_sender = "";
+}
+
 # show special message or status
 function get_data($url) {
         $ch = curl_init();

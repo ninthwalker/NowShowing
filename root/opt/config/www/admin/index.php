@@ -300,7 +300,6 @@ ie: 587
 </span></div>
 </label><br><br>
 
-<div id="emailSenderDiv" style="display:none;">
 <label>
 <span>SMTP Sender:</span>
 <input name="smtp_sender" value="<?=strip_tags($adv['mail']['sender'])?>" type="text" size="30" />
@@ -316,6 +315,17 @@ ie: batman@batcave.com
 <div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
 SMTP Server for email provider<br>
 ie: smtp.gmail.com
+</span></div>
+</label><br><br>
+</div>
+
+<div id="emailSenderDiv" style="display:none;">
+<label>
+<span>SMTP Sender:</span>
+<input name="smtp_sender" value="<?=strip_tags($adv['mail']['sender'])?>" type="text" size="30" />
+<div class="mytooltip"><i class="fa fa-info-circle"></i><span class="mytooltiptext mytooltip-right">
+SMTP Sender. Used for SendGrid. Usually an email address.<br>
+ie: batman@batcave.com
 </span></div>
 </label><br><br>
 </div>

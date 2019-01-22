@@ -21,14 +21,14 @@ $(document).ready(function(){
     });
 	
 	<!-- show 'sendgrid' smtp settings on selection -->
-	if ( document.getElementById('email_sender').value == "sendgrid" ) {
+	if ( document.getElementById('email_provider').value == "sendgrid" ) {
 		$("#emailSenderDiv").show();
 	}
     else {
         $("#emailSenderDiv").hide();
     }
 	
-    $('#email_sender').change(function() {
+    $('#email_provider').change(function() {
       if ( this.value == 'sendgrid') {
         $("#emailSenderDiv").show();
       }
